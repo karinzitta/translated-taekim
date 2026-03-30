@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Comparações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 74%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/comparison">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li class="active"><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>Se você estava se perguntando como fazer comparações em japonês, não precisa mais se perguntar. Aprenderemos como usar 「方」 e 「より」 para fazer comparações entre duas coisas. Também aprenderemos outros usos de 「方」 e 「よる」 ao longo do caminho.</p>
+<h2>Usando 「方」 para comparações</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>方 【1) ほう; 2) かた】 – 1) direção; lado; 2) pessoa; forma de fazer</li>
+<li>ご飯 【ご・はん】 – arroz; refeição</li>
+<li>おいしい (i-adj) – gostoso</li>
+<li>鈴木 【すず・き】 – Suzuki (sobrenome)</li>
+<li>若い 【わか・い】 (i-adj) – jovem</li>
+<li>学生 【がく・せい】 – estudante</li>
+<li>いい (i-adj) – bom</li>
+<li>赤ちゃん 【あか・ちゃん】 – bebê</li>
+<li>静か 【しず・か】 (na-adj) – silencioso</li>
+<li>好き 【す・き】 (na-adj) – do qual gosta; desejável</li>
+<li>ゆっくり – devagar</li>
+<li>食べる 【た・べる】 (ru-verb) – comer</li>
+<li>健康 【けん・こう】 – saúde</li>
+<li>こちら – por este lado</li>
+<li>行く 【い・く】 (u-verb) – ir</li>
+<li>早い 【はや・い】 (i-adj) – rápido; cedo</li>
+<li>怖い 【こわ・い】 (i-adj) – assustador</li>
+<li>映画 【えい・が】 – filme</li>
+<li>観る 【み・る】 (ru-verb) – assistir</li>
+<li>そんな – desse tipo</li>
+<li>飲む 【の・む】 (u-verb) – beber</li>
+</ol>
+<p>O substantivo 「方」 é lido como 「ほう」 quando é usado para indicar uma direção ou orientação. Como observação, também pode ser lido como 「かた」 quando é usado como uma versão mais polida de 「人」.</p>
+<p>Quando usamos 「方」 para indicar direção, podemos usá-lo para fazer comparações dizendo que uma das formas de algo é melhor, pior etc. do que a outra forma. Gramaticalmente, funciona como qualquer outro substantivo regular.</p>
+<h3>Exemplos</h3>
+<p>Use com substantivos utilizando a partícula 「の」.</p>
+<ol>
+<li>ご飯_の方_がおいしい
+O arroz é mais gostoso. (lit: O lado do arroz é gostoso.)</li>
+<li>鈴木さん_の方_が若い。
+Suzuki-san é mais jovem. (lit: O lado de Suzuki é jovem.)</li>
+</ol>
+<p>Gramaticalmente, não é diferente de um substantivo regular.</p>
+<ol>
+<li>_学生じゃない_方がいいよ。
+É melhor não ser estudante. (lit: O lado de não ser estudante é bom.)</li>
+<li>赤ちゃんは、_静かな_方が好き。
+Prefiro bebês silenciosos. (lit: Sobre bebês, o lado silencioso é desejável.)</li>
+</ol>
+<p>Para verbos não-negativos, você também pode usar o passado para adicionar mais certeza e confiança, especialmente ao fazer sugestões.</p>
+<ol>
+<li>ゆっくり_食べた_方が健康にいいよ。
+É melhor para a saúde comer devagar.</li>
+<li>こちらから_行った_方が早かった。
+Era mais rápido ir por este lado.</li>
+</ol>
+<p>O mesmo não se aplica para verbos negativos.</p>
+<ul>
+<li>怖い映画は_観ない_方がいいよ。
+É melhor não assistir a filme(s) assustador(es).</li>
+</ul>
+<p>O verbo negativo só fica no passado quando a comparação é de algo que aconteceu no passado.</p>
+<ul>
+<li>そんなに_飲まなかった_方が_よかった_。
+Era melhor não ter bebido tanto.</li>
+</ul>
+<h2>Usando 「より」 para comparações</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>方 【1) ほう; 2) かた】 – 1) direção; lado; 2) pessoa; forma de fazer</li>
+<li>花 【はな】 – flor</li>
+<li>団子 【だん・ご】 – dango (bolinho de massa)</li>
+<li>ご飯 【ご・はん】 – arroz; refeição</li>
+<li>パン – pão</li>
+<li>おいしい (i-adj) – gostoso</li>
+<li>若い 【わか・い】 (i-adj) – jovem</li>
+<li>鈴木 【すず・き】 – Suzuki (sobrenome)</li>
+<li>毎日 【まい・にち】 – todo dia</li>
+<li>仕事 【し・ごと】 – trabalho</li>
+<li>嫌 【いや】 (na-adj) – desagradável; ruim</li>
+<li>ある (u-verb) – existir (inanimado)</li>
+<li>まし – não tão ruim</li>
+<li>ゆっくり – devagar</li>
+<li>食べる 【た・べる】 (ru-verb) – comer</li>
+<li>早い 【はや・い】 (i-adj) – rápido; cedo</li>
+<li>いい (i-adj) – bom</li>
+</ol>
+<p>Você pode pensar em 「より」 como o oposto de 「方」. Significa &quot;em vez de&quot; ou &quot;em oposição a&quot;. Ele se anexa diretamente ao final de qualquer palavra. Geralmente é usado em conjunto com 「方」 para dizer algo como &quot;Este jeito é melhor em oposição àquele jeito.&quot;</p>
+<h3>Exemplos</h3>
+<ol>
+<li>花より団子。
+Dango em vez de flores. (Este é um ditado muito famoso.)</li>
+<li>ご飯の方が、_パンより_おいしい。
+O arroz é mais gostoso do que pão. (lit: O lado do arroz é gostoso em oposição ao pão.)</li>
+<li>_キムさんより_鈴木さんの方が若い。
+Suzuki-san é mais jovem do que Kim-san. (lit: O lado de Suzuki é jovem em oposição a Kim-san.)</li>
+</ol>
+<p>Para os curiosos sobre o significado do provérbio, dango é um doce macio geralmente vendido em festivais. O provérbio diz que as pessoas preferem este doce a ver as flores, referindo-se ao evento 「花見」 onde as pessoas saem para ver as cerejeiras em flor (e se embebedarem). O significado mais profundo do provérbio, como todo bom provérbio, depende de como você o aplica.</p>
+<p>É claro que não há regra que diga que 「より」 deva ser usado com 「方」. A outra forma pode ser deduzida pelo contexto.</p>
+<p>鈴木：毎日仕事に行くのが嫌だ。
+Suzuki: Não gosto de ir ao trabalho todo dia.</p>
+<p>スミス：仕事がない_より_ましだよ。
+Smith: É melhor do que não ter trabalho.</p>
+<p>Palavras associadas a 「より」 não precisam de nenhum tempo verbal. Note na seguinte frase que 「食べる」 antes de 「より」 está no presente, mesmo que 「食べる」 antes de 「方」 esteja no passado.</p>
+<ul>
+<li>ゆっくり_食べた_方が早く_食べる_よりいい。
+É melhor comer devagar do que comer rápido.</li>
+</ul>
+<h3>Usando 「より」 como superlativo</h3>
+<h3>Vocabulário</h3>
+<ol>
+<li>誰 【だれ】 – quem</li>
+<li>何【なに】 – o quê</li>
+<li>どこ – onde</li>
+<li>商品 【しょう・ひん】 – produto</li>
+<li>品質 【ひん・しつ】 – qualidade de um produto</li>
+<li>大切 【たい・せつ】 (na-adj) – importante</li>
+<li>する (exception) – fazer</li>
+<li>この – este (abrev. de これの)</li>
+<li>仕事 【し・ごと】 – trabalho</li>
+<li>早い 【はや・い】 (i-adj) – rápido; cedo</li>
+<li>出来る 【で・き・る】 (ru-verb) – ser capaz de fazer</li>
+</ol>
+<p>Você também pode usar 「より」 com palavras interrogativas como 「誰」、「何」 ou 「どこ」 para criar um superlativo, comparando com tudo ou todos os demais. Neste caso, embora não seja obrigatório, é comum incluir a partícula 「も」.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>商品の品質を何より大切にしています。
+Valorizamos a qualidade do produto acima de tudo.</li>
+<li>この仕事は誰よりも早くできます。
+Posso fazer este trabalho mais rapidamente do que qualquer pessoa.</li>
+</ol>
+<h2>Usando 「方」 para expressar a forma de fazer algo</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>方 【1) ほう; 2) かた】 – 1) direção; lado; 2) pessoa; forma de fazer</li>
+<li>行く 【い・く】 (u-verb) – ir</li>
+<li>食べる 【た・べる】 (ru-verb) – comer</li>
+<li>新宿 【しん・じゅく】 – Shinjuku</li>
+<li>分かる 【わ・かる】 (u-verb) – entender</li>
+<li>そう – (as coisas são) dessa forma</li>
+<li>言う 【い・う】 (u-verb) – dizer</li>
+<li>体 【からだ】 – corpo</li>
+<li>いい (i-adj) – bom</li>
+<li>漢字 【かん・じ】 – kanji</li>
+<li>書く 【か・く】 (u-verb) – escrever</li>
+<li>教える 【おし・える】 (ru-verb) – ensinar; informar</li>
+<li>くれる (ru-verb) – dar</li>
+<li>パソコン – computador; PC</li>
+<li>使う 【つか・う】 (u-verb) – usar</li>
+<li>皆 【みんな】 – todo mundo</li>
+<li>知る 【し・る】 (u-verb) – saber</li>
+</ol>
+<p>Você também pode anexar 「方」 ao radical de verbos para expressar a forma de fazer aquele verbo. Neste uso, 「方」 é lido como 「かた」 e o resultado se torna um substantivo. Por exemplo, 「行き方」（いきかた） significa &quot;a forma de ir&quot; ou 「食べ方」（たべかた） significa &quot;a forma de comer&quot;. Essa expressão é provavelmente o que você vai querer usar quando quiser perguntar como fazer algo.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>新宿の_行き方_は分かりますか。
+Você sabe como ir a Shinjuku?</li>
+<li>そういう_食べ方_は体によくないよ。
+Comer dessa forma não é bom para o corpo.</li>
+<li>漢字の_書き方_を教えてくれますか？
+Você pode me ensinar como escrever kanji?</li>
+<li>パソコンの_使い方_は、みんな知っているでしょう。
+Provavelmente todo mundo sabe como usar computadores.</li>
+</ol>
+<p>Quando verbos são transformados para esta forma, o resultado se torna uma oração substantiva. Às vezes, isso requer uma mudança de partículas. Por exemplo, enquanto 「行く」 normalmente envolve um destino (a partícula 「に」 ou 「へ」), como 「行き方」 é uma oração substantiva, o exemplo 1 se torna 「新宿_の_行き方」 em vez do familiar 「新宿_に_行く」.</p>
+<h2>Usando 「によって」 para expressar dependência</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>人 【ひと】 – pessoa</li>
+<li>話 【はなし】 – história</li>
+<li>違う 【ちが・う】 (u-verb) – ser diferente</li>
+<li>季節 【き・せつ】 – estação</li>
+<li>果物 【くだ・もの】 – fruta</li>
+<li>おいしい (i-adj) – gostoso</li>
+<li>なる (u-verb) – tornar-se</li>
+<li>まずい (i-adj) – desagradável; sem gosto</li>
+<li>和子 【かず・こ】 – Kazuko (nome próprio)</li>
+<li>今日 【きょう】 – hoje</li>
+<li>飲む 【の・む】 (u-verb) – beber</li>
+<li>行く 【い・く】 (u-verb) – ir</li>
+<li>大樹 【だい・き】 – Daiki (nome próprio)</li>
+<li>それ – aquilo</li>
+<li>裕子 【ゆう・こ】 – Yuuko (nome próprio)</li>
+</ol>
+<p>Quando você quer dizer &quot;dependendo de [X]&quot;, pode fazer isso em japonês simplesmente anexando 「によって」 a [X].</p>
+<h3>Exemplos</h3>
+<ol>
+<li>_人によって_話が違う。
+A história é diferente dependendo da pessoa.</li>
+<li>_季節によって_果物はおいしくなったり、まずくなったりする。
+As frutas ficam gostosas ou sem graça dependendo da estação.</li>
+</ol>
+<p>Isso é simplesmente a forma te de 「よる」, como visto na seguinte troca simples.</p>
+<p>和子：今日は飲みに行こうか？
+Kazuko: Vamos beber hoje?</p>
+<p>大樹：それは、裕子に_よる_ね。
+Daiki: Isso depende da Yuuko.</p>
+<h2>Indicando uma fonte de informação usando 「によると」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>天気 【てん・き】 – tempo (clima)</li>
+<li>予報 【よ・ほう】 – previsão</li>
+<li>今日 【きょう】 – hoje</li>
+<li>雨 【あめ】 – chuva</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>話 【はなし】 – história</li>
+<li>朋子 【とも・こ】 – Tomoko (nome próprio)</li>
+<li>やっと – finalmente</li>
+<li>ボーイフレンド – namorado</li>
+<li>見つける 【み・つける】 (ru-verb) – encontrar</li>
+</ol>
+<p>Outra expressão usando 「よる」 é combiná-lo com a partícula de destino e o condicional decidido 「と」 para indicar uma fonte de informação. Em português, isso seria traduzido como &quot;de acordo com [X]&quot;, onde 「によると」 é anexado a [X].</p>
+<h3>Exemplos</h3>
+<ol>
+<li><em>天気予報によると</em>、今日は雨だそうだ。
+De acordo com a previsão do tempo, ouvi dizer que hoje vai chover.</li>
+<li>友達の_話によると_、朋子はやっとボーイフレンドを見つけたらしい。
+De acordo com uma história de um amigo, parece que Tomoko finalmente encontrou um namorado.</li>
+</ol>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/similarity" title="&lt;&lt; Similaridade ou boato">Similaridade ou boato</a> <a href="/pt-br/easyhard" title="Ações fáceis ou difíceis de fazer &gt;&gt;">Ações fáceis ou difíceis de fazer</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/similarity"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">46 / 62</span>
+          <a class="nav-link" href="/pt-br/easyhard"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

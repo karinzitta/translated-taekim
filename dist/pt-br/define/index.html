@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Definindo com いう</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 50%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/define">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li class="active"><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><h2>Os vários usos de 「いう」</h2>
+<p>Na lição anterior, aprendemos como introduzir uma oração relativa usando 「と」. Isso nos permitiu falar sobre coisas que as pessoas disseram, ouviram, pensaram e muito mais. Também vimos alguns exemplos de frases que usam 「と」 e 「言う」 para descrever como dizer algo em japonês e até como se apresentar. Nesta seção, aprenderemos que, com 「と」, podemos usar 「いう」 de maneira semelhante para definir, descrever e falar sobre a coisa em si. Também veremos como fazer o mesmo com a versão informal 「って」 que conhecemos pela primeira vez na última lição.</p>
+<h2>Usando 「いう」 para definir</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>言う 【い・う】 (verbo-u) – dizer</li>
+<li>これ – isto</li>
+<li>何 【なに／なん】 – o quê</li>
+<li>魚 【さかな】 – peixe</li>
+<li>この – este （abrev. de これの）</li>
+<li>鯛 【たい】 – tai (tipo de peixe)</li>
+<li>デパート – loja de departamentos</li>
+<li>どこ – onde</li>
+<li>ある (verbo-u) – existir (inanimado)</li>
+<li>知る 【し・る】 (verbo-u) – saber</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>英語 【えい・ご】 – inglês (língua)</li>
+<li>意味 【い・み】 – significado</li>
+</ol>
+<p>Na última lição, vimos brevemente como nos apresentar usando 「と」 e 「いう」. Por exemplo, tínhamos o seguinte exemplo, que Alice usou para se apresentar.</p>
+<ul>
+<li>私はアリス_といいます_。
+Me chamo Alice. (lit: Quanto a mim, as pessoas dizem Alice.)</li>
+</ul>
+<p>Esse padrão de frase é provavelmente uma das primeiras coisas que os estudantes iniciantes de japonês aprendem em sala de aula. Neste caso, o verbo 「いう」 não significa que alguém realmente disse algo. Em vez disso, Alice está dizendo que as pessoas em geral dizem &quot;Alice&quot; ao se referirem a ela. Embora usar kanji para 「いう」 seja perfeitamente aceitável, neste caso, como nada é realmente dito, usar hiragana também é comum.</p>
+<p>Essa ideia de descrever como uma pessoa é conhecida ou chamada também pode ser estendida a objetos e lugares. Podemos essencialmente definir e identificar qualquer coisa usando 「という」 dessa maneira. Como você pode imaginar, isso é particularmente útil porque nos permite perguntar como as coisas são chamadas em japonês e pedir a definição de palavras que ainda não conhecemos.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>これは、_なんという魚_ですか。
+Como é chamado este peixe?</li>
+<li>この魚は、<em>鯛といいます</em>。
+Este peixe é conhecido como &quot;<em>Tai</em>&quot;.</li>
+<li>_ルミネというデパート_はどこにあるか、知っていますか？
+Você sabe onde fica a loja de departamentos chamada &quot;Lumine&quot;?</li>
+<li>「友達」は、英語で_「friend」という_意味です。
+O significado de &quot;<em>tomodachi</em>&quot; em inglês é &quot;friend&quot; (amigo).</li>
+</ol>
+<h2>Usando 「いう」 para descrever qualquer coisa</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>主人公 【しゅ・じん・こう】 – personagem principal</li>
+<li>犯人 【はん・にん】 – criminoso</li>
+<li>一番 【いち・ばん】 – o melhor; o primeiro</li>
+<li>面白い 【おも・しろ・い】(adjetivo-i) – interessante</li>
+<li>日本人 【に・ほん・じん】 – pessoa japonesa</li>
+<li>お酒 【お・さけ】 – álcool</li>
+<li>弱い 【よわ・い】(adjetivo-i) – fraco</li>
+<li>言う 【い・う】 (verbo-u) – dizer</li>
+<li>本当 【ほん・とう】 – verdadeiro</li>
+<li>独身 【どく・しん】 – solteiro; não casado</li>
+<li>嘘 【うそ】 – mentira</li>
+<li>リブート – reinicialização</li>
+<li>パソコン – computador, PC</li>
+<li>こう – (as coisas são) assim</li>
+<li>そう – (as coisas são) desse jeito</li>
+<li>ああ – (as coisas são) daquele jeito</li>
+<li>どう – de que forma</li>
+<li>再起動 【さい・き・どう】 – reinicialização</li>
+<li>あんた – você (gíria)</li>
+<li>いつも – sempre</li>
+<li>時 【とき】 – hora; momento</li>
+<li>来る 【く・る】 (exceção) – vir</li>
+<li>困る 【こま・る】 (verbo-u) – ficar perturbado, incomodado</li>
+<li>人 【ひと】 – pessoa</li>
+<li>結婚 【けっ・こん】 – casamento</li>
+<li>出来る 【で・き・る】 (verbo-ru) – ser capaz de fazer</li>
+<li>幸せ 【しあわ・せ】 – felicidade</li>
+<li>なる (verbo-u) – tornar-se</li>
+<li>思う 【おも・う】 (verbo-u) – pensar</li>
+<li>大学 【だい・がく】 – faculdade</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>意味　【い・み】 – significado</li>
+</ol>
+<p>Aprendemos como usar 「という」 para descrever como algo é conhecido ou chamado. No entanto, podemos ir ainda mais longe anexando duas orações relativas. Nesse ponto, 「いう」 é tão abstrato que praticamente não tem significado próprio. Quando uma oração relativa é envolvida por 「と」, é preciso ter um verbo junto a ela, e 「いう」 é simplesmente usado como verbo genérico para nos permitir falar sobre qualquer oração relativa. Isso nos permite descrever e explicar praticamente qualquer coisa, desde uma única palavra até frases completas. Como você pode imaginar, essa construção é bastante útil e muito utilizada no japonês.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>主人公が犯人だった_という_のが一番面白かった。
+A coisa mais interessante foi que o personagem principal era o criminoso.</li>
+<li>日本人はお酒に弱い_という_のは本当？
+É verdade que os japoneses têm baixa tolerância ao álcool?</li>
+<li>独身だ_という_のは、嘘だったの？
+Era mentira que você era solteiro(a)?</li>
+<li>リブート_という_のは、パソコンを再起動する_という_ことです。
+&quot;Reboot&quot; significa reiniciar o computador.</li>
+</ol>
+<p>Podemos abstrair ainda mais substituindo a oração relativa por uma forma genérica de fazer algo. Nesse caso, usamos 「こう」、「そう」、「ああ」 e 「どう」, que combinados com 「いう」 significam &quot;desta forma&quot;, &quot;daquela forma&quot;, &quot;daquela forma (distante em sentido abstrato)&quot; e &quot;de que forma&quot;, respectivamente.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>あんたは、いつも_こういう_時に来るんだから、困るんだよ。
+É porque você sempre aparece em momentos como este que fico incomodado.</li>
+<li>_そういう_人と一緒に仕事をするのは、嫌だよね。
+(Qualquer pessoa) detestaria trabalhar junto com esse tipo de pessoa, né?</li>
+<li>_ああいう_人と結婚できたら、幸せになれると思います。
+Acho que você pode ser feliz se conseguir se casar com aquele tipo de pessoa.</li>
+<li>大学に行かないって、_どういう_意味なの？
+O que você quer dizer com &quot;não vai ir para a faculdade&quot;?</li>
+</ol>
+<h2>Reformulando e tirando conclusões com 「という」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>あんた – você (gíria)</li>
+<li>彼女 【かの・じょ】 – ela; namorada</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>言う 【い・う】 (verbo-u) – dizer</li>
+<li>何 【なに／なん】 – o quê</li>
+<li>お酒 【お・さけ】 – álcool</li>
+<li>好き 【す・き】 (adjetivo-na) – gostar de</li>
+<li>ある (verbo-u) – existir (inanimado)</li>
+<li>生きる 【い・きる】 (verbo-ru) – viver</li>
+<li>多分 【た・ぶん】 – talvez</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>思う 【おも・う】 (verbo-u) – pensar</li>
+<li>お金 【お・かね】 – dinheiro</li>
+<li>もう – já</li>
+<li>帰る 【かえ・る】 (verbo-u) – voltar para casa</li>
+<li>駄目 【だめ】 – não está bom</li>
+<li>洋介 【よう・すけ】 – Yousuke (primeiro nome)</li>
+<li>別れる 【わか・れる】 (verbo-ru) – separar-se; terminar</li>
+<li>こと – evento, assunto</li>
+<li>今 【いま】 – agora</li>
+<li>彼氏【かれ・し】 – namorado</li>
+<li>いる (verbo-ru) – existir (animado)</li>
+<li>そう – (as coisas são) desse jeito</li>
+</ol>
+<p>Podemos anexar a partícula de pergunta 「か」 a 「という」 para adicionar um elemento de questionamento. Essa construção é usada quando você quer reformular ou redefinir algo, como no seguinte diálogo.</p>
+<h3>Diálogo de exemplo</h3>
+<p>Ａ：みきちゃんは、あんたの彼女でしょう？
+A: Miki-chan é sua namorada, né?</p>
+<p>Ｂ：う～ん、彼女_というか_、友達_というか_、なん_というか_・・・
+B: Hm, digamos namorada, ou amiga, ou não sei bem…</p>
+<p>Essa construção é usada o tempo todo, especialmente em conversas informais. Pode ser usada para corrigir algo, chegar a uma conclusão diferente, ou até como uma interjeição.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>お酒は好き_というか_、ないと生きていけない。
+Eu gosto de álcool, ou melhor, não consigo viver sem ele.</li>
+<li>多分行かないと思う。<em>というか</em>、お金がないから、行けない。
+Acho que não vou. Ou melhor, não posso porque não tenho dinheiro.</li>
+<li><em>というか</em>、もう帰らないとだめですけど。
+Melhor dizendo, já preciso ir para casa.</li>
+</ol>
+<p>Em vez de usar 「か」 para reformular uma conclusão, também podemos usar 「こと」 para resumir algo sem reformular nada.</p>
+<h3>Diálogo de exemplo</h3>
+<p>Ａ：みきちゃんが洋介と別れたんだって。
+A: Ouvi dizer que Miki-chan terminou com Yousuke.</p>
+<p>Ｂ：<em>ということ_は、みきちゃんは、今彼氏がいない_ということ</em>？
+B: Isso quer dizer que Miki-chan não tem namorado agora?</p>
+<p>Ａ：そう。<em>そういうこと</em>。
+A: Isso mesmo. É isso o que significa.</p>
+<h2>Usando 「って」 ou 「て」 no lugar de 「という」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>来年 【らい・ねん】 – ano que vem</li>
+<li>留学 【りゅう・がく】 – estudar no exterior</li>
+<li>する (exceção) – fazer</li>
+<li>言う 【い・う】 (verbo-u) – dizer</li>
+<li>智子 【とも・こ】 – Tomoko (primeiro nome)</li>
+<li>こと – evento, assunto</li>
+<li>駄目 【だめ】 – não está bom</li>
+<li>時間 【じ・かん】 – tempo</li>
+<li>ある (verbo-u) – existir (inanimado)</li>
+<li>出来る 【で・き・る】 (verbo-ru) – ser capaz de fazer</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>いい (adjetivo-i) – bom</li>
+<li>皆 【みんな】 – todo mundo</li>
+<li>私 【わたし】 – eu; mim mesmo(a)</li>
+<li>今 【いま】 – agora</li>
+<li>彼氏【かれ・し】 – namorado</li>
+<li>いる (verbo-ru) – existir (animado)</li>
+<li>もう – já</li>
+<li>帰る 【かえ・る】 (verbo-u) – voltar para casa</li>
+</ol>
+<p>Como mencionado na lição anterior, 「って」 é muito usado na gíria informal no lugar de 「と」, porque nos permite omitir o restante da frase, deixando que o contexto (ou simplesmente a suposição) cuide do restante. Já vimos que podemos usar 「って」 para substituir 「という」 também. No entanto, como acabamos de aprender que 「という」 faz muito mais do que simplesmente dizer algo, há um limite para o quanto se pode omitir. De qualquer forma, 「って」 nos permite omitir não só 「いう」 mas também qualquer partícula que o acompanhe, como você pode ver no exemplo a seguir.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>来年留学する_というのは_、智子のこと？
+A coisa de estudar no exterior no ano que vem, é sobre Tomoko?</li>
+<li>来年留学する_って_智子のこと？
+A coisa de estudar no exterior no ano que vem, é sobre Tomoko?</li>
+</ol>
+<p>「だって」 é também outra expressão que omite praticamente tudo. Por convenção, é usada para expressar discordância ou insatisfação, geralmente para reclamar, lamentar ou dar uma desculpa, mas não dá para saber o significado só de olhar para ela. É uma abreviação de algo como 「とはいっても」, que significa &quot;mesmo que fosse o caso&quot;.</p>
+<h3>Exemplo 1</h3>
+<p>Ａ：しないとだめだよ。
+A: Precisa fazer, sabe.</p>
+<p>Ｂ：<em>だって</em>、時間がないからできないよ。
+B: Mas (mesmo assim), não consigo porque não tenho tempo.</p>
+<h3>Exemplo 2</h3>
+<p>Ａ：行かなくてもいいよ。
+A: Não precisa ir, sabe.</p>
+<p>Ｂ：<em>だって</em>、みんな行くって。私も行かないと。
+B: Mas (mesmo assim), todo mundo disse que vai. Eu também preciso ir.</p>
+<p>Em alguns casos, o 「つ」 pequeno é omitido e usa-se apenas 「て」 em vez de 「って」. Isso é feito (como costuma acontecer com gírias) para facilitar a pronúncia. Em geral, isso ocorre quando não há nada antes do 「て」 ou quando o som que vem antes não precisa da separação explícita que o 「っ」 proporciona para ser compreendido.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>_て_ことは、みきちゃんは、今彼氏がいない_て_こと？
+Isso quer dizer que Miki-chan não tem namorado agora?</li>
+<li>_て_いうか、もう帰らないとだめですけど。
+Melhor dizendo, já preciso ir para casa.</li>
+</ol>
+<p>Como a gíria costuma ser usada da forma que a pessoa preferir, não há regras definidas para quando usar 「って」 ou 「て」. No entanto, 「て」 geralmente não é usado para expressar o que as pessoas realmente disseram ou ouviram, por isso não foi abordado na última lição.</p>
+<ul>
+<li><p>みきちゃんが、明日こない_て_。
+(Não se pode usar 「て」 para algo realmente dito)</p>
+</li>
+<li><p>みきちゃんが、明日こない_って_。
+Miki-chan diz que não vai vir amanhã.</p>
+</li>
+</ul>
+<h2>Dizer 「ゆう」 em vez de 「いう」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>もう – já</li>
+<li>帰る 【かえ・る】 (verbo-u) – voltar para casa</li>
+<li>そう – (as coisas são) desse jeito</li>
+<li>こと – evento, assunto</li>
+</ol>
+<p>Como a construção 「という」 é usada com tanta frequência, existem muitas variações e gírias baseadas nela. Embora eu não planeje cobrir todas elas aqui, você pode conferir padrões informais e gírias na seção de miscelânea para ainda mais gírias derivadas de 「という」.</p>
+<p>A última coisa que vou mencionar brevemente aqui é o uso de 「ゆう」 em vez de 「いう」. Em conversas, é bastante normal dizer 「ゆう」 em vez de 「いう」. 「ゆう」 é mais fácil de dizer porque é simplesmente uma letra com som de vogal longa, em vez dos dois sons vocálicos distintos de 「いう」.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>て_ゆう_か、もう帰らないとだめですけど。
+Melhor dizendo, já preciso ir para casa.</li>
+<li>そう_ゆう_ことじゃないって！
+Eu disse que não é assim! (lit: não é esse tipo de coisa)!</li>
+</ol>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/actionclause" title="&lt;&lt; Agindo sobre orações relativas">Agindo sobre orações relativas</a> <a href="/pt-br/try" title="Tentando ou se esforçando para fazer algo &gt;&gt;">Tentando ou se esforçando para fazer algo</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/actionclause"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">31 / 62</span>
+          <a class="nav-link" href="/pt-br/try"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

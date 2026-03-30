@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Partículas Verbais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 23%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/verbparticles">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li class="active"><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>Nesta seção, aprenderemos algumas novas partículas essenciais para usar verbos. Aprenderemos como especificar o objeto direto de um verbo e o local onde uma ação acontece, seja ele físico ou abstrato.</p>
+<h2>A partícula de objeto direto 「を」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>魚 【さかな】 – peixe</li>
+<li>食べる 【た・べる】 (verbo-ru) – comer</li>
+<li>ジュース – suco</li>
+<li>飲む 【の・む】 (verbo-u) – beber</li>
+<li>街 【まち】 – cidade</li>
+<li>ぶらぶら – vagando; sem destino</li>
+<li>歩く 【ある・く】 (verbo-u) – andar</li>
+<li>高速 【こう・そく】 – alta velocidade</li>
+<li>道路 【どう・ろ】 – via</li>
+<li>走る 【はし・る】 (verbo-u) – correr</li>
+<li>毎日 【まい・にち】 – todo dia</li>
+<li>日本語 【に・ほん・ご】 – japonês (idioma)</li>
+<li>勉強 【べん・きょう】 – estudo</li>
+<li>する (irregular) – fazer</li>
+<li>メールアドレス – endereço de e-mail</li>
+<li>登録 【とう・ろく】 – registrar</li>
+</ol>
+<p>A primeira partícula que aprenderemos é a partícula de objeto direto, pois é uma partícula muito direta. O caractere 「を」 é anexado ao final de uma palavra para indicar que essa palavra é o objeto direto do verbo. Esse caractere praticamente nunca é usado em outra situação. É por isso que o equivalente em katakana 「ヲ」 é quase nunca usado, já que as partículas são sempre escritas em hiragana. O caractere 「を」, embora tecnicamente pronunciado como /wo/, soa essencialmente como /o/ na fala real. Veja alguns exemplos da partícula de objeto direto em ação.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>魚_を_食べる。
+Come peixe.</li>
+<li>ジュース_を_飲んだ。
+Bebeu suco.</li>
+</ol>
+<p>Ao contrário do objeto direto com o qual estamos familiarizados em português, lugares também podem ser o objeto direto de verbos de movimento como 「歩く」 e 「走る」. Como a ação do verbo de movimento é feita <em>para</em> o local, o conceito de objeto direto é o mesmo em japonês. No entanto, como mostram os próximos exemplos, isso frequentemente se traduz de forma diferente em português, devido a uma leve diferença no conceito de objeto direto.</p>
+<ol>
+<li>街_を_ぶらぶら歩く。
+Caminhar pela cidade sem rumo. (Lit: Caminhar cidade sem rumo)</li>
+<li>高速道路_を_走る。
+Correr pela rodovia. (Lit: Correr rodovia)</li>
+</ol>
+<p>Quando você usa 「する」 com um substantivo, a partícula 「を」 é opcional e você pode tratar o conjunto [substantivo+する] como um único verbo.</p>
+<ol>
+<li>毎日、日本語を_勉強する_。
+Estudar japonês todo dia.</li>
+<li>メールアドレスを_登録した_。
+Registrou endereço de e-mail.</li>
+</ol>
+<h2>A partícula de alvo 「に」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>日本 【に・ほん】 – Japão</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>家 【1) うち; 2) いえ】 – 1) própria casa; 2) casa</li>
+<li>帰る 【かえ・る】 (verbo-u) – voltar para casa</li>
+<li>部屋 【へ・や】 – quarto</li>
+<li>来る 【く・る】 (irregular) – vir</li>
+<li>アメリカ – América</li>
+<li>宿題 【しゅく・だい】 – dever de casa</li>
+<li>今日 【きょう】 – hoje</li>
+<li>明日 【あした】 – amanhã</li>
+<li>猫 【ねこ】 – gato</li>
+<li>いる (verbo-ru) – existir (animado)</li>
+<li>いす – cadeira</li>
+<li>台所 【だい・どころ】 – cozinha</li>
+<li>ある (verbo-u) – existir (inanimado)</li>
+<li>いい (adj-i) – bom</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>会う 【あう】 (verbo-u) – encontrar</li>
+<li>医者 【い・しゃ】 – médico</li>
+<li>なる (verbo-u) – tornar-se</li>
+<li>先週 【せん・しゅう】 – semana passada</li>
+<li>図書館 【と・しょ・かん】 – biblioteca</li>
+<li>来年 【らい・ねん】 – ano que vem</li>
+</ol>
+<p>A partícula 「に」 pode especificar o alvo de um verbo. Isso é diferente da partícula 「を」, em que o verbo faz algo <em>para</em> o objeto direto. Com a partícula 「に」, o verbo faz algo <em>em direção a</em> a palavra associada à partícula 「に」. Por exemplo, o alvo de qualquer verbo de movimento é especificado pela partícula 「に」.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>ボブは日本_に_行った。
+Bob foi ao Japão.</li>
+<li>家_に_帰らない。
+Não volta para casa.</li>
+<li>部屋_に_くる。
+Vem ao quarto.</li>
+</ol>
+<p>Como se pode ver no último exemplo, a partícula de alvo sempre indica &quot;para&quot; e não &quot;de&quot;. Se você quiser dizer &quot;vir de&quot;, por exemplo, precisaria usar 「から」, que significa &quot;de&quot;. Se usasse 「に」, significaria &quot;vir <em>para</em>&quot;. 「から」 é frequentemente combinado com 「まで」, que significa &quot;até&quot;.</p>
+<ol>
+<li>アリスは、アメリカ_から_きた。
+Alice veio da América.</li>
+<li>宿題を今日_から_明日_まで_する。
+Fará o dever de casa de hoje até amanhã.</li>
+</ol>
+<p>A ideia de alvo em japonês é muito geral e não se restringe a verbos de movimento. Por exemplo, a localização de um objeto é definida como o alvo do verbo de existência （ある e いる）. O tempo também é um alvo comum. Aqui estão alguns exemplos de verbos que não são de movimento e seus alvos:</p>
+<ol>
+<li>猫は部屋_に_いる。
+O gato está no quarto.</li>
+<li>いすが台所_に_あった。
+A cadeira estava na cozinha.</li>
+<li>いい友達_に_会った。
+Encontrou um bom amigo.</li>
+<li>ジムは医者_に_なる。
+Jim vai se tornar médico.</li>
+<li>先週_に_図書館_に_行った。
+Foi à biblioteca semana passada.</li>
+</ol>
+<p>Nota: Não se esqueça de usar 「ある」 para objetos inanimados, como a cadeira, e 「いる」 para objetos animados, como o gato.</p>
+<p>Embora a partícula 「に」 nem sempre seja necessária para indicar tempo, há uma leve diferença de significado entre usar a partícula de alvo e não usar nada. Nos exemplos a seguir, a partícula de alvo torna a data um alvo específico, enfatizando que o amigo irá ao Japão naquele momento. Sem a partícula, não há ênfase especial.</p>
+<ol>
+<li>友達は、来年、日本に行く。
+No próximo ano, o amigo vai ao Japão.</li>
+<li>友達は、来年_に_日本に行く。
+O amigo vai ao Japão no próximo ano.</li>
+</ol>
+<h2>A partícula direcional 「へ」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>日本 【に・ほん】 – Japão</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>家 【1) うち; 2) いえ】 – 1) própria casa; 2) casa</li>
+<li>帰る 【かえ・る】 (verbo-u) – voltar para casa</li>
+<li>部屋 【へ・や】 – quarto</li>
+<li>来る 【く・る】 (irregular) – vir</li>
+<li>医者 【い・しゃ】 – médico</li>
+<li>なる (verbo-u) – tornar-se</li>
+<li>勝ち 【か・ち】 – vitória</li>
+<li>向かう 【むか・う】 (verbo-u) – encarar; ir em direção a</li>
+</ol>
+<p>Embora 「へ」 seja normalmente pronunciado /he/, quando usado como partícula é sempre pronunciado /e/ （え）. A principal diferença entre as partículas 「に」 e 「へ」 é que 「に」 indica <em>chegada</em> a um destino final pretendido (seja físico ou abstrato). A partícula 「へ」, por outro lado, é usada para expressar que alguém está se dirigindo <em>na direção</em> do alvo. Portanto, ela só é usada com verbos de movimento direcional. Ela também não garante se o alvo é o destino final pretendido, apenas que se está indo nessa direção. Em outras palavras, a partícula 「に」 aponta para o destino, enquanto a partícula 「へ」 é mais vaga quanto ao destino final. Por exemplo, se escolhermos substituir 「に」 por 「へ」 nos três primeiros exemplos da seção anterior, a nuance muda levemente.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>ボブは日本_へ_行った。
+Bob <em>se dirigiu em direção ao</em> Japão.</li>
+<li>家_へ_帰らない。
+Não volta para <em>em direção à</em> casa.</li>
+<li>部屋_へ_くる。
+Vem <em>em direção ao</em> quarto.</li>
+</ol>
+<p>Note que não podemos usar a partícula 「へ」 com verbos que não têm direção física. Por exemplo, o seguinte é incorreto.</p>
+<ul>
+<li>医者_へ_なる。
+（Versão gramaticalmente incorreta de 「医者になる」.）</li>
+</ul>
+<p>Isso não significa que 「へ」 não possa se referir a um conceito abstrato. Na verdade, por causa do significado direcional vago desta partícula, 「へ」 também pode ser usado para falar sobre encaminhar-se em direção a certas metas ou expectativas futuras.</p>
+<ul>
+<li>勝ち_へ_向かう。
+Ir em direção à vitória.</li>
+</ul>
+<h2>A partícula contextual 「で」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>映画館 【えい・が・かん】 – cinema</li>
+<li>見る 【み・る】 (verbo-ru) – ver</li>
+<li>バス – ônibus</li>
+<li>帰る 【かえ・る】 (verbo-u) – voltar para casa</li>
+<li>レストラン – restaurante</li>
+<li>昼ご飯 【ひる・ご・はん】 – almoço</li>
+<li>食べる 【た・べる】 (verbo-ru) – comer</li>
+<li>何 【なに／なん】 – o quê</li>
+<li>暇 【ひま】 – livre (sem ocupação)</li>
+</ol>
+<p>A partícula 「で」 nos permite especificar o contexto no qual a ação é realizada. Por exemplo, se uma pessoa comeu um peixe, onde ela o comeu? Se uma pessoa foi à escola, por qual meio ela foi? Com o que você vai comer a sopa? Todas essas perguntas podem ser respondidas com a partícula 「で」. Veja alguns exemplos.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>映画館_で_見た。
+Viu no cinema.</li>
+<li>バス_で_帰る。
+Volta para casa de ônibus.</li>
+<li>レストラン_で_昼ご飯を食べた。
+Comeu o almoço no restaurante.</li>
+</ol>
+<p>Pode ajudar pensar em 「で」 como significando &quot;por meio de&quot;. Dessa forma, o mesmo significado se traduzirá de certa forma no que a frase expressa. Os exemplos ficariam: &quot;Viu por meio do cinema&quot;, &quot;Volta para casa por meio do ônibus&quot; e &quot;Comeu o almoço por meio do restaurante.&quot;</p>
+<h3>Usando 「で」 com 「何」</h3>
+<p>A palavra para &quot;o quê&quot; （何） é um pouco incômoda, porque embora geralmente seja lida como 「なに」, às vezes é lida como 「なん」 dependendo de como é usada. E como é sempre escrita em kanji, não se pode saber qual é. Sugiro usar 「なに」 até que alguém corrija você para os casos em que deveria ser 「なん」. Com a partícula 「で」, também é lida como 「なに」. (Passe o cursor do mouse sobre a palavra para verificar a leitura.)</p>
+<ol>
+<li>何_で_きた？
+Veio por meio de quê?</li>
+<li>バス_で_きた。
+Veio por meio do ônibus.</li>
+</ol>
+<p>Aqui vem a parte confusa. Existe uma versão coloquial da palavra &quot;por quê&quot; que é usada com muito mais frequência do que a versão menos coloquial 「どうして」 ou a mais enfática 「なぜ」. Também é escrita como 「何で」, mas é lida como 「なんで」. Essa é uma palavra completamente separada e não tem nada a ver com a partícula 「で」.</p>
+<ol>
+<li>_何で_きた？
+Por que você veio?</li>
+<li>暇だから。
+Porque estou livre (sem nada para fazer).</li>
+</ol>
+<p>O 「から」 aqui com o significado de &quot;porque&quot; é diferente do 「から」 que acabamos de aprender e será abordado mais adiante na seção de frases compostas. Basicamente, o ponto é que as duas frases, embora escritas da mesma forma, são lidas de maneira diferente e têm significados completamente distintos. Não se preocupe. Isso causa menos confusão do que você imagina, porque 95% do tempo a segunda é usada em vez da primeira. E mesmo quando 「なにで」 for o pretendido, o contexto não deixará dúvida sobre qual está sendo usado. Mesmo neste breve trecho de exemplo, você pode identificar qual é pela resposta à pergunta.</p>
+<h2>Quando o local é o tópico</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>学校 【がっ・こう】 – escola</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>図書館 【と・しょ・かん】 – biblioteca</li>
+<li>どこ – onde</li>
+<li>イタリア – Itália</li>
+<li>レストラン – restaurante</li>
+<li>どう – como</li>
+</ol>
+<p>Há momentos em que o local de uma ação também é o tópico de uma frase. Você pode anexar a partícula de tópico （「は」 e 「も」） às três partículas que indicam local （「に」、「へ」、「で」） quando o local é o tópico. Veremos como o local pode se tornar o tópico nos exemplos a seguir.</p>
+<h3>Exemplo 1</h3>
+<p>ボブ：学校に行った？
+Bob: (Você) foi à escola?</p>
+<p>アリス：行かなかった。
+Alice: Não fui.</p>
+<p>ボブ：図書館_には_？
+Bob: E quanto à biblioteca?</p>
+<p>アリス：図書館_にも_行かなかった。
+Alice: Também não fui à biblioteca.</p>
+<p>Neste exemplo, Bob traz um novo tópico (biblioteca) e então o local se torna o tópico. A frase é na verdade uma versão abreviada de 「図書館には行った？」, o que se pode deduzir pelo contexto.</p>
+<h3>Exemplo 2</h3>
+<p>ボブ：どこで食べる？
+Bob: Onde comer?</p>
+<p>アリス：イタリアレストラン_では_どう？
+Alice: Que tal o restaurante italiano?</p>
+<p>Bob pergunta &quot;Onde vamos comer?&quot; e Alice sugere um restaurante italiano. Uma frase como &quot;Que tal...&quot; geralmente traz um novo tópico porque a pessoa está sugerindo algo novo. Nesse caso, o local (restaurante) está sendo sugerido, então ele se torna o tópico.</p>
+<h2>Quando o objeto direto é o tópico</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>日本語 【に・ほん・ご】 – japonês (idioma)</li>
+<li>習う 【なら・う】 (verbo-u) – aprender</li>
+</ol>
+<p>A partícula de objeto direto é diferente das partículas relacionadas a local no sentido de que não se pode usá-la junto com nenhuma outra partícula ao mesmo tempo. Por exemplo, seguindo a seção anterior, você pode ter pensado que dá para dizer 「をは」 para expressar um objeto direto que também é o tópico, mas não é o caso. Um tópico pode ser um objeto direto sem usar a partícula 「を」. Na verdade, colocar a partícula 「を」 tornará a frase errada.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>日本語_を_習う。
+Aprende japonês.</li>
+<li>日本語_は_、習う。
+Quanto ao japonês, (vai) aprender.</li>
+</ol>
+<p>Tome cuidado para não cometer esse erro.</p>
+<ul>
+<li>日本語_をは_、習う。
+(Isso é incorreto.)</li>
+</ul>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/pasttense_ex" title="&lt;&lt; Exercícios Práticos de Verbos no Passado">Exercícios Práticos de Verbos no Passado</a> <a href="/pt-br/in-transitive" title="Verbos Transitivos e Intransitivos &gt;&gt;">Verbos Transitivos e Intransitivos</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/pasttense_ex"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">14 / 62</span>
+          <a class="nav-link" href="/pt-br/in-transitive"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

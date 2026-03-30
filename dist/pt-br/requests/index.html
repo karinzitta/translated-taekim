@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Fazendo Pedidos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 55%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/requests">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li class="active"><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><h2>Fazendo pedidos de forma polida (e nem tão polida)</h2>
+<p>Semelhante a pedir favores, que aprendemos na última lição, também há várias maneiras de fazer pedidos em japonês. Isso é efetivamente o equivalente japonês de dizer &quot;por favor, faça X&quot;. Primeiro aprenderemos a forma mais comum de fazer pedidos usando uma conjugação especial do verbo 「くださる」 e a forma mais firme 「なさる」. Por fim, aprenderemos a rara forma de comando excessivamente forte por questão de completude. Você pode pular esta última parte com segurança, a menos que seja um(a) leitor(a) ávido(a) de mangás.</p>
+<h2>「～ください」－ uma conjugação especial de 「くださる」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>それ – aquilo</li>
+<li>くれる (verbo-ru) – dar</li>
+<li>漢字 【かん・じ】 – Kanji</li>
+<li>書く 【か・く】 (verbo-u) – escrever</li>
+<li>ここ – aqui</li>
+<li>来る 【く・る】 (exceção) – vir</li>
+<li>日本語 【に・ほん・ご】 – japonês (língua)</li>
+<li>話す 【はな・す】 (verbo-u) – falar</li>
+<li>消しゴム 【け・し・ごむ】 – borracha</li>
+<li>貸す 【か・す】 (verbo-u) – emprestar</li>
+<li>遠い 【とお・い】 (adjetivo-i) – longe</li>
+<li>所 【ところ】 – lugar</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>お父さん【お・とう・さん】 – pai (forma polida)</li>
+<li>時計 【と・けい】 – relógio</li>
+<li>壊れる 【こわ・れる】 (verbo-ru) – quebrar</li>
+<li>言う 【い・う】 (verbo-u) – dizer</li>
+</ol>
+<p>「ください」 é uma conjugação especial de 「くださる」, que é a forma honorífica de 「くれる」. Aprenderemos mais sobre formas honoríficas e humildes no início da próxima seção principal. Estamos vendo 「ください」 aqui porque tem uma ligeira diferença de significado em relação ao 「くれる」 normal e ao honorífico 「くださる」. 「ください」 difere de 「くれる」 da seguinte forma:</p>
+<ol>
+<li>それを_ください_。
+Por favor, me dê aquilo.</li>
+<li>それを_くれる_？
+Você pode me dar aquilo?</li>
+</ol>
+<p>Como se pode ver, 「ください」 é um pedido direto por algo, enquanto 「くれる」 é usado como uma pergunta pedindo a alguém que dê algo. No entanto, é semelhante a 「くれる」 no sentido de que você pode fazer um pedido de uma ação simplesmente anexando-o à forma-te do verbo.</p>
+<ol>
+<li>漢字で_書いて_ください。
+Por favor, escreva em kanji.</li>
+<li>ゆっくり_話して_ください。
+Por favor, fale devagar.</li>
+</ol>
+<p>As regras para pedidos negativos são as mesmas que as regras para 「くれる」.</p>
+<ol>
+<li>落書きを_書かないで_ください。
+Por favor, não escreva grafite.</li>
+<li>ここに_こないで_ください。
+Por favor, não venha aqui.</li>
+</ol>
+<p>Na fala informal, é comum simplesmente omitir a parte 「ください」.</p>
+<ol>
+<li>日本語で_話して_。
+Por favor, fale em japonês.</li>
+<li>消しゴムを_貸して_。
+Por favor, me empreste a borracha.</li>
+<li>遠い所に_行かないで_。
+Por favor, não vá a um lugar longe.</li>
+</ol>
+<p>Para quem quer soar particularmente autoritário e másculo, também é possível usar 「くれる」 sem o 「る」.</p>
+<ol>
+<li>日本語で_話してくれ_。
+Fale em japonês.</li>
+<li>消しゴムを_貸してくれ_。
+Me empreste a borracha.</li>
+<li>遠い所に_行かないでくれ_。
+Não vá a um lugar longe.</li>
+</ol>
+<p>Como 「ください」, assim como a forma-masu, sempre vem no final da frase ou de uma oração relativa, você não pode usá-lo para modificar diretamente um substantivo. Por exemplo, o seguinte não é possível com 「ください」.</p>
+<ul>
+<li>お父さんが_くれた_時計が壊れた。
+O relógio que meu pai me deu quebrou.</li>
+</ul>
+<p>Claro, como as citações diretas simplesmente repetem literalmente o que alguém disse, praticamente qualquer coisa pode ser colocada em uma citação direta.</p>
+<ul>
+<li>「それをください」_と_お父さんが言った。
+Meu pai disse: &quot;Por favor, me dê aquilo.&quot;</li>
+</ul>
+<h2>Usando 「～ちょうだい」 como pedido informal</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>頂戴 【ちょうだい】 – receber (humilde)</li>
+<li>致す 【いたす】 (verbo-u) – fazer (humilde)</li>
+<li>スプーン – colher</li>
+<li>ここ – aqui</li>
+<li>名前 【な・まえ】 – nome</li>
+<li>書く 【か・く】 (verbo-u) – escrever</li>
+</ol>
+<p>Uma alternativa informal de 「ください」 é 「ちょうだい」. Embora possa ser usada por qualquer pessoa, tem uma nuance ligeiramente feminina e infantil e é sempre escrita em hiragana. Escrito em kanji, geralmente é usado em expressões muito formais como 「頂戴致します」. Gramaticalmente, é usada exatamente da mesma forma que 「ください」.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>スプーンを_ちょうだい_。
+Por favor, me dê a colher.</li>
+<li>ここに名前を_書いてちょうだい_。
+Por favor, escreva seu nome aqui.</li>
+</ol>
+<h2>Usando 「～なさい」 para fazer pedidos firmes mas polidos</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>食べる 【たべ・る】 (verbo-ru) – comer</li>
+<li>飲む 【の・む】 (verbo-u) – beber</li>
+<li>する (exceção) – fazer</li>
+<li>いい (adjetivo-i) – bom</li>
+<li>聞く 【き・く】 (verbo-u) – perguntar; ouvir</li>
+<li>ここ – aqui</li>
+<li>座る 【すわ・る】 (verbo-u) – sentar</li>
+<li>まだ – ainda</li>
+<li>いっぱい – cheio</li>
+<li>ある (verbo-u) – existir (inanimado)</li>
+<li>たくさん – muito (quantidade)</li>
+<li>それ – aquilo</li>
+<li>思う 【おも・う】 (verbo-u) – pensar</li>
+<li>そう – (as coisas são) desse jeito</li>
+</ol>
+<p>「なさい」 é uma conjugação honorífica especial de 「する」. É uma maneira suave, porém firme, de dar uma ordem. É usada, por exemplo, quando uma mãe está repreendendo seu filho ou quando um professor quer que um aluno indisciplinado preste atenção. Ao contrário de 「ください」, 「なさい」 se aplica apenas a verbos positivos e usa o radical do verbo em vez da forma-te. Também não pode ser usado sozinho, devendo ser anexado a outro verbo.</p>
+<p>Usando 「なさい」 para fazer pedidos firmes mas polidos</p>
+<ul>
+<li><p>Conjugue o verbo ao seu radical e anexe 「なさい」
+Exemplos</p>
+<ol>
+<li>食べ_る_ → 食べ_なさい_</li>
+<li>飲_む_ → 飲_み_ → 飲み_なさい_</li>
+<li>する → <em>し</em> → し_なさい_</li>
+</ol>
+</li>
+</ul>
+<h3>Exemplos</h3>
+<ol>
+<li>よく_聞き_なさい！
+Escute bem!</li>
+<li>ここに_座り_なさい。
+Sente-se aqui.</li>
+</ol>
+<p>Você também pode omitir a parte 「さい」 de 「なさい」 para criar uma versão informal dessa gramática.</p>
+<ol>
+<li>まだいっぱいあるから、たくさん_食べな_。
+Ainda tem bastante, então coma muito.</li>
+<li>それでいいと思うなら、そう_しな_よ。
+Se você acha que está tudo bem, então vá em frente e faça isso.</li>
+</ol>
+<h2>A Forma de Comando</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>くれる (verbo-ru) – dar</li>
+<li>死ぬ 【し・ぬ】 (verbo-u) – morrer</li>
+<li>する (exceção) – fazer</li>
+<li>来る 【く・る】 (exceção) – vir</li>
+<li>食べる 【た・べる】 (verbo-ru) – comer</li>
+<li>着る 【き・る】 (verbo-ru) – vestir</li>
+<li>信じる 【しん・じる】 (verbo-ru) – acreditar</li>
+<li>寝る 【ね・る】 (verbo-ru) – dormir</li>
+<li>起きる 【お・きる】 (verbo-ru) – acordar; ocorrer</li>
+<li>出る 【で・る】 (verbo-ru) – sair</li>
+<li>掛ける 【か・ける】 (verbo-ru) – pendurar</li>
+<li>捨てる 【す・てる】 (verbo-ru) – jogar fora</li>
+<li>話す 【はな・す】 (verbo-u) – falar</li>
+<li>聞く 【き・く】 (verbo-u) – perguntar; ouvir</li>
+<li>遊ぶ 【あそ・ぶ】 (verbo-u) – brincar</li>
+<li>待つ 【ま・つ】 (verbo-u) – esperar</li>
+<li>飲む 【の・む】 (verbo-u) – beber</li>
+<li>直る 【なお・る】 (verbo-u) – ser consertado</li>
+<li>買う 【か・う】 (verbo-u) – comprar</li>
+<li>好き 【す・き】 (adjetivo-na) – gostar de</li>
+<li>あっち – por aquele lado （abrev. de あちら）</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>早い 【はや・い】 (adjetivo-i) – rápido; cedo</li>
+<li>酒 【さけ】 – álcool</li>
+<li>持つ 【も・つ】 (verbo-u) – segurar; carregar</li>
+</ol>
+<p>Abordaremos a forma de comando com o objetivo de cobrir todas as conjugações verbais possíveis. Na prática, a forma de comando raramente é usada, pois os japoneses tendem a ser educados demais para usar imperativos. Além disso, esse tipo de fala grossa raramente é usado por mulheres, que tendem a usar 「なさい」 ou um 「くれる」 exasperado quando estão irritadas. Essa forma é realmente útil apenas para leitura ou assistir a obras fictícias. Você pode frequentemente ver ou ouvir 「死ね！」 (&quot;Morra!&quot;) em ficção, o que, claro, você nunca ouviria na vida real. (Espero!)</p>
+<p>Certifique-se de notar que, além dos conhecidos verbos de exceção 「する」 e 「くる」, 「くれる」 também é uma exceção para a forma de comando.</p>
+<p>Regras para criar a forma de comando</p>
+<ul>
+<li><strong>Para verbos-ru:</strong> Substitua 「る」 por 「ろ」</li>
+<li><strong>Para verbos-u:</strong> Mude o último caractere de uma vogal /u/ para uma vogal /e/</li>
+<li><strong>Exceções:</strong><ol>
+<li>する → しろ</li>
+<li>くる → こい</li>
+<li>くれる → くれ</li>
+</ol>
+</li>
+</ul>
+<p>Exemplos de verbos-ru</p>
+<table>
+<thead>
+<tr>
+<th>Forma simples</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>食べ_る_</td>
+<td>食べ_ろ_</td>
+</tr>
+<tr>
+<td>着_る_</td>
+<td>着_ろ_</td>
+</tr>
+<tr>
+<td>信じ_る_</td>
+<td>信じ_ろ_</td>
+</tr>
+<tr>
+<td>寝_る_</td>
+<td>寝_ろ_</td>
+</tr>
+<tr>
+<td>起き_る_</td>
+<td>起き_ろ_</td>
+</tr>
+<tr>
+<td>出_る_</td>
+<td>出_ろ_</td>
+</tr>
+<tr>
+<td>掛け_る_</td>
+<td>掛け_ろ_</td>
+</tr>
+<tr>
+<td>捨て_る_</td>
+<td>捨て_ろ_</td>
+</tr>
+</tbody></table>
+<p>Exemplos de verbos-u</p>
+<table>
+<thead>
+<tr>
+<th>Forma simples</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>話_す_</td>
+<td>話_せ_</td>
+</tr>
+<tr>
+<td>聞_く_</td>
+<td>聞_け_</td>
+</tr>
+<tr>
+<td>遊_ぶ_</td>
+<td>遊_べ_</td>
+</tr>
+<tr>
+<td>待_つ_</td>
+<td>待_て_</td>
+</tr>
+<tr>
+<td>飲_む_</td>
+<td>飲_め_</td>
+</tr>
+<tr>
+<td>直_る_</td>
+<td>直_れ_</td>
+</tr>
+<tr>
+<td>死_ぬ_</td>
+<td>死_ね_</td>
+</tr>
+<tr>
+<td>買_う_</td>
+<td>買_え_</td>
+</tr>
+</tbody></table>
+<p>Verbos de Exceção</p>
+<table>
+<thead>
+<tr>
+<th>Forma simples</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>する</td>
+<td>しろ</td>
+</tr>
+<tr>
+<td>くる</td>
+<td>こい</td>
+</tr>
+<tr>
+<td>くれる</td>
+<td>くれ</td>
+</tr>
+</tbody></table>
+<h3>Exemplos</h3>
+<ol>
+<li>好きに_しろ_。
+Faça do seu jeito.</li>
+<li>あっち_行け_！
+Vai embora!</li>
+<li>早く酒を持ってきて_くれ_。
+Me traga logo o álcool.</li>
+</ol>
+<h2>Comando Negativo</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>する (exceção) – fazer</li>
+<li>それ – aquilo</li>
+<li>食べる 【た・べる】 (verbo-ru) – comer</li>
+<li>変 【へん】 (adjetivo-na) – estranho</li>
+<li>こと – evento, assunto</li>
+<li>言う 【い・う】 (verbo-u) – dizer</li>
+</ol>
+<p>A forma de comando negativo é muito simples: basta anexar 「な」 tanto a verbos-ru quanto a verbos-u. Não confunda isso com a partícula final de frase 「な」 que aprenderemos no final desta seção. A entonação é totalmente diferente.</p>
+<p>Usando a forma de comando negativo</p>
+<ul>
+<li><p>Anexe 「な」 ao verbo
+Exemplos</p>
+<ol>
+<li>行く → 行く_な_</li>
+<li>する → する_な_</li>
+</ol>
+</li>
+</ul>
+<h3>Exemplos</h3>
+<ol>
+<li>それを食べる_な_！
+Não coma aquilo!</li>
+<li>変なことを言う_な_！
+Não diga coisas estranhas!</li>
+</ol>
+<p>Não confunda isso com a versão abreviada de 「～なさい」 que acabamos de aprender na última seção. A diferença mais óbvia (além da clara diferença de tom) é que em 「～なさい」, o verbo é primeiro convertido para o radical, enquanto o comando negativo não tem conjugação. Por exemplo, para 「する」, 「しな」 seria a versão abreviada de 「しなさい」, enquanto 「するな」 seria um comando negativo.</p>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/favors" title="&lt;&lt; Dar e Receber">Dar e Receber</a> <a href="/pt-br/numbers" title="Números e Contagem &gt;&gt;">Números e Contagem</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/favors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">34 / 62</span>
+          <a class="nav-link" href="/pt-br/numbers"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

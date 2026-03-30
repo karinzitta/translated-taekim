@@ -1,0 +1,8 @@
+.claude
+markdown
+markdown-pt-br
+node_modules
+
+src/
+package-lock.json
+package.json

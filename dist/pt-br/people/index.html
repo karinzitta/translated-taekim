@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Tratando Pessoas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 34%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/people">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li class="active"><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>Não é apenas importante usar o tipo certo de linguagem com as pessoas certas, mas também é importante se dirigir a elas pelo nome correto. Também é importante se referir a si mesmo com o nível adequado de polidez. O japonês é especial por ter tantas formas de dizer as simples palavras &quot;eu&quot; e &quot;você&quot;. Vamos passar por algumas das formas de se referir a si mesmo e aos outros.</p>
+<h2>Referindo-se a si mesmo</h2>
+<h3>Vocabulário</h3>
+<ul>
+<li>名前 【な・まえ】 – nome</li>
+</ul>
+<p>Há muitas formas de dizer &quot;eu&quot; em japonês. Algumas dessas palavras não são tão comuns e outras estão completamente ultrapassadas. Vamos passar pelas mais comuns que estão em uso hoje. Os usos de todas as diferentes palavras para &quot;eu&quot; se dividem em duas categorias: gênero e polidez. Em outras palavras, há palavras geralmente usadas por homens e palavras geralmente usadas apenas por mulheres, e todas dependem do contexto social.</p>
+<p>Antes de entrar nisso: uma observação sobre a palavra 「私」. A leitura oficial do kanji é 「わたくし」. Esta é a leitura usada em contextos formais (por exemplo, um discurso do presidente de uma empresa). Esta leitura provavelmente será acompanhada de formas honoríficas e humildes, que cobriremos mais adiante. Em todas as outras situações, é geralmente lida como 「わたし」. Esta é a referência mais genérica de &quot;eu&quot; em termos de polidez e gênero; portanto, é geralmente uma das primeiras palavras ensinadas a estudantes de japonês.</p>
+<p>Aqui está uma lista das palavras mais comuns para &quot;eu&quot; e como elas são usadas:</p>
+<ol>
+<li>私 【わたくし】 – Usado por homens e mulheres em situações formais.</li>
+<li>私 【わたし】 – Usado por homens e mulheres em situações normais e polidas.</li>
+<li>僕 【ぼく】 – Usado principalmente por homens, de situações bastante polidas a bastante informais.</li>
+<li>俺 【おれ】 – Uma versão muito grosseira de &quot;eu&quot;, usada quase exclusivamente por homens em situações muito informais.</li>
+<li>あたし – Uma forma muito feminina e informal de se referir a si mesma. Muitas garotas optam por usar 「わたし」 em vez disso, pois 「あたし」 tem um som fofo e infantil.</li>
+<li>O próprio nome – Também uma forma muito feminina e um tanto infantil de se referir a si mesma.</li>
+<li>わし – Geralmente usado por homens mais velhos, bem na meia-idade.</li>
+</ol>
+<p>Vamos ver como diferentes tipos de frases usam a versão apropriada de &quot;eu&quot;. 「わたくし」 é omitido porque ainda não cobrimos expressões gramaticais muito formais.</p>
+<ol>
+<li>私の名前はキムです。
+Meu nome é Kim. (Neutro, polido)</li>
+<li>僕の名前はキムです。
+Meu nome é Kim. (Masculino, polido)</li>
+<li>僕の名前はボブだ。
+Meu nome é Bob. (Masculino, informal)</li>
+<li>俺の名前はボブだ。
+Meu nome é Bob. (Masculino, informal)</li>
+<li>あたしの名前はアリス。
+Meu nome é Alice. (Feminino, informal)</li>
+</ol>
+<h2>Referindo-se a outros pelo nome</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>社長 【しゃ・ちょう】 – presidente da empresa</li>
+<li>課長 【か・ちょう】 – gerente de seção</li>
+<li>先生 【せん・せい】 – professor</li>
+<li>田中 【た・なか】 – Tanaka (sobrenome)</li>
+</ol>
+<p>O japonês não exige o uso de &quot;você&quot; tanto quanto o inglês. Espero que os exemplos com Bob, Alice e Jim tenham mostrado que as pessoas se referem umas às outras pelo nome mesmo quando estão se dirigindo diretamente a essa pessoa. Outra forma comum de se dirigir às pessoas é pelo título, como 「社長」、「課長」、「先生」 etc. A palavra 「先生」 é usada de forma geral para significar qualquer pessoa que tenha conhecimento e experiência significativos em algo. Por exemplo, as pessoas geralmente usam 「先生」 ao se dirigir diretamente a médicos ou professores (obviamente). Você também pode incluir o sobrenome da pessoa, como 「田中先生」 (professor Tanaka). Nos casos em que o relacionamento com a pessoa não envolve nenhum título, você pode usar o nome dela (geralmente o sobrenome) seguido de 「さん」 para demonstrar polidez. Se chamá-la pelo sobrenome parecer um pouco formal e distante, também existe a prática de adicionar 「さん」 ao primeiro nome. Versões mais carinhosas e coloquiais de 「さん」 incluem 「くん」 e 「ちゃん」. 「くん」 é geralmente adicionado ao nome de homens de posição social igual ou inferior. (Por exemplo, meu chefe às vezes me chama de 「キムくん」). 「ちゃん」 é uma forma muito carinhosa de se referir geralmente a mulheres de posição social igual ou inferior.</p>
+<h2>Referindo-se a outros com &quot;você&quot;</h2>
+<p>Por favor, não use 「あなた」 da mesma forma que você usaria a palavra &quot;você&quot; em português. Ao se dirigir diretamente às pessoas, há três níveis de polidez: 1) Usar o nome da pessoa com o sufixo apropriado; 2) Não usar nada; 3) Usar 「あなた」. Na verdade, quando você chega ao nível três, está perigosamente na área de ser rude. Na maioria das vezes, você não precisa usar nada porque está se dirigindo diretamente à pessoa. Ficar repetindo &quot;você&quot; a cada frase soa como se você estivesse acusando a pessoa de algo.</p>
+<p>「あなた」 também é uma forma antiquada das mulheres se referirem ao marido ou amante. A menos que você seja uma mulher de meia-idade com um marido japonês, duvido que você usará 「あなた」 dessa forma também.</p>
+<p>Aqui está uma lista de algumas palavras com o significado de &quot;você&quot; em português. Você raramente precisará usar qualquer uma dessas palavras, especialmente as da segunda metade da lista.</p>
+<ol>
+<li>あなた – Geralmente usado apenas quando não há forma de se dirigir fisicamente à pessoa ou quando não se sabe o nome dela. Por exemplo, perguntas diretas ao leitor em um formulário que ele deve preencher usariam 「あなた」.</li>
+<li>君【きみ】 – Pode ser uma forma muito íntima e presumida de se dirigir a garotas (especialmente por rapazes). Também pode ser um pouco rude.</li>
+<li>お前【お・まえ】 – Uma forma muito grosseira e rude de se dirigir a alguém. Geralmente usada por homens e frequentemente alterada para 「おめえ」.</li>
+<li>あんた – Uma forma muito presumida e familiar de se dirigir a alguém. A pessoa que usa isso pode estar irritada com algo.</li>
+<li>手前【て・めえ】 – Muito rude. Como 「お前」, para dar mais ênfase, as pessoas geralmente dizem assim: 「てめ～～」. Parece que você quer bater em alguém. Só vi esse sendo usado em filmes e quadrinhos. Na verdade, se você tentar isso com seus amigos, eles provavelmente vão rir de você e dizer que você provavelmente leu quadrinhos demais.</li>
+<li>貴様【き・さま】 – Muito, muito rude. Parece que você quer acabar com alguém. Também só vi esse sendo usado em quadrinhos. Só menciono para que você possa entender e curtir os quadrinhos por conta própria!</li>
+</ol>
+<h2>Referindo-se a outros na terceira pessoa</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>彼 【かれ】 – ele; namorado</li>
+<li>彼女 【かの・じょ】 – ela; namorada</li>
+<li>ガールフレンド – namorada</li>
+<li>ボーイフレンド – namorado</li>
+</ol>
+<p>Você pode usar 「彼」 e 「彼女」 para &quot;ele&quot; e &quot;ela&quot;, respectivamente. Note que 「彼」 e 「彼女」 também podem significar &quot;namorado&quot; e &quot;namorada&quot;. Então como saber qual significado está sendo usado? Contexto, claro. Por exemplo, se alguém pergunta 「彼女ですか？」, a pessoa obviamente está perguntando se ela é sua namorada, pois a pergunta &quot;Ela é ela?&quot; não faz sentido algum. Outra alternativa menos comum é dizer 「ガールフレンド」 e 「ボーイフレンド」 que, bem, tenho certeza que você já pode adivinhar o que significam.</p>
+<h2>Referindo-se a membros da família</h2>
+<ol>
+<li>母 【はは】 – mãe</li>
+<li>お母さん 【お・かあ・さん】 – mãe (polido)</li>
+<li>両親 【りょう・しん】 – pais</li>
+<li>父 【ちち】 – pai</li>
+<li>お父さん 【お・とう・さん】 – pai (polido)</li>
+<li>妻 【つま】 – esposa</li>
+<li>奥さん 【おく・さん】 – esposa (polido)</li>
+<li>夫 【おっと】 – marido</li>
+<li>主人 【しゅ・じん】 – marido</li>
+<li>姉 【あね】 – irmã mais velha</li>
+<li>お姉さん 【お・ねえ・さん】 – irmã mais velha (polido)</li>
+<li>兄 【あに】 – irmão mais velho</li>
+<li>お兄さん 【お・にい・さん】 – irmão mais velho (polido)</li>
+<li>妹 【いもうと】 – irmã mais nova</li>
+<li>弟 【おとうと】 – irmão mais novo</li>
+<li>息子 【むす・こ】 – filho</li>
+<li>娘 【むすめ】 – filha</li>
+</ol>
+<p>Referir-se a membros da família é um pouco mais complicado do que em português. (Poderia ser pior — experimente aprender coreano!) Por questões de brevidade (pois este <em>é</em> um guia de gramática e não um guia de vocabulário), cobriremos apenas a família imediata. Em japonês, você se refere aos membros da família de outras pessoas de forma mais polida do que à sua própria família. Isso ocorre apenas quando você está falando sobre membros da sua própria família para pessoas de fora da família. Por exemplo, você se referiria à sua própria mãe como 「母」 para pessoas de fora da família, mas poderia muito bem chamá-la de 「お母さん」 em casa, dentro da própria família. Há também uma distinção entre irmãos mais velhos e mais novos. O quadro abaixo lista alguns dos termos mais comuns para membros da família. Pode haver outras possibilidades não cobertas neste quadro.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Própria família</th>
+<th>Família de outra pessoa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pais</td>
+<td>両親</td>
+<td>ご両親</td>
+</tr>
+<tr>
+<td>Mãe</td>
+<td>母</td>
+<td>お母さん</td>
+</tr>
+<tr>
+<td>Pai</td>
+<td>父</td>
+<td>お父さん</td>
+</tr>
+<tr>
+<td>Esposa</td>
+<td>妻</td>
+<td>奥さん</td>
+</tr>
+<tr>
+<td>Marido</td>
+<td>夫</td>
+<td>ご主人</td>
+</tr>
+<tr>
+<td>Irmã mais velha</td>
+<td>姉</td>
+<td>お姉さん</td>
+</tr>
+<tr>
+<td>Irmão mais velho</td>
+<td>兄</td>
+<td>お兄さん</td>
+</tr>
+<tr>
+<td>Irmã mais nova</td>
+<td>妹</td>
+<td>妹さん</td>
+</tr>
+<tr>
+<td>Irmão mais novo</td>
+<td>弟</td>
+<td>弟さん</td>
+</tr>
+<tr>
+<td>Filho</td>
+<td>息子</td>
+<td>息子さん</td>
+</tr>
+<tr>
+<td>Filha</td>
+<td>娘</td>
+<td>娘さん</td>
+</tr>
+</tbody></table>
+<p>Outra palavra para esposa, 「家内」, é frequentemente considerada politicamente incorreta porque os kanji usados significam &quot;casa&quot; e &quot;dentro&quot;, o que implica que as esposas pertencem ao lar. Amém. (Brincadeira)</p>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/polite" title="&lt;&lt; Forma Polida e Radicais de Verbos">Forma Polida e Radicais de Verbos</a> <a href="/pt-br/question" title="O Marcador de Pergunta &gt;&gt;">O Marcador de Pergunta</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/polite"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">21 / 62</span>
+          <a class="nav-link" href="/pt-br/question"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

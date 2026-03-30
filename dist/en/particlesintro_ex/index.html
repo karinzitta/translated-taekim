@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide to Japanese Grammar – Particles (Ex.)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 8%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/en/basic">Guide to Japanese Grammar</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/pt-br/particlesintro_ex">PT-BR</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/en/basic"><span class="num">1</span>Basic Structures</a></li>
+      <li><a href="/en/stateofbeing"><span class="num">2</span>State of Being</a></li>
+      <li><a href="/en/stateofbeing_ex"><span class="num">3</span>State of Being (Ex.)</a></li>
+      <li><a href="/en/particlesintro"><span class="num">4</span>Intro to Particles</a></li>
+      <li class="active"><a href="/en/particlesintro_ex"><span class="num">5</span>Particles (Ex.)</a></li>
+      <li><a href="/en/adjectives"><span class="num">6</span>Adjectives</a></li>
+      <li><a href="/en/adjectives_ex"><span class="num">7</span>Adjectives (Ex.)</a></li>
+      <li><a href="/en/verbs"><span class="num">8</span>Verbs</a></li>
+      <li><a href="/en/verbs_ex"><span class="num">9</span>Verbs (Ex.)</a></li>
+      <li><a href="/en/negativeverbs"><span class="num">10</span>Negative Verbs</a></li>
+      <li><a href="/en/negativeverbs_ex"><span class="num">11</span>Negative Verbs (Ex.)</a></li>
+      <li><a href="/en/past_tense"><span class="num">12</span>Past Tense</a></li>
+      <li><a href="/en/pasttense_ex"><span class="num">13</span>Past Tense (Ex.)</a></li>
+      <li><a href="/en/verbparticles"><span class="num">14</span>Verb Particles</a></li>
+      <li><a href="/en/in-transitive"><span class="num">15</span>Transitive & Intransitive</a></li>
+      <li><a href="/en/clause"><span class="num">16</span>Relative Clauses</a></li>
+      <li><a href="/en/nounparticles"><span class="num">17</span>Noun Particles</a></li>
+      <li><a href="/en/adverbs"><span class="num">18</span>Adverbs</a></li>
+      <li><a href="/en/essential"><span class="num">19</span>Essential Grammar</a></li>
+      <li><a href="/en/polite"><span class="num">20</span>Polite Form</a></li>
+      <li><a href="/en/people"><span class="num">21</span>Addressing People</a></li>
+      <li><a href="/en/question"><span class="num">22</span>Question Marker</a></li>
+      <li><a href="/en/compound"><span class="num">23</span>Compound Sentences</a></li>
+      <li><a href="/en/teform"><span class="num">24</span>Te-form</a></li>
+      <li><a href="/en/potential"><span class="num">25</span>Potential Form</a></li>
+      <li><a href="/en/surunaru"><span class="num">26</span>Using する and なる</a></li>
+      <li><a href="/en/conditionals"><span class="num">27</span>Conditionals</a></li>
+      <li><a href="/en/must"><span class="num">28</span>Must / Have To</a></li>
+      <li><a href="/en/desire"><span class="num">29</span>Desire & Suggestions</a></li>
+      <li><a href="/en/actionclause"><span class="num">30</span>Action Clauses</a></li>
+      <li><a href="/en/define"><span class="num">31</span>Defining with いう</a></li>
+      <li><a href="/en/try"><span class="num">32</span>Trying Things</a></li>
+      <li><a href="/en/favors"><span class="num">33</span>Giving & Receiving</a></li>
+      <li><a href="/en/requests"><span class="num">34</span>Making Requests</a></li>
+      <li><a href="/en/numbers"><span class="num">35</span>Numbers & Counting</a></li>
+      <li><a href="/en/slang"><span class="num">36</span>Casual Patterns & Slang</a></li>
+      <li><a href="/en/sentence_ending"><span class="num">37</span>Sentence-ending Particles</a></li>
+      <li><a href="/en/specialexpressions"><span class="num">38</span>Special Expressions</a></li>
+      <li><a href="/en/causepass"><span class="num">39</span>Causative & Passive</a></li>
+      <li><a href="/en/honorific"><span class="num">40</span>Honorific & Humble</a></li>
+      <li><a href="/en/unintended"><span class="num">41</span>Unintended Actions</a></li>
+      <li><a href="/en/genericnouns"><span class="num">42</span>Generic Nouns</a></li>
+      <li><a href="/en/certainty"><span class="num">43</span>Degrees of Certainty</a></li>
+      <li><a href="/en/amount"><span class="num">44</span>Expressing Amounts</a></li>
+      <li><a href="/en/similarity"><span class="num">45</span>Similarity & Hearsay</a></li>
+      <li><a href="/en/comparison"><span class="num">46</span>Comparisons</a></li>
+      <li><a href="/en/easyhard"><span class="num">47</span>Easy & Hard Actions</a></li>
+      <li><a href="/en/negativeverbs2"><span class="num">48</span>More Negative Verbs</a></li>
+      <li><a href="/en/reasoning"><span class="num">49</span>Hypothesizing</a></li>
+      <li><a href="/en/timeactions"><span class="num">50</span>Time-specific Actions</a></li>
+      <li><a href="/en/nochange"><span class="num">51</span>Lack of Change</a></li>
+      <li><a href="/en/advanced"><span class="num">52</span>Advanced Grammar</a></li>
+      <li><a href="/en/formal"><span class="num">53</span>Formal Expressions</a></li>
+      <li><a href="/en/should"><span class="num">54</span>Things That Should Be</a></li>
+      <li><a href="/en/even"><span class="num">55</span>Minimum Expectation</a></li>
+      <li><a href="/en/signs"><span class="num">56</span>Showing Signs</a></li>
+      <li><a href="/en/feasibility"><span class="num">57</span>Non-feasibility</a></li>
+      <li><a href="/en/tendency"><span class="num">58</span>Tendencies</a></li>
+      <li><a href="/en/volitional2"><span class="num">59</span>Advanced Volitional</a></li>
+      <li><a href="/en/covered"><span class="num">60</span>Covered by Something</a></li>
+      <li><a href="/en/immedate"><span class="num">61</span>Immediate Events</a></li>
+      <li><a href="/en/other"><span class="num">62</span>Other Grammar</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><h2>Vocabulary used in this section</h2>
+<p>Kanji<br>To start with, I have listed the kanji you will need for the vocabulary for your convenience. The link will take you to a diagram of the stroke order. I recommend practicing the kanji in the context of real words (such as the ones below).</p>
+<ol>
+<li><a href="http://jisho.org/search/%E4%BD%95%20%23kanji">何</a> – what</li>
+<li><a href="http://jisho.org/search/%E6%98%A0%20%23kanji">映</a> – projection</li>
+<li><a href="http://jisho.org/search/%E7%94%BB%20%23kanji">画</a> – picture</li>
+<li><a href="http://jisho.org/search/%E5%BD%BC%20%23kanji">彼</a> – he</li>
+<li><a href="http://jisho.org/search/%E5%A5%B3%20%23kanji">女</a> – female</li>
+<li><a href="http://jisho.org/search/%E6%98%A8%20%23kanji">昨</a> – previous</li>
+<li><a href="http://jisho.org/search/%E6%97%A5%20%23kanji">日</a> – day</li>
+<li><a href="http://jisho.org/search/%E4%BB%8A%20%23kanji">今</a> – now</li>
+<li><a href="http://jisho.org/search/%E6%98%8E%20%23kanji">明</a> – bright</li>
+<li><a href="http://jisho.org/search/%E7%9F%A5%20%23kanji">知</a> – know</li>
+<li><a href="http://jisho.org/search/%E5%90%88%20%23kanji">合</a> – match</li>
+<li><a href="http://jisho.org/search/%E9%89%9B%20%23kanji">鉛</a> – lead</li>
+<li><a href="http://jisho.org/search/%E7%AD%86%20%23kanji">筆</a> – brush</li>
+<li><a href="http://jisho.org/search/%E5%85%A5%20%23kanji">入</a> – enter</li>
+<li><a href="http://jisho.org/search/%E5%8F%A3%20%23kanji">口</a> – mouth</li>
+<li><a href="http://jisho.org/search/%E5%87%BA%20%23kanji">出</a> – exit</li>
+<li><a href="http://jisho.org/search/%E5%9B%B3%20%23kanji">図</a> – plan</li>
+<li><a href="http://jisho.org/search/%E6%9B%B8%20%23kanji">書</a> – write</li>
+<li><a href="http://jisho.org/search/%E9%A4%A8%20%23kanji">館</a> – building</li>
+<li><a href="http://jisho.org/search/%E6%B0%B4%20%23kanji">水</a> – water</li>
+</ol>
+<p>Vocabulary  </p>
+<p>Here is the list of some simple nouns that might be used in the exercises.</p>
+<ol>
+<li>どこ – where</li>
+<li>いつ – when</li>
+<li>どうして – why</li>
+<li>どう – how</li>
+<li>どれ – which</li>
+<li>ミーティング – meeting</li>
+<li>ボールペン – ball-point pen</li>
+<li>何【なに】 – what</li>
+<li>誰【だれ】 – who</li>
+<li>映画【えいが】 – movie</li>
+<li>彼【かれ】 – he; boyfriend</li>
+<li>彼女【かのじょ】 – she; girlfriend</li>
+<li>雨【あめ】 – rain</li>
+<li>水【みず】 – water</li>
+<li>昨日【きのう】 – yesterday</li>
+<li>今日【きょう】 – today</li>
+<li>明日【あした】 – tomorrow</li>
+<li>知り合い【しりあい】 – acquaintance</li>
+<li>鉛筆【えんぴつ】 – pencil</li>
+<li>仕事【しごと】 – work</li>
+<li>入口【いりぐち】 – entrance</li>
+<li>出口【でぐち】 – exit</li>
+<li>図書館【としょかん】 – library</li>
+</ol>
+<h2>Basic Particle Exercise with 「は」</h2>
+<p>Let’s first get used to the basic concept of particles by making some very simple sentences with them. In this first exercise, we are going to use the topic particle to explain the current topic of conversation. Remember, the topic particle 「は」 is always pronounced as /wa/.</p>
+<p><strong>Sample:</strong> 誰？ （Topic: アリス） ＝ アリスは誰？</p>
+<table border="0" cellspacing="8"><tbody><tr><td>１． どこ？（Topic: 学校）</td><td>＝</td><td class="answerline"><span class="hide">学校はどこ？</span></td><td>(Where is school?)</td></tr><tr><td>２． どうして？（Topic: それ）</td><td>＝</td><td class="answerline"><span class="hide">それはどうして？</span></td><td>(Why is that?)</td></tr><tr><td>３．いつ？（Topic: ミーティング）</td><td>＝</td><td class="answerline"><span class="hide">ミーティングはいつ？</span></td><td>(When is meeting?)</td></tr><tr><td>４．何？（Topic: これ）</td><td>＝</td><td class="answerline"><span class="hide">これは何？</span></td><td>(What is this?)</td></tr><tr><td>５．どう？（Topic: 映画）</td><td>＝</td><td class="answerline"><span class="hide">映画はどう？</span></td><td>(How is movie?)</td></tr><tr><td>６．中学生だ。（Topic: 彼）</td><td>＝</td><td class="answerline"><span class="hide">彼は中学生だ。</span></td><td>(He is middle school student.)</td></tr><tr><td>７．先生だ。（Topic: 彼女）</td><td>＝</td><td class="answerline"><span class="hide">彼女は先生だ。</span></td><td>(She is teacher.)</td></tr><tr><td>８．雨。（Topic: 今日）</td><td>＝</td><td class="answerline"><span class="hide">今日は雨。</span></td><td>(Today is rain.)</td></tr><tr><td>９．友達。（Topic: ボブ）</td><td>＝</td><td class="answerline"><span class="hide">ボブは友達。</span></td><td>(Bob is friend.)</td></tr><tr><td>１０． 知り合い？（Topic: 彼）</td><td>＝</td><td class="answerline"><span class="hide">彼は知り合い？</span></td><td>(Is he an acquaintance?)</td></tr></tbody></table>
+
+<p><a href="javascript:void(0)">Toggle answers</a></p>
+<h2>Particle Exercise with 「は」 and 「も」</h2>
+<p>Now we are going to practice getting used to the differences between the 「は」 and 「も」 particles. The sentences are actually pretty lame but this was the only way I could think of to make obvious which particle should be used. Remember, the point is to get a sense of when and when not to use the inclusive particle instead of the topic particle.</p>
+<h3>Fill in the blank with the correct particle, either 「は」 or 「も」</h3>
+<p><strong>Sample:</strong> これは鉛筆だ。それも鉛筆だ。</p>
+<table border="0" cellspacing="8"><tbody><tr><td class="toggle">１．今日は雨だ。昨日<span class="answerline">　　　</span>雨だった。</td><td class="hide toggle">１．今日は雨だ。昨日<span class="answerline">　も　</span>雨だった。</td></tr><tr><td class="toggle">２．ジムは大学生だ。でも、私<span class="answerline">　　　</span>大学生じゃない。</td><td class="hide toggle">２．ジムは大学生だ。でも、私<span class="answerline">　は　</span>大学生じゃない。</td></tr><tr><td class="toggle">３．これは水。これ<span class="answerline">　　　</span>そう。</td><td class="hide toggle">３．これは水。これ<span class="answerline">　も　</span>そう。</td></tr><tr><td class="toggle">４．これはボールペンだ。でも、それ<span class="answerline">　　　</span>ボールペンじゃない。</td><td class="hide toggle">４．これはボールペンだ。でも、それ<span class="answerline">　は　</span>ボールペンじゃない。</td></tr><tr><td class="toggle">５．仕事は明日。今日<span class="answerline">　　　</span>仕事じゃなかった。</td><td class="hide toggle">５．仕事は明日。今日<span class="answerline">　は　</span>仕事じゃなかった。</td></tr><tr><td class="toggle">６．ここは入口。出口<span class="answerline">　　　</span>ここだ。</td><td class="hide toggle">６．ここは入口。出口<span class="answerline">　も　</span>ここだ。</td></tr></tbody></table>
+
+<p><a href="javascript:void(0)">Toggle answers</a></p>
+<h2>Particle Exercise with 「は」, 「も」, 「が」</h2>
+<p>In this last exercise, we will practice all three particles by identifying which one should be used for different types of situations. Remember that the 「が」 particle is only used when you want to identify something out of many other possibilities. While there are some cases where both 「は」 and 「が」 makes sense grammatically, because they mean different things, the correct one all depends on what you want to say.</p>
+<h3>Fill in the blank with the correct particle, either 「は」、 「も」、 or 「が」</h3>
+<table border="0" cellspacing="8"><tbody><tr><td class="toggle ">ジム）　アリス<span class="answerline">　　　</span>誰？<br>ボブ）　友達だ。彼女<span class="answerline">　　　</span>アリスだ</td><td class="hide toggle">ジム）　アリス<span class="answerline">　は　</span>誰？<br>ボブ）　友達だ。彼女<span class="answerline">　が　</span>アリスだ</td></tr><tr><td>　</td></tr><tr><td class="toggle">アリス）　これ<span class="answerline">　　　</span>何？<br>ボブ）　それ<span class="answerline">　　　</span>鉛筆。<br>アリス）　あれ<span class="answerline">　　　</span>鉛筆？<br>ボブ）　あれ<span class="answerline">　　　</span>ペンだ。</td><td class="hide toggle">アリス）　これ<span class="answerline">　は　</span>何？<br>ボブ）　それ<span class="answerline">　は　</span>鉛筆。<br>アリス）　あれ<span class="answerline">　も　</span>鉛筆？<br>ボブ）　あれ<span class="answerline">　は　</span>ペンだ。</td></tr><tr><td>　</td></tr><tr><td class="toggle">アリス）　図書館<span class="answerline">　　　</span>どこ？<br>ボブ）　ここ<span class="answerline">　　　</span>図書館だ。<br>アリス）　そこ<span class="answerline">　　　</span>図書館じゃない？<br>ボブ）　そこじゃない。図書館<span class="answerline">　　　</span>ここだ。</td><td class="hide toggle">アリス）　図書館<span class="answerline">　は　</span>どこ？<br>ボブ）　ここ<span class="answerline">　が　</span>図書館だ。<br>アリス）　そこ<span class="answerline">　は　</span>図書館じゃない？<br>ボブ）　そこじゃない。図書館<span class="answerline">　は　</span>ここだ。</td></tr></tbody></table>
+
+<p><a href="javascript:void(0)">Toggle answers</a></p>
+<h3>Guide to Japanese grammar</h3>
+<p><a href="/en/particlesintro" title="&lt;&lt; Introduction to Particles">Introduction to Particles</a> <a href="/en/adjectives" title="Adjectives &gt;&gt;">Adjectives</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guide to Japanese Grammar</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/en/particlesintro"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Previous</span></a>
+          <span class="page-count">5 / 62</span>
+          <a class="nav-link" href="/en/adjectives"><span>Next</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Adjetivos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 10%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/adjectives">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li class="active"><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><h2>Propriedades dos Adjetivos</h2>
+<p>Agora que podemos conectar dois substantivos de várias maneiras usando partículas, queremos descrever nossos substantivos com adjetivos. Um adjetivo pode modificar diretamente um substantivo que o segue imediatamente. Ele também pode ser conectado da mesma forma que fizemos com substantivos usando partículas. Todos os adjetivos se enquadram em duas categorias: <em>na-adjetivos</em> e <em>i-adjetivos</em>.</p>
+<h2>O na-adjetivo</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>静か 【しず・か】 (na-adj) – quieto; silencioso</li>
+<li>人 【ひと】 – pessoa</li>
+<li>きれい (na-adj) – bonito; limpo</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>親切 【しん・せつ】 (na-adj) – gentil</li>
+<li>魚 【さかな】 – peixe</li>
+<li>好き 【す・き】 (na-adj) – gostar de; desejável</li>
+<li>肉 【にく】 – carne</li>
+<li>野菜 【や・さい】 – legumes; verduras</li>
+</ol>
+<p>O na-adjetivo é muito simples de aprender porque funciona essencialmente como um substantivo. As regras de conjugação para substantivos e na-adjetivos são as mesmas. Uma diferença principal é que um na-adjetivo pode modificar diretamente um substantivo que o segue, adicionando 「な」 entre o adjetivo e o substantivo. (Daí o nome, na-adjetivo.)</p>
+<h3>Exemplos</h3>
+<ol>
+<li>静か_な_人。
+Pessoa silenciosa.</li>
+<li>きれい_な_人。
+Pessoa bonita.</li>
+</ol>
+<p>Você também pode usar adjetivos com partículas, assim como fizemos na última lição com substantivos.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>友達は親切。
+O amigo é gentil.</li>
+<li>友達は親切な人だ。
+O amigo é uma pessoa gentil.</li>
+</ol>
+<p>Como mostram os exemplos a seguir, as regras de conjugação para na-adjetivos são as mesmas que para substantivos.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>ボブは魚が_好き_だ。
+Bob gosta de peixe.</li>
+<li>ボブは魚が_好きじゃない_。
+Bob não gosta de peixe.</li>
+<li>ボブは魚が_好きだった_。
+Bob gostava de peixe.</li>
+<li>ボブは魚が_好きじゃなかった_。
+Bob não gostava de peixe.</li>
+</ol>
+<p>Se te incomoda que &quot;gostar&quot; seja um adjetivo e não um verbo em japonês, você pode pensar em 「好き」 como significando &quot;desejável&quot;. Você também pode ver um bom exemplo das partículas de tópico e identificação trabalhando em harmonia. A frase é sobre o tópico &quot;Bob&quot; e &quot;peixe&quot; identifica especificamente o que Bob gosta.</p>
+<p>Você também pode usar as últimas três conjugações para modificar diretamente o substantivo. (Lembre-se de adicionar 「な」 para o não-passado positivo.)</p>
+<h3>Exemplos</h3>
+<ol>
+<li>魚が_好きな_人。
+Pessoa que gosta de peixe.</li>
+<li>魚が_好きじゃない_人。
+Pessoa que não gosta de peixe.</li>
+<li>魚が_好きだった_人。
+Pessoa que gostava de peixe.</li>
+<li>魚が_好きじゃなかった_人。
+Pessoa que não gostava de peixe.</li>
+</ol>
+<p>Aqui, toda a cláusula 「魚が好き」、「魚が好きじゃない」 etc. está modificando &quot;pessoa&quot; para falar sobre pessoas que gostam ou não gostam de peixe. Você pode ver por que esse tipo de frase é útil, pois 「人は魚が_好き_だ」 significaria &quot;As pessoas gostam de peixe&quot;, o que nem sempre é o caso.</p>
+<p>Podemos até tratar a cláusula nominal descritiva inteira como um único substantivo. Por exemplo, podemos tornar toda a cláusula um tópico como no exemplo a seguir.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>_魚が好きじゃない人_は、肉が好きだ。
+Pessoas que não gostam de peixe gostam de carne.</li>
+<li>_魚が好きな人_は、野菜も好きだ。
+Pessoas que gostam de peixe também gostam de legumes.</li>
+</ol>
+<h2>O i-adjetivo</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>嫌い 【きら・い】 (na-adj) – desprezível; odioso</li>
+<li>食べ物 【た・べ・もの】 – comida; alimento</li>
+<li>おいしい (i-adj) – saboroso; gostoso</li>
+<li>高い 【たか・い】 (i-adj) – alto; caro</li>
+<li>ビル – prédio</li>
+<li>値段 【ね・だん】 – preço</li>
+<li>レストラン – restaurante</li>
+<li>あまり／あんまり – não muito (usado com o negativo)</li>
+<li>好き 【す・き】 (na-adj) – gostar de; desejável</li>
+<li>いい (i-adj) – bom</li>
+</ol>
+<p>Todos os i-adjetivos sempre terminam com o caractere hiragana: 「い」. No entanto, você pode ter notado que alguns na-adjetivos também terminam com 「い」, como 「きれい（な）」. Então, como você pode distingui-los? Na verdade, há poucos na-adjetivos que terminam com 「い」 sem serem escritos em kanji. Dois dos mais comuns são: 「きれい」 e 「嫌い」. Quase todos os outros na-adjetivos que terminam com 「い」 são geralmente escritos em kanji, então você consegue identificar facilmente que não são i-adjetivos. Por exemplo, 「きれい」 escrito em kanji fica 「綺麗」 ou 「奇麗」. Como o 「い」 em 「麗」 faz parte de um caractere kanji, você sabe que não pode ser um i-adjetivo. Isso porque o objetivo do 「い」 nos i-adjetivos é justamente permitir a conjugação sem alterar o kanji. Na verdade, 「嫌い」 é um dos raros na-adjetivos que termina em 「い」 sem um kanji correspondente. Isso tem a ver com o fato de que 「嫌い」 é derivado do verbo 「嫌う」.</p>
+<p>Ao contrário dos na-adjetivos, você <strong>não</strong> precisa adicionar 「な」 para modificar diretamente um substantivo com um i-adjetivo.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>嫌い_な_食べ物。
+Comida que se odeia.</li>
+<li>おいしい食べ物。
+Comida saborosa.</li>
+</ol>
+<p>Lembra-se de como o estado de ser negativo para substantivos também termina em 「い」 （じゃな_い_）? Assim como o estado de ser negativo para substantivos, você nunca pode adicionar o 「だ」 declarativo a i-adjetivos.</p>
+<p><strong><strong>NÃO adicione 「だ」 a i-adjetivos.</strong></strong></p>
+<p>Agora que essa questão está esclarecida, abaixo estão as regras para conjugar i-adjetivos. Note que a regra para conjugar para o negativo do passado é a mesma que para o passado.</p>
+<p>Regras de conjugação para i-adjetivos</p>
+<ul>
+<li><p><strong>Negativo</strong>: Primeiro remova o 「い」 final do i-adjetivo e depois adicione 「くない」</p>
+</li>
+<li><p>Exemplo: 高_い_ → 高_くない_</p>
+</li>
+<li><p><strong>Passado</strong>: Primeiro remova o 「い」 final do i-adjetivo ou do i-adjetivo negativo e depois adicione 「かった」
+Exemplos</p>
+<ol>
+<li>高_い_ → 高_かった_</li>
+<li>高くな_い_ → 高くな_かった_</li>
+</ol>
+</li>
+</ul>
+<p>Resumo das conjugações dos i-adjetivos</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Positivo</th>
+<th>Negativo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Não-passado</strong></td>
+<td>高い</td>
+<td>高くない</td>
+</tr>
+<tr>
+<td><strong>Passado</strong></td>
+<td>高かった</td>
+<td>高くなかった</td>
+</tr>
+</tbody></table>
+<h3>Exemplos</h3>
+<ol>
+<li>_高い_ビル。
+Prédio alto.</li>
+<li>_高くない_ビル。
+Prédio que não é alto.</li>
+<li>_高かった_ビル。
+Prédio que era alto.</li>
+<li>_高くなかった_ビル。
+Prédio que não era alto.</li>
+</ol>
+<p>Note que você pode criar o mesmo tipo de cláusula nominal descritiva que fizemos com na-adjetivos. A única diferença é que não precisamos de 「な」 para modificar diretamente o substantivo.</p>
+<h3>Exemplo</h3>
+<ul>
+<li>_値段が高いレストラン_はあまり好きじゃない。
+Não gosto muito de restaurantes com preço alto.</li>
+</ul>
+<p>Neste exemplo, a cláusula descritiva 「値段が高い」 está modificando diretamente 「レストラン」.</p>
+<h2>Uma exceção irritante</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>値段 【ね・だん】 – preço</li>
+<li>あまり／あんまり – não muito (usado com o negativo)</li>
+<li>いい (i-adj) – bom</li>
+<li>彼 【かれ】 – ele; namorado</li>
+<li>かっこいい (i-adj) – estiloso; bonito; charmoso</li>
+</ol>
+<p>Há um i-adjetivo com o significado de &quot;bom&quot; que funciona de forma ligeiramente diferente de todos os outros i-adjetivos. Esse é um caso clássico de como aprender japonês é mais difícil para iniciantes porque as palavras mais comuns e úteis também têm as mais exceções. A palavra para &quot;bom&quot; era originalmente 「よい（良い）」. No entanto, com o tempo, acabou se tornando 「いい」. Quando escrita em kanji, normalmente se lê 「よい」, então 「いい」 quase sempre aparece em hiragana. Tudo bem até aqui. Infelizmente, todas as conjugações ainda são derivadas de 「よい」 e não de 「いい」. Isso é mostrado na tabela a seguir.</p>
+<p>Outro adjetivo que funciona da mesma forma é 「かっこいい」, pois é uma versão abreviada de duas palavras fundidas: 「格好」 e 「いい」. Por usar o mesmo 「いい」, você precisa usar as mesmas conjugações.</p>
+<p>Conjugação de 「いい」</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Positivo</th>
+<th>Negativo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Não-passado</strong></td>
+<td>いい</td>
+<td>よくない</td>
+</tr>
+<tr>
+<td><strong>Passado</strong></td>
+<td>よかった</td>
+<td>よくなかった</td>
+</tr>
+</tbody></table>
+<p>Conjugação de 「かっこいい」</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Positivo</th>
+<th>Negativo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Não-passado</strong></td>
+<td>かっこいい</td>
+<td>かっこよくない</td>
+</tr>
+<tr>
+<td><strong>Passado</strong></td>
+<td>かっこよかった</td>
+<td>かっこよくなかった</td>
+</tr>
+</tbody></table>
+<p>Tome cuidado para fazer todas as conjugações a partir de 「よい」 e não de 「いい」.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>値段があんまり_よくない_。
+O preço não é muito bom.</li>
+<li>彼は_かっこよかった_！
+Ele estava muito estiloso!</li>
+</ol>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/particlesintro_ex" title="&lt;&lt; Exercícios práticos de partículas">Exercícios práticos de partículas</a> <a href="/pt-br/adjectives_ex" title="Exercícios práticos de adjetivos &gt;&gt;">Exercícios práticos de adjetivos</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/particlesintro_ex"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">6 / 62</span>
+          <a class="nav-link" href="/pt-br/adjectives_ex"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

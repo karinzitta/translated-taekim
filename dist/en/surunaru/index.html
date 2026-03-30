@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide to Japanese Grammar – Using する and なる</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 42%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/en/basic">Guide to Japanese Grammar</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/pt-br/surunaru">PT-BR</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/en/basic"><span class="num">1</span>Basic Structures</a></li>
+      <li><a href="/en/stateofbeing"><span class="num">2</span>State of Being</a></li>
+      <li><a href="/en/stateofbeing_ex"><span class="num">3</span>State of Being (Ex.)</a></li>
+      <li><a href="/en/particlesintro"><span class="num">4</span>Intro to Particles</a></li>
+      <li><a href="/en/particlesintro_ex"><span class="num">5</span>Particles (Ex.)</a></li>
+      <li><a href="/en/adjectives"><span class="num">6</span>Adjectives</a></li>
+      <li><a href="/en/adjectives_ex"><span class="num">7</span>Adjectives (Ex.)</a></li>
+      <li><a href="/en/verbs"><span class="num">8</span>Verbs</a></li>
+      <li><a href="/en/verbs_ex"><span class="num">9</span>Verbs (Ex.)</a></li>
+      <li><a href="/en/negativeverbs"><span class="num">10</span>Negative Verbs</a></li>
+      <li><a href="/en/negativeverbs_ex"><span class="num">11</span>Negative Verbs (Ex.)</a></li>
+      <li><a href="/en/past_tense"><span class="num">12</span>Past Tense</a></li>
+      <li><a href="/en/pasttense_ex"><span class="num">13</span>Past Tense (Ex.)</a></li>
+      <li><a href="/en/verbparticles"><span class="num">14</span>Verb Particles</a></li>
+      <li><a href="/en/in-transitive"><span class="num">15</span>Transitive & Intransitive</a></li>
+      <li><a href="/en/clause"><span class="num">16</span>Relative Clauses</a></li>
+      <li><a href="/en/nounparticles"><span class="num">17</span>Noun Particles</a></li>
+      <li><a href="/en/adverbs"><span class="num">18</span>Adverbs</a></li>
+      <li><a href="/en/essential"><span class="num">19</span>Essential Grammar</a></li>
+      <li><a href="/en/polite"><span class="num">20</span>Polite Form</a></li>
+      <li><a href="/en/people"><span class="num">21</span>Addressing People</a></li>
+      <li><a href="/en/question"><span class="num">22</span>Question Marker</a></li>
+      <li><a href="/en/compound"><span class="num">23</span>Compound Sentences</a></li>
+      <li><a href="/en/teform"><span class="num">24</span>Te-form</a></li>
+      <li><a href="/en/potential"><span class="num">25</span>Potential Form</a></li>
+      <li class="active"><a href="/en/surunaru"><span class="num">26</span>Using する and なる</a></li>
+      <li><a href="/en/conditionals"><span class="num">27</span>Conditionals</a></li>
+      <li><a href="/en/must"><span class="num">28</span>Must / Have To</a></li>
+      <li><a href="/en/desire"><span class="num">29</span>Desire & Suggestions</a></li>
+      <li><a href="/en/actionclause"><span class="num">30</span>Action Clauses</a></li>
+      <li><a href="/en/define"><span class="num">31</span>Defining with いう</a></li>
+      <li><a href="/en/try"><span class="num">32</span>Trying Things</a></li>
+      <li><a href="/en/favors"><span class="num">33</span>Giving & Receiving</a></li>
+      <li><a href="/en/requests"><span class="num">34</span>Making Requests</a></li>
+      <li><a href="/en/numbers"><span class="num">35</span>Numbers & Counting</a></li>
+      <li><a href="/en/slang"><span class="num">36</span>Casual Patterns & Slang</a></li>
+      <li><a href="/en/sentence_ending"><span class="num">37</span>Sentence-ending Particles</a></li>
+      <li><a href="/en/specialexpressions"><span class="num">38</span>Special Expressions</a></li>
+      <li><a href="/en/causepass"><span class="num">39</span>Causative & Passive</a></li>
+      <li><a href="/en/honorific"><span class="num">40</span>Honorific & Humble</a></li>
+      <li><a href="/en/unintended"><span class="num">41</span>Unintended Actions</a></li>
+      <li><a href="/en/genericnouns"><span class="num">42</span>Generic Nouns</a></li>
+      <li><a href="/en/certainty"><span class="num">43</span>Degrees of Certainty</a></li>
+      <li><a href="/en/amount"><span class="num">44</span>Expressing Amounts</a></li>
+      <li><a href="/en/similarity"><span class="num">45</span>Similarity & Hearsay</a></li>
+      <li><a href="/en/comparison"><span class="num">46</span>Comparisons</a></li>
+      <li><a href="/en/easyhard"><span class="num">47</span>Easy & Hard Actions</a></li>
+      <li><a href="/en/negativeverbs2"><span class="num">48</span>More Negative Verbs</a></li>
+      <li><a href="/en/reasoning"><span class="num">49</span>Hypothesizing</a></li>
+      <li><a href="/en/timeactions"><span class="num">50</span>Time-specific Actions</a></li>
+      <li><a href="/en/nochange"><span class="num">51</span>Lack of Change</a></li>
+      <li><a href="/en/advanced"><span class="num">52</span>Advanced Grammar</a></li>
+      <li><a href="/en/formal"><span class="num">53</span>Formal Expressions</a></li>
+      <li><a href="/en/should"><span class="num">54</span>Things That Should Be</a></li>
+      <li><a href="/en/even"><span class="num">55</span>Minimum Expectation</a></li>
+      <li><a href="/en/signs"><span class="num">56</span>Showing Signs</a></li>
+      <li><a href="/en/feasibility"><span class="num">57</span>Non-feasibility</a></li>
+      <li><a href="/en/tendency"><span class="num">58</span>Tendencies</a></li>
+      <li><a href="/en/volitional2"><span class="num">59</span>Advanced Volitional</a></li>
+      <li><a href="/en/covered"><span class="num">60</span>Covered by Something</a></li>
+      <li><a href="/en/immedate"><span class="num">61</span>Immediate Events</a></li>
+      <li><a href="/en/other"><span class="num">62</span>Other Grammar</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>We can use the verbs 「する」 and 「なる」 in conjunction with the 「に」 particle to make various useful expressions. We are used to using the object particle with 「する」 because something is usually done to something else. We will see how the meaning changes when we change the particle to 「に」. As for 「なる」, it is always used with the 「に」 particle because “becoming” is not an action done to something else but rather a target of change. The only grammatical point of interest here is using 「なる」 with i-adjectives and verbs.</p>
+<h2>Using 「なる」 and 「する」 for nouns and na-adjectives</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>彼 【かれ】 – he; boyfriend</li>
+<li>日本語 【に・ほん・ご】 – Japanese (language)</li>
+<li>上手 【じょう・ず】 (na-adj) – skillful</li>
+<li>なる (u-verb) – to become</li>
+<li>私 【わたし】 – me, myself, I</li>
+<li>医者 【い・しゃ】 – doctor</li>
+<li>有名 【ゆう・めい】 (na-adj) – famous</li>
+<li>人 【ひと】 – person</li>
+<li>ハンバーガー – hamburger</li>
+<li>サラダ – salad</li>
+<li>する (exception) – to do</li>
+<li>他 【ほか】 – other</li>
+<li>いい (i-adj) – good</li>
+<li>物 【もの】 – object</li>
+<li>たくさん – a lot (amount)</li>
+<li>ある (u-verb) – to exist (inanimate)</li>
+<li>やはり／やっぱり – as I thought</li>
+<li>これ – this</li>
+</ol>
+<p>As already explained, using 「なる」 with nouns and na-adjectives presents nothing new and acts pretty much the way you’d expect.</p>
+<ol>
+<li>彼の日本語が上手_になった_。<br>His Japanese has become skillful.</li>
+<li>私は医者_になった_。<br>I became a doctor.</li>
+<li>私は有名な人_になる_。<br>I will become a famous person.</li>
+</ol>
+<p>For adjectives, using the verb 「する」 with the 「に」 particle is just a review back to the lesson on adverbs. However, for nouns, when you use the verb 「する」 with the 「に」 particle, it means that you are going to do things toward something. This changes the meaning of 「する」 to mean, “to decide on [X]”. This is a common expression to use, for instance, when you are ordering items on a menu.</p>
+<ol>
+<li>私は、ハンバーガーとサラダ_にします_。<br>I’ll have the hamburger and salad. (lit: I’ll do toward hamburger and salad.)</li>
+<li>他にいいものがたくさんあるけど、やっぱり_これに_する。<br>There are a lot of other good things, but as I thought, I’ll go with this one.</li>
+</ol>
+<p>If you think this expression is strange, think about the English expression, “I’ll go with the hamburger.” Exactly where are you going with the hamburger?</p>
+<h2>Using 「なる」 with i-adjectives</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>去年 【きょ・ねん】 – last year</li>
+<li>～から (particle) – from ～</li>
+<li>背 【せ】 – height</li>
+<li>高い 【たか・い】 (i-adj) – high; tall; expensive</li>
+<li>なる (u-verb) – to become</li>
+<li>運動 【うん・どう】 – exercise</li>
+<li>する (exception) – to do</li>
+<li>～から (particle) – ～ so</li>
+<li>強い 【つよ・い】 (i-adj) – strong</li>
+<li>勉強 【べん・きょう】 – study</li>
+<li>たくさん – a lot (amount)</li>
+<li>頭 【あたま】 – head</li>
+<li>いい (i-adj) – good</li>
+</ol>
+<p>Because the 「に」 particle is a target particle that is used for nouns and by extension na-adjectives, we need to use something else to show that something is becoming an i-adjective. Since “becoming” expresses a change in state, it makes sense to describe this process using an adverb. In fact, you’ll notice that we were already using adverbs (of a sort) in the previous section by using 「に」 with na-adjectives.</p>
+<ol>
+<li>去年から背が_高くなった_ね。<br>Your height has gotten taller from last year, huh?</li>
+<li>運動しているから、<em>強くなる</em>。<br>I will become stronger because I am exercising.</li>
+<li>勉強をたくさんしたから、頭が_よくなった_。<br>Since I studied a lot, I became smarter. (lit: head became better)</li>
+</ol>
+<h2>Using 「なる」 and 「する」 with verbs</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>海外 【かい・がい】 – overseas</li>
+<li>行く 【い・く】 (u-verb) – to go</li>
+<li>こと – event, matter</li>
+<li>なる (u-verb) – to become</li>
+<li>毎日 【まい・にち】 – everyday</li>
+<li>肉 【にく】 – meat</li>
+<li>食べる 【た・べる】 (ru-verb) – to eat</li>
+<li>する (exception) – to do</li>
+<li>日本 【に・ほん】 – Japan</li>
+<li>来る 【く・る】 (exception) – to come</li>
+<li>寿司 【すし】 – sushi</li>
+<li>一年間 【いち・ねん・かん】 – span of 1 year</li>
+<li>練習 【れん・しゅう】 – practice</li>
+<li>ピアノ – piano</li>
+<li>弾く 【ひ・く】 (u-verb) – to play (piano, guitar)</li>
+<li>地下 【ち・か】 – underground</li>
+<li>入る 【はい・る】 (u-verb) – to enter</li>
+<li>富士山 【ふ・じ・さん】 – Mt. Fuji</li>
+<li>見える 【み・える】 (ru-verb) – to be visible</li>
+</ol>
+<p>You may be wondering how to use 「なる」 and 「する」 with verbs since there’s no way to directly modify a verb with another verb. The simple solution is to add a generic noun such as a generic event: こと （事） or an appearance/manner: よう （様）. These nouns don’t refer to anything specific and are used to describe something else. In this case, they allow us to describe verbs in the same manner as nouns. Here are some examples of how to use these generic nouns with 「する」 and 「なる」.</p>
+<ol>
+<li>海外に行く_こと_になった。<br>It’s been decided that I will go abroad. (lit: It became the event of going abroad.)</li>
+<li>毎日、肉を食べる_よう_になった。<br>It became so that I eat meat everyday. (lit: It became the appearance of eating meat everyday.)</li>
+<li>海外に行く_こと_にした。<br>I decided I will go abroad. (lit: I did toward the event of going abroad.)</li>
+<li>毎日、肉を食べる_よう_にする。<br>I will try to eat meat everyday. (lit: I will do toward the manner of eating meat everyday.)</li>
+</ol>
+<p>You can modify a verb with 「なる」 or 「する」 by first making it into a noun clause and then treating it just like a regular noun. Pretty clever, huh? I hope the literal translations give you a sense of why the example sentences mean what they do. For instance, in the fourth example, 「～ようにする」 translates into “to make an effort toward…” but in Japanese, it’s really only a target towards acting in a certain manner.</p>
+<p>Since potential verbs describe a state of feasibility rather than an action (remember, that’s why the 「を」 particle couldn’t be used), it is often used in conjunction with 「～ようになる」 to describe a change in manner to a state of feasibility. Let’s take this opportunity to get some potential conjugation practice in.</p>
+<ol>
+<li>日本に来て、寿司が_食べられるようになった_。<br>After coming to Japan, I became able to eat sushi.</li>
+<li>一年間練習したから、ピアノが_弾けるようになった_。<br>Because I practiced for one year, I became able to play the piano.</li>
+<li>地下に入って、<em>富士山が見えなくなった</em>。<br>After going underground, Fuji-san became not visible.</li>
+</ol>
+<h3>Guide to Japanese grammar</h3>
+<p><a href="/en/potential" title="&lt;&lt; Potential Form">Potential Form</a> <a href="/en/conditionals" title="Conditionals &gt;&gt;">Conditionals</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guide to Japanese Grammar</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/en/potential"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Previous</span></a>
+          <span class="page-count">26 / 62</span>
+          <a class="nav-link" href="/en/conditionals"><span>Next</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

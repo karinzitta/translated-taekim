@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Números e Contagem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 56%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/numbers">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li class="active"><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>Números e contagem em japonês são difíceis o suficiente para merecer sua própria seção. Primeiro, o sistema numérico é em unidades de quatro em vez de três, o que pode tornar a conversão para o português bastante difícil. Além disso, existem coisas chamadas contadores, que são necessários para contar diferentes tipos de objetos, animais ou pessoas. Aprenderemos os contadores mais genéricos e amplamente usados para você começar, para que possa aprender mais por conta própria. Para ser honesto, os contadores podem ser a única coisa que vai te fazer querer desistir de aprender japonês, de tão difíceis que são. Recomendo que você assimile apenas um pouco desta seção por vez, pois há uma quantidade enorme de coisas para memorizar.</p>
+<h2>O Sistema Numérico</h2>
+<p>O sistema numérico japonês é dividido em unidades de quatro. Assim, um número como 10.000.000 é, na verdade, dividido como 1000,0000. No entanto, graças à forte influência do mundo ocidental e à padronização dos números, quando os números são escritos de fato, a divisão é de três dígitos. Aqui estão os primeiros dez números.</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一</td>
+<td>二</td>
+<td>三</td>
+<td>四</td>
+<td>五</td>
+<td>六</td>
+<td>七</td>
+<td>八</td>
+<td>九</td>
+<td>十</td>
+</tr>
+<tr>
+<td>いち</td>
+<td>に</td>
+<td>さん</td>
+<td>し／よん</td>
+<td>ご</td>
+<td>ろく</td>
+<td>しち／なな</td>
+<td>はち</td>
+<td>きゅう</td>
+<td>じゅう</td>
+</tr>
+</tbody></table>
+<p>Como o quadro indica, 4 pode ser 「し」 ou 「よん」 e 7 pode ser 「しち」 ou 「なな」. Basicamente, ambos são aceitáveis até 10. No entanto, após dez, a leitura é quase sempre 「よん」 e 「なな」. Em geral, 「よん」 e 「なな」 são preferidos em relação a 「し」 e 「しち」 na maioria das circunstâncias.</p>
+<p>Você pode simplesmente contar de 1 a 99 com apenas esses dez números. O japonês é mais fácil que o português nesse sentido, porque você não precisa memorizar palavras separadas como &quot;vinte&quot; ou &quot;cinquenta&quot;. Em japonês, é simplesmente &quot;dois dez&quot; e &quot;cinco dez&quot;.</p>
+<ol>
+<li>三十一 （さんじゅういち） = 31</li>
+<li>五十四 （ごじゅうよん）= 54</li>
+<li>七十七 （ななじゅうなな）= 77</li>
+<li>二十 （にじゅう） = 20</li>
+</ol>
+<p>Observe que os números são sempre escritos em kanji ou em algarismos, pois o hiragana pode ficar muito longo e difícil de decifrar.</p>
+<h3>Números acima de 99</h3>
+<p>Aqui estão os números maiores:</p>
+<table>
+<thead>
+<tr>
+<th>Algarismos</th>
+<th>100</th>
+<th>1.000</th>
+<th>10.000</th>
+<th>10^8</th>
+<th>10^12</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>漢字</td>
+<td>百</td>
+<td>千</td>
+<td>万</td>
+<td>億</td>
+<td>兆</td>
+</tr>
+<tr>
+<td>ひらがな</td>
+<td>ひゃく</td>
+<td>せん</td>
+<td>まん</td>
+<td>おく</td>
+<td>ちょう</td>
+</tr>
+</tbody></table>
+<p>Observe como os números saltam quatro dígitos de 10^4 para 10^8 entre 万 e 億? Isso ocorre porque o japonês é dividido em unidades de quatro. Depois de passar de 1万 (10.000), você começa de novo até chegar em 9.999万, então gira para 1億 (100.000.000). A propósito, 百 é 100 e 千 é 1.000, mas além disso, você precisa anexar um 1 para que as outras unidades se tornem 一万 (10^4)、一億 (10^8)、一兆 (10^12).</p>
+<p>Agora você pode contar até 9.999.999.999.999.999 simplesmente encadeando os números como antes. É aqui que os problemas começam, porém. Tente dizer 「いちちょう」、「ろくひゃく」 ou 「さんせん」 rapidamente, e você vai perceber que é difícil por causa da repetição de sons consonantais similares. Por isso, os japoneses decidiram facilitar a vida deles pronunciando como 「いっちょう」、「ろっぴゃく」 e 「さんぜん」. Infelizmente, isso torna tudo ainda mais difícil para você lembrar como pronunciar. Aqui estão todas as pequenas mudanças sonoras.</p>
+<table>
+<thead>
+<tr>
+<th>Algarismos</th>
+<th>漢字</th>
+<th>ひらがな</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>300</td>
+<td>三百</td>
+<td>さんびゃく</td>
+</tr>
+<tr>
+<td>600</td>
+<td>六百</td>
+<td>ろっぴゃく</td>
+</tr>
+<tr>
+<td>800</td>
+<td>八百</td>
+<td>はっぴゃく</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>三千</td>
+<td>さんぜん</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>八千</td>
+<td>はっせん</td>
+</tr>
+<tr>
+<td>10^12</td>
+<td>一兆</td>
+<td>いっちょう</td>
+</tr>
+</tbody></table>
+<ol>
+<li>四万三千七十六 （よんまんさんぜんななじゅうろく）
+43.076</li>
+<li>七億六百二十四万九千二百二十二 （ななおくろっぴゃくにじゅうよんまんきゅうせんにひゃくにじゅうに）
+706.249.222</li>
+<li>五百兆二万一 （ごひゃくちょうにまんいち）
+500.000.000.020.001</li>
+</ol>
+<p>Observe que é costume escrever números grandes somente em algarismos, pois mesmo o kanji pode se tornar difícil de decifrar.</p>
+<h3>Números menores ou inferiores a 1</h3>
+<h3>Vocabulário</h3>
+<ol>
+<li>零 【れい】 – zero</li>
+<li>ゼロ – zero</li>
+<li>マル – círculo; zero</li>
+<li>点 【てん】 – ponto; vírgula decimal</li>
+<li>マイナス – menos; negativo</li>
+</ol>
+<p>Zero em japonês é 「零」, mas 「ゼロ」 ou 「マル」 é mais comum no japonês moderno. Não há método especial para ler decimais; basta dizer 「点」 para o ponto decimal e ler cada número individualmente após o ponto. Veja um exemplo:</p>
+<ul>
+<li>0,0021 = ゼロ、点、ゼロ、ゼロ、二、一。</li>
+</ul>
+<p>Para números negativos, tudo é igual aos números positivos, exceto que você diz 「マイナス」 primeiro.</p>
+<ul>
+<li>マイナス二十九 = -29</li>
+</ul>
+<h2>Contagem e Contadores</h2>
+<p>Ah, e agora chegamos à parte divertida. Em japonês, quando você está simplesmente contando números, tudo é como esperado: 一、二、三 e assim por diante. No entanto, se quiser contar qualquer tipo de objeto, precisa usar algo chamado contador, que depende do tipo de objeto que está sendo contado e, além disso, há várias mudanças sonoras semelhantes às que vimos com 六百, etc. Os próprios contadores geralmente são kanjis únicos que frequentemente têm uma leitura especial só para aquele contador. Primeiro, vamos aprender os contadores para datas.</p>
+<h3>Datas</h3>
+<h3>Vocabulário</h3>
+<ol>
+<li>平成 【へい・せい】 – Era Heisei</li>
+<li>昭和 【しょう・わ】 – Era Showa</li>
+<li>和暦 【わ・れき】 – calendário japonês</li>
+<li>一日 【いち・にち】 – um dia</li>
+</ol>
+<p>O ano é muito fácil. Basta dizer o número e adicionar 「年」, que é pronunciado aqui como 「ねん」. Por exemplo, o Ano 2003 torna-se 2003年 (にせんさんねん）. O detalhe é que existe outro calendário que recomeça toda vez que um novo imperador sobe ao trono. O ano é precedido pela era; por exemplo, o ano 2000 é: 平成12年. Meu aniversário, 1981, é 昭和56年 (A Era Showa durou de 1926 a 1989). Você pode pensar que não precisa saber disso, mas se for preencher formulários no Japão, muitas vezes pedem sua data de nascimento ou a data atual no calendário japonês （和暦）. Então aqui está um <a href="http://www.japan-guide.com/e/e2272.html">conversor útil</a> que você pode usar para converter para o calendário japonês.</p>
+<p>Dizer os meses é na verdade mais fácil que em português, porque tudo que você precisa fazer é escrever o número (em algarismos ou kanji) do mês e adicionar 「月」, que é lido como 「がつ」. No entanto, você precisa prestar atenção a abril （４月）, julho （７月） e setembro （９月）, que são pronunciados 「しがつ」、「しちがつ」 e 「くがつ」 respectivamente.</p>
+<p>Por fim, chegamos aos dias do mês, onde a dor de cabeça começa. O primeiro dia do mês é 「ついたち」 （一日）; <em>diferente</em> de 「いちにち」　（一日）, que significa &quot;um dia&quot;. Além desse e de algumas outras exceções que abordaremos em breve, você pode simplesmente dizer o número e adicionar 「日」, que é pronunciado aqui como 「にち」. Por exemplo, o 26 torna-se 26日 （にじゅうろくにち）. Bastante simples, <em>porém</em>, os primeiros 10 dias, o 14º, 19º, 20º e 29º têm leituras especiais que você deve memorizar separadamente. Se você gosta de memorizar, vai se divertir aqui. Note que o kanji não muda, mas a leitura muda.</p>
+<table>
+<thead>
+<tr>
+<th>Dia</th>
+<th>Kanji</th>
+<th>Leitura</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qual dia</td>
+<td>何日</td>
+<td>なん・にち</td>
+</tr>
+<tr>
+<td>1º</td>
+<td>一日</td>
+<td><em>ついたち</em></td>
+</tr>
+<tr>
+<td>2º</td>
+<td>二日</td>
+<td><em>ふつ・か</em></td>
+</tr>
+<tr>
+<td>3º</td>
+<td>三日</td>
+<td><em>みっ・か</em></td>
+</tr>
+<tr>
+<td>4º</td>
+<td>四日</td>
+<td><em>よっ・か</em></td>
+</tr>
+<tr>
+<td>5º</td>
+<td>五日</td>
+<td><em>いつ・か</em></td>
+</tr>
+<tr>
+<td>6º</td>
+<td>六日</td>
+<td><em>むい・か</em></td>
+</tr>
+<tr>
+<td>7º</td>
+<td>七日</td>
+<td><em>なの・か</em></td>
+</tr>
+<tr>
+<td>8º</td>
+<td>八日</td>
+<td><em>よう・か</em></td>
+</tr>
+<tr>
+<td>9º</td>
+<td>九日</td>
+<td><em>ここの・か</em></td>
+</tr>
+<tr>
+<td>10º</td>
+<td>十日</td>
+<td><em>とお・か</em></td>
+</tr>
+<tr>
+<td>11º</td>
+<td>十一日</td>
+<td>じゅう・いち・にち</td>
+</tr>
+<tr>
+<td>12º</td>
+<td>十二日</td>
+<td>じゅう・に・にち</td>
+</tr>
+<tr>
+<td>13º</td>
+<td>十三日</td>
+<td>じゅう・さん・にち</td>
+</tr>
+<tr>
+<td>14º</td>
+<td>十四日</td>
+<td><em>じゅう・よっ・か</em></td>
+</tr>
+<tr>
+<td>15º</td>
+<td>十五日</td>
+<td>じゅう・ご・にち</td>
+</tr>
+<tr>
+<td>16º</td>
+<td>十六日</td>
+<td>じゅう・ろく・にち</td>
+</tr>
+<tr>
+<td>17º</td>
+<td>十七日</td>
+<td><em>じゅう・しち・にち</em></td>
+</tr>
+<tr>
+<td>18º</td>
+<td>十八日</td>
+<td>じゅう・はち・にち</td>
+</tr>
+<tr>
+<td>19º</td>
+<td>十九日</td>
+<td><em>じゅう・く・にち</em></td>
+</tr>
+<tr>
+<td>20º</td>
+<td>二十日</td>
+<td><em>はつ・か</em></td>
+</tr>
+<tr>
+<td>21º</td>
+<td>二十一日</td>
+<td>に・じゅう・いち・にち</td>
+</tr>
+<tr>
+<td>22º</td>
+<td>二十二日</td>
+<td>に・じゅう・に・にち</td>
+</tr>
+<tr>
+<td>23º</td>
+<td>二十三日</td>
+<td>に・じゅう・さん・にち</td>
+</tr>
+<tr>
+<td>24º</td>
+<td>二十四日</td>
+<td><em>に・じゅう・よっ・か</em></td>
+</tr>
+<tr>
+<td>25º</td>
+<td>二十五日</td>
+<td>に・じゅう・ご・にち</td>
+</tr>
+<tr>
+<td>26º</td>
+<td>二十六日</td>
+<td>に・じゅう・ろく・にち</td>
+</tr>
+<tr>
+<td>27º</td>
+<td>二十七日</td>
+<td><em>に・じゅう・しち・にち</em></td>
+</tr>
+<tr>
+<td>28º</td>
+<td>二十八日</td>
+<td>に・じゅう・はち・にち</td>
+</tr>
+<tr>
+<td>29º</td>
+<td>二十九日</td>
+<td><em>に・じゅう・く・にち</em></td>
+</tr>
+<tr>
+<td>30º</td>
+<td>三十日</td>
+<td>さん・じゅう・にち</td>
+</tr>
+<tr>
+<td>31º</td>
+<td>三十一日</td>
+<td>さん・じゅう・いち・にち</td>
+</tr>
+</tbody></table>
+<p>No Japão, o formato completo para datas segue o formato internacional de data e fica assim: XXXX年YY月ZZ日. Por exemplo, a data de hoje seria: 2003年12月 2日</p>
+<h3>Horas</h3>
+<p>Agora aprenderemos como dizer as horas. A hora é dada dizendo o número e adicionando 「時」, que é pronunciado aqui como 「じ」. Aqui está um quadro com as exceções para ficar atento.</p>
+<table>
+<thead>
+<tr>
+<th>英語</th>
+<th>4 horas</th>
+<th>7 horas</th>
+<th>9 horas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>漢字</td>
+<td>四時</td>
+<td>七時</td>
+<td>九時</td>
+</tr>
+<tr>
+<td>ひらがな</td>
+<td>よじ</td>
+<td>しちじ</td>
+<td>くじ</td>
+</tr>
+</tbody></table>
+<p>Percebeu como os números 4, 7 e 9 continuam aparecendo para causar dor de cabeça? Bem, esses e às vezes 1, 6 e 8 são os números para ficar atento.</p>
+<p>Os minutos são dados adicionando 「分」, que geralmente é lido como 「ふん」 com as seguintes exceções:</p>
+<table>
+<thead>
+<tr>
+<th>英語</th>
+<th>1 min</th>
+<th>3 min</th>
+<th>4 min</th>
+<th>6 min</th>
+<th>8 min</th>
+<th>10 min</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>漢字</td>
+<td>一分</td>
+<td>三分</td>
+<td>四分</td>
+<td>六分</td>
+<td>八分</td>
+<td>十分</td>
+</tr>
+<tr>
+<td>ひらがな</td>
+<td>いっぷん</td>
+<td>さんぷん</td>
+<td>よんぷん</td>
+<td>ろっぷん</td>
+<td>はっぷん</td>
+<td>じゅっぷん</td>
+</tr>
+</tbody></table>
+<p>Para números maiores, usa-se a pronúncia normal dos dígitos mais altos e rotaciona-se em torno das mesmas leituras de 1 a 10. Por exemplo, 24 minutos é 「にじゅうよんぷん」 （二十四分） enquanto 30 minutos é 「さんじゅっぷん」 （三十分）. Há também outras pronúncias menos comuns, mas ainda corretas, como 「はちふん」 para 「八分」 e 「じっぷん」 para 「十分」 (essa quase nunca é usada).</p>
+<p>Todas as leituras para segundos consistem no número mais 「秒」, que é lido como 「びょう」. Não há exceções para segundos e todas as leituras são as mesmas.</p>
+<p>Alguns exemplos de horas.</p>
+<ol>
+<li>1時24分（いちじ・にじゅうよんぷん）
+1:24</li>
+<li>午後4時10分 （ごご・よじ・じゅっぷん）
+16:10</li>
+<li>午前9時16分 （ごぜん・くじ・じゅうろっぷん）
+9:16</li>
+<li>13時16分 （じゅうさんじ・じゅうろっぷん）
+13:16</li>
+<li>2時18分13秒 （にじ・じゅうはっぷん・じゅうさんびょう）
+2:18:13</li>
+</ol>
+<h3>Um Período de Tempo</h3>
+<p>Ah! Aposto que você achou que tinha terminado com datas e horas, mas adivinha. Desta vez, aprenderemos contadores para contar períodos de tempo, dias, meses e anos. O contador básico para um período de tempo é 「間」, que é lido como 「かん」. Você pode anexá-lo ao final de horas, dias, semanas e anos. Minutos (em geral) e segundos não precisam desse contador, e os meses têm um contador separado, que abordaremos a seguir.</p>
+<ol>
+<li>二時間四十分 （にじかん・よんじゅっぷん）
+2 horas e 40 minutos</li>
+<li>二十日間 （はつかかん）
+20 dias</li>
+<li>十五日間 （じゅうごにちかん）
+15 dias</li>
+<li>二年間 （にねんかん）
+dois anos</li>
+<li>三週間 （さんしゅうかん）
+três semanas</li>
+<li>一日 （いちにち）
+1 dia</li>
+</ol>
+<p>Como mencionado antes, um período de um dia é 「一日」 （いちにち）, que é diferente do 1º do mês: 「ついたち」.</p>
+<p>As pronúncias para ficar atento ao contar semanas são uma semana: 「一週間」 （いっしゅうかん） e 8 semanas: 「八週間」 （はっしゅうかん）.</p>
+<p>Para contar o número de meses, basta pegar um número regular e adicionar 「か」 e 「月」, que é pronunciado aqui como 「げつ」 e <em>não</em> 「がつ」. O 「か」 usado neste contador geralmente é escrito como um katakana pequeno 「ヶ」, o que é confuso porque ainda é pronunciado como 「か」 e não 「け」. O pequeno 「ヶ」 é na verdade totalmente diferente do katakana 「ケ」 e é realmente uma abreviação do kanji 「箇」, o kanji original para esse contador. Esse pequeno 「ヶ」 também é usado em alguns nomes de lugares como 「千駄_ヶ_谷」 e em outros contadores, como o contador de localização descrito na seção &quot;Outros Contadores&quot; abaixo.</p>
+<p>Ao contar meses, fique atento às seguintes mudanças sonoras:</p>
+<table>
+<thead>
+<tr>
+<th>英語</th>
+<th>1 mês</th>
+<th>6 meses</th>
+<th>10 meses</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>漢字</td>
+<td>一ヶ月</td>
+<td>六ヶ月</td>
+<td>十ヶ月</td>
+</tr>
+<tr>
+<td>ひらがな</td>
+<td>いっかげつ</td>
+<td>ろっかげつ</td>
+<td>じゅっかげつ</td>
+</tr>
+</tbody></table>
+<p>Assim como os minutos, os números altos voltam a usar os mesmos sons de 1 a 10.</p>
+<ol>
+<li>十一ヶ月 （じゅういっかげつ）
+Onze meses</li>
+<li>二十ヶ月 （にじゅっかげつ）
+Vinte meses</li>
+<li>三十三ヶ月 （さんじゅうさんかげつ）
+Trinta e três meses</li>
+</ol>
+<h3>Outros Contadores</h3>
+<p>Abordaremos alguns dos contadores mais comuns para que você se familiarize com o funcionamento dos contadores. Isso esperançosamente permitirá que você aprenda outros contadores por conta própria, pois há contadores demais para considerar cobri-los todos. O importante a lembrar é que usar o contador errado é gramaticalmente incorreto. Se você está contando pessoas, <strong>deve</strong> usar o contador de pessoas, etc. Às vezes, é aceitável usar um contador mais genérico quando um contador menos usado se aplica. Aqui estão alguns contadores.</p>
+<table>
+<thead>
+<tr>
+<th>日本語</th>
+<th>Quando Usar</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>人</td>
+<td>Para contar o número de pessoas</td>
+</tr>
+<tr>
+<td>本</td>
+<td>Para contar objetos longos e cilíndricos, como garrafas ou pauzinhos</td>
+</tr>
+<tr>
+<td>枚</td>
+<td>Para contar objetos finos, como papel ou camisetas</td>
+</tr>
+<tr>
+<td>冊</td>
+<td>Para contar objetos encadernados, geralmente livros</td>
+</tr>
+<tr>
+<td>匹</td>
+<td>Para contar animais pequenos, como gatos ou cachorros</td>
+</tr>
+<tr>
+<td>歳</td>
+<td>Para contar a idade de seres vivos, como pessoas</td>
+</tr>
+<tr>
+<td>個</td>
+<td>Para contar objetos pequenos (geralmente redondos)</td>
+</tr>
+<tr>
+<td>回</td>
+<td>Para contar o número de vezes</td>
+</tr>
+<tr>
+<td>ヶ所（箇所）</td>
+<td>Para contar o número de locais</td>
+</tr>
+<tr>
+<td>つ</td>
+<td>Para contar qualquer objeto genérico que tenha um contador raro ou nenhum contador</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>人</th>
+<th>本</th>
+<th>枚</th>
+<th>冊</th>
+<th>匹</th>
+<th>歳</th>
+<th>個</th>
+<th>回</th>
+<th>ヶ所（箇所）</th>
+<th>つ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><em>ひとり</em></td>
+<td><em>いっぽん</em></td>
+<td>いちまい</td>
+<td><em>いっさつ</em></td>
+<td><em>いっぴき</em></td>
+<td><em>いっさい</em></td>
+<td><em>いっこ</em></td>
+<td><em>いっかい</em></td>
+<td><em>いっかしょ</em></td>
+<td><em>ひとつ</em></td>
+</tr>
+<tr>
+<td>2</td>
+<td><em>ふたり</em></td>
+<td>にほん</td>
+<td>にまい</td>
+<td>にさつ</td>
+<td>にひき</td>
+<td>にさい</td>
+<td>にこ</td>
+<td>にかい</td>
+<td>にかしょ</td>
+<td><em>ふたつ</em></td>
+</tr>
+<tr>
+<td>3</td>
+<td>さんにん</td>
+<td><em>さんぼん</em></td>
+<td>さんまい</td>
+<td>さんさつ</td>
+<td><em>さんびき</em></td>
+<td>さんさい</td>
+<td>さんこ</td>
+<td>さんかい</td>
+<td>さんかしょ</td>
+<td><em>みっつ</em></td>
+</tr>
+<tr>
+<td>4</td>
+<td><em>よにん</em></td>
+<td>よんほん</td>
+<td>よんまい</td>
+<td>よんさつ</td>
+<td>よんひき</td>
+<td>よんさい</td>
+<td>よんこ</td>
+<td>よんかい</td>
+<td>よんかしょ</td>
+<td><em>よっつ</em></td>
+</tr>
+<tr>
+<td>5</td>
+<td>ごにん</td>
+<td>ごほん</td>
+<td>ごまい</td>
+<td>ごさつ</td>
+<td>ごひき</td>
+<td>ごさい</td>
+<td>ごこ</td>
+<td>ごかい</td>
+<td>ごかしょ</td>
+<td><em>いつつ</em></td>
+</tr>
+<tr>
+<td>6</td>
+<td>ろくにん</td>
+<td><em>ろっぽん</em></td>
+<td>ろくまい</td>
+<td>ろくさつ</td>
+<td><em>ろっぴき</em></td>
+<td>ろくさい</td>
+<td><em>ろっこ</em></td>
+<td><em>ろっかい</em></td>
+<td><em>ろっかしょ</em></td>
+<td><em>むっつ</em></td>
+</tr>
+<tr>
+<td>7</td>
+<td><em>しちにん</em></td>
+<td>ななほん</td>
+<td>ななまい</td>
+<td>ななさつ</td>
+<td>ななひき</td>
+<td>ななさい</td>
+<td>ななこ</td>
+<td>ななかい</td>
+<td>ななかしょ</td>
+<td>ななつ</td>
+</tr>
+<tr>
+<td>8</td>
+<td>はちにん</td>
+<td>はちほん</td>
+<td>はちまい</td>
+<td><em>はっさつ</em></td>
+<td><em>はっぴき</em></td>
+<td><em>はっさい</em></td>
+<td><em>はっこ</em></td>
+<td>はちかい</td>
+<td><em>はっかしょ</em></td>
+<td><em>やっつ</em></td>
+</tr>
+<tr>
+<td>9</td>
+<td>きゅうにん</td>
+<td>きゅうほん</td>
+<td>きゅうまい</td>
+<td>きゅうさつ</td>
+<td>きゅうひき</td>
+<td>きゅうさい</td>
+<td>きゅうこ</td>
+<td>きゅうかい</td>
+<td>きゅうかしょ</td>
+<td><em>ここのつ</em></td>
+</tr>
+<tr>
+<td>10</td>
+<td>じゅうにん</td>
+<td><em>じゅっぽん</em></td>
+<td>じゅうまい</td>
+<td><em>じゅっさつ</em></td>
+<td><em>じゅっぴき</em></td>
+<td><em>じゅっさい</em></td>
+<td><em>じゅっこ</em></td>
+<td><em>じゅっかい</em></td>
+<td><em>じゅっかしょ</em></td>
+<td><em>とお</em></td>
+</tr>
+</tbody></table>
+<p>Os sons modificados foram destacados.
+Não se conta 0 porque não há nada para contar. Você pode simplesmente usar 「ない」 ou 「いない」. O quadro usa hiragana para pronúncia, mas, como antes, geralmente é escrito com números ou kanji mais o contador, com a única exceção de 「とお」, que é simplesmente escrito como 「十」.</p>
+<p>Para números maiores, é o mesmo que antes: usa-se a pronúncia normal para os dígitos mais altos e rotaciona-se em torno das mesmas leituras de 1 a 10, exceto para 「一人」 e 「二人」, que voltam ao 「いち」 e 「に」 normais depois dos dois primeiros. Então 「一人」 é 「ひとり」 enquanto 「11人」 é 「じゅういちにん」. Além disso, o contador genérico 「～つ」 se aplica apenas para até exatamente dez itens. Depois disso, você pode usar simplesmente os números simples regulares.</p>
+<p>Observação: O contador para idade às vezes é escrito como 「才」 por quem não tem tempo para escrever o kanji mais complexo. Além disso, a idade 20 geralmente é lida como 「はたち」 e não 「にじゅっさい」.</p>
+<h2>Usando 「目」 para indicar ordem</h2>
+<p>Você pode anexar 「目」 (lido como 「め」) a vários contadores para indicar a ordem. O exemplo mais comum é o contador 「番」. Por exemplo, 「一番」, que significa &quot;número um&quot;, passa a significar &quot;o primeiro&quot; quando você adiciona 「目」 （一番目）. Da mesma forma, 「一回目」 é a primeira vez, 「二回目」 é a segunda vez, 「四人目」 é a quarta pessoa, e assim por diante.</p>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/requests" title="&lt;&lt; Fazendo Pedidos">Fazendo Pedidos</a> <a href="/pt-br/slang" title="Padrões Informais e Gírias &gt;&gt;">Padrões Informais e Gírias</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/requests"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">35 / 62</span>
+          <a class="nav-link" href="/pt-br/slang"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

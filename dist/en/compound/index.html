@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide to Japanese Grammar – Compound Sentences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 37%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/en/basic">Guide to Japanese Grammar</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/pt-br/compound">PT-BR</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/en/basic"><span class="num">1</span>Basic Structures</a></li>
+      <li><a href="/en/stateofbeing"><span class="num">2</span>State of Being</a></li>
+      <li><a href="/en/stateofbeing_ex"><span class="num">3</span>State of Being (Ex.)</a></li>
+      <li><a href="/en/particlesintro"><span class="num">4</span>Intro to Particles</a></li>
+      <li><a href="/en/particlesintro_ex"><span class="num">5</span>Particles (Ex.)</a></li>
+      <li><a href="/en/adjectives"><span class="num">6</span>Adjectives</a></li>
+      <li><a href="/en/adjectives_ex"><span class="num">7</span>Adjectives (Ex.)</a></li>
+      <li><a href="/en/verbs"><span class="num">8</span>Verbs</a></li>
+      <li><a href="/en/verbs_ex"><span class="num">9</span>Verbs (Ex.)</a></li>
+      <li><a href="/en/negativeverbs"><span class="num">10</span>Negative Verbs</a></li>
+      <li><a href="/en/negativeverbs_ex"><span class="num">11</span>Negative Verbs (Ex.)</a></li>
+      <li><a href="/en/past_tense"><span class="num">12</span>Past Tense</a></li>
+      <li><a href="/en/pasttense_ex"><span class="num">13</span>Past Tense (Ex.)</a></li>
+      <li><a href="/en/verbparticles"><span class="num">14</span>Verb Particles</a></li>
+      <li><a href="/en/in-transitive"><span class="num">15</span>Transitive & Intransitive</a></li>
+      <li><a href="/en/clause"><span class="num">16</span>Relative Clauses</a></li>
+      <li><a href="/en/nounparticles"><span class="num">17</span>Noun Particles</a></li>
+      <li><a href="/en/adverbs"><span class="num">18</span>Adverbs</a></li>
+      <li><a href="/en/essential"><span class="num">19</span>Essential Grammar</a></li>
+      <li><a href="/en/polite"><span class="num">20</span>Polite Form</a></li>
+      <li><a href="/en/people"><span class="num">21</span>Addressing People</a></li>
+      <li><a href="/en/question"><span class="num">22</span>Question Marker</a></li>
+      <li class="active"><a href="/en/compound"><span class="num">23</span>Compound Sentences</a></li>
+      <li><a href="/en/teform"><span class="num">24</span>Te-form</a></li>
+      <li><a href="/en/potential"><span class="num">25</span>Potential Form</a></li>
+      <li><a href="/en/surunaru"><span class="num">26</span>Using する and なる</a></li>
+      <li><a href="/en/conditionals"><span class="num">27</span>Conditionals</a></li>
+      <li><a href="/en/must"><span class="num">28</span>Must / Have To</a></li>
+      <li><a href="/en/desire"><span class="num">29</span>Desire & Suggestions</a></li>
+      <li><a href="/en/actionclause"><span class="num">30</span>Action Clauses</a></li>
+      <li><a href="/en/define"><span class="num">31</span>Defining with いう</a></li>
+      <li><a href="/en/try"><span class="num">32</span>Trying Things</a></li>
+      <li><a href="/en/favors"><span class="num">33</span>Giving & Receiving</a></li>
+      <li><a href="/en/requests"><span class="num">34</span>Making Requests</a></li>
+      <li><a href="/en/numbers"><span class="num">35</span>Numbers & Counting</a></li>
+      <li><a href="/en/slang"><span class="num">36</span>Casual Patterns & Slang</a></li>
+      <li><a href="/en/sentence_ending"><span class="num">37</span>Sentence-ending Particles</a></li>
+      <li><a href="/en/specialexpressions"><span class="num">38</span>Special Expressions</a></li>
+      <li><a href="/en/causepass"><span class="num">39</span>Causative & Passive</a></li>
+      <li><a href="/en/honorific"><span class="num">40</span>Honorific & Humble</a></li>
+      <li><a href="/en/unintended"><span class="num">41</span>Unintended Actions</a></li>
+      <li><a href="/en/genericnouns"><span class="num">42</span>Generic Nouns</a></li>
+      <li><a href="/en/certainty"><span class="num">43</span>Degrees of Certainty</a></li>
+      <li><a href="/en/amount"><span class="num">44</span>Expressing Amounts</a></li>
+      <li><a href="/en/similarity"><span class="num">45</span>Similarity & Hearsay</a></li>
+      <li><a href="/en/comparison"><span class="num">46</span>Comparisons</a></li>
+      <li><a href="/en/easyhard"><span class="num">47</span>Easy & Hard Actions</a></li>
+      <li><a href="/en/negativeverbs2"><span class="num">48</span>More Negative Verbs</a></li>
+      <li><a href="/en/reasoning"><span class="num">49</span>Hypothesizing</a></li>
+      <li><a href="/en/timeactions"><span class="num">50</span>Time-specific Actions</a></li>
+      <li><a href="/en/nochange"><span class="num">51</span>Lack of Change</a></li>
+      <li><a href="/en/advanced"><span class="num">52</span>Advanced Grammar</a></li>
+      <li><a href="/en/formal"><span class="num">53</span>Formal Expressions</a></li>
+      <li><a href="/en/should"><span class="num">54</span>Things That Should Be</a></li>
+      <li><a href="/en/even"><span class="num">55</span>Minimum Expectation</a></li>
+      <li><a href="/en/signs"><span class="num">56</span>Showing Signs</a></li>
+      <li><a href="/en/feasibility"><span class="num">57</span>Non-feasibility</a></li>
+      <li><a href="/en/tendency"><span class="num">58</span>Tendencies</a></li>
+      <li><a href="/en/volitional2"><span class="num">59</span>Advanced Volitional</a></li>
+      <li><a href="/en/covered"><span class="num">60</span>Covered by Something</a></li>
+      <li><a href="/en/immedate"><span class="num">61</span>Immediate Events</a></li>
+      <li><a href="/en/other"><span class="num">62</span>Other Grammar</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>In this section, we will learn various ways to combine multiple simple sentences into one complex sentence. For example, we will learn how to chain separate sentences together to express multiple actions or states. In other words, if we have two simple sentences with the same subject, “I ran” and “I ate”, we will learn how to group them together to mean, “I ran and ate.” We will also learn how to do this with adjectives and nouns. (Ex: He is rich, handsome, and charming.)</p>
+<h2>Expressing a sequence of states</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>一般的 【いっ・ぱん・てき】 – in general</li>
+<li>静か 【しず・か】 (na-adj) – quiet</li>
+<li>狭い 【せま・い】 (i-adj) – narrow</li>
+<li>彼女 【かの・じょ】 – she; girlfriend</li>
+<li>いい (i-adj) – good</li>
+<li>私 【わたし】 – me; myself; I</li>
+<li>部屋 【へ・や】 – room</li>
+<li>きれい (na-adj) – pretty; clean</li>
+<li>とても – very</li>
+<li>好き 【す・き】 (na-adj) – likable; desirable</li>
+<li>学生 【がく・せい】 – student</li>
+<li>先生 【せん・せい】 – teacher</li>
+<li>田中 【た・なか】 – Tanaka (last name)</li>
+<li>お金持ち 【お・かね・も・ち】 – rich</li>
+<li>かっこいい (i-adj) – cool; handsome</li>
+<li>魅力的 【み・りょく・てき】 – charming</li>
+</ol>
+<p>It is very easy to combine a chain of nouns and adjectives to describe a person or object. For example, in English if we wanted to say, “He is X. He is Y. He is Z.” since all three sentences have the same noun, we would usually say, “He is X, Y, and Z.” In Japanese, we can do the same thing by conjugating the noun or adjective. The last noun or adjective remains the same as before.</p>
+<p>How to chain nouns and adjectives together</p>
+<ul>
+<li><strong>For nouns and na-adjectives:</strong> Attach 「で」 to the noun or na-adjective. Examples<ol>
+<li>一般的 → 一般的_で_</li>
+<li>静か → 静か_で_</li>
+</ol>
+</li>
+<li><strong>For i-adjectives and negative noun/adjectives:</strong> Replace the 「い」 with 「くて」. ※For 「いい」 and 「かっこいい」, the 「い→よ」 exception applies here as well. Examples<ol>
+<li>狭_<del>い</del>_ → 狭_くて_</li>
+<li>彼女じゃな_<del>い</del>_ → 彼女じゃな_くて_</li>
+<li><em><del>いい</del></em> → <em>よくて</em></li>
+</ol>
+</li>
+</ul>
+<h3>Examples</h3>
+<ol>
+<li>私の部屋は、きれい_で_、静か_で_、とても好き。 My room is clean, quiet, and I like it a lot.</li>
+<li>彼女は、学生じゃな_くて_、先生だ。 She is not a student, she is a teacher.</li>
+<li>田中さんは、お金持ち_で_、かっこ_よくて_、魅力的ですね。 Tanaka-san is rich, handsome, and charming, isn’t he?</li>
+</ol>
+<p>As you can see, the 「で」 attached to 「お金持ち」 obviously cannot be the context particle 「で」 here because there is no verb. It might be helpful to think of 「で」 as merely a substitution for 「だ」 that can be chained together.</p>
+<h2>Expressing a sequence of verbs with the te-form</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>学生 【がく・せい】 – student</li>
+<li>買う 【か・う】 (u-verb) – to buy</li>
+<li>食べる 【た・べる】 (ru-verb) – to eat</li>
+<li>行く 【い・く】 (u-verb) – to go</li>
+<li>する (exception) – to do</li>
+<li>遊ぶ 【あそ・ぶ】 (u-verb) – to play</li>
+<li>飲む 【の・む】 (u-verb) – to drink</li>
+<li>食堂 【しょく・どう】 – cafeteria</li>
+<li>昼ご飯 【ひる・ご・はん】 – lunch</li>
+<li>昼寝 【ひる・ね】 – afternoon nap</li>
+<li>時間 【じ・かん】 – time</li>
+<li>ある (u-verb) – to exist (inanimate)</li>
+<li>映画 【えい・が】 – movie</li>
+<li>見る 【み・る】 (ru-verb) – to see</li>
+</ol>
+<p>In a similar fashion, you can express multiple actions. It is usually interpreted as a sequence of event. (I did [X], then I did [Y], then I finally did [Z].) There are two forms: positive and negative. The tense of all the actions is determined by the tense of the last verb.</p>
+<p>How to chain verbs together</p>
+<ul>
+<li><strong>Positive:</strong> Conjugate the verb to its past tense and replace 「た」 with 「て」 or 「だ」 with 「で」. This is often called the <strong><em>te-form</em></strong> even though it could sometimes be ‘de’.</li>
+<li><strong>Negative:</strong> Same as i-adjectives, replace 「い」 with 「くて」. This rule also works for the polite 「です」 and 「ます」 endings. Examples<ol>
+<li>学生で_<del>す</del>_ → 学生_でし<del>た</del>_ → 学生でし_て_</li>
+<li>買いま_<del>す</del>_ → 買いま_し<del>た</del>_ → 買いまし_て_</li>
+</ol>
+</li>
+</ul>
+<table border="0"><caption>Sample conjugations</caption><tbody><tr><td><table border="1" cellpadding="5"><tbody><tr><th>Past Tense</th><th>Te-form</th></tr><tr align="center"><td><span title="たべる - to eat" class="popup">食べ<em>た</em></span></td><td><span title="たべる - to eat" class="popup">食べ<em>て</em></span></td></tr><tr align="center"><td><span title="いく - to go" class="popup">行っ<em>た</em></span></td><td><span title="いく - to go" class="popup">行っ<em>て</em></span></td></tr><tr align="center"><td><span title="する - to do" class="popup">し<em>た</em></span></td><td><span title="する - to do" class="popup">し<em>て</em></span></td></tr><tr align="center"><td><span title="あそぶ - to play" class="popup">遊ん<em>だ</em></span></td><td><span title="あそぶ - to play" class="popup">遊ん<em>で</em></span></td></tr><tr align="center"><td><span title="のむ - to drink" class="popup">飲ん<em>だ</em></span></td><td><span title="のむ - to drink" class="popup">飲ん<em>で</em></span></td></tr></tbody></table></td><td rowspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td valign="top"><table border="1" cellpadding="5"><tbody><tr><th>Negative</th><th>Te-form</th></tr><tr align="center"><td><span title="たべる - to eat" class="popup">食べな<em>い</em></span></td><td><span title="たべる - to eat" class="popup">食べな<em>くて</em></span></td></tr><tr align="center"><td><span title="いく - to go" class="popup">行かな<em>い</em></span></td><td><span title="いく - to go" class="popup">行かな<em>くて</em></span></td></tr><tr align="center"><td><span title="する - to do" class="popup">しな<em>い</em></span></td><td><span title="する - to do" class="popup">しな<em>くて</em></span></td></tr><tr align="center"><td><span title="あそぶ - to play" class="popup">遊ばな<em>い</em></span></td><td><span title="あそぶ - to play" class="popup">遊ばな<em>くて</em></span></td></tr><tr align="center"><td><span title="のむ - to drink" class="popup">飲まな<em>い</em></span></td><td><span title="のむ - to drink" class="popup">飲まな<em>くて</em></span></td></tr></tbody></table></td></tr></tbody></table>
+
+<h3>Examples</h3>
+<ol>
+<li>食堂に_行って_、昼ご飯を_食べて_、昼寝をする。 I will go to cafeteria, eat lunch, and take a nap.</li>
+<li>食堂に_行って_、昼ご飯を_食べて_、昼寝をした。 I went to cafeteria, ate lunch, and took a nap.</li>
+<li>時間が_ありまして_、映画を見ました。 There was time and I watched a movie.</li>
+</ol>
+<h2>Expressing reason or causation using 「から」 and 「ので」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>時間 【じ・かん】 – time</li>
+<li>ある (u-verb) – to exist (inanimate)</li>
+<li>パーティー – party</li>
+<li>行く 【い・く】 (u-verb) – to go</li>
+<li>友達 【とも・だち】 – friend</li>
+<li>プレゼント – present</li>
+<li>来る 【く・る】 (exception) – to come</li>
+<li>田中 【た・なか】 – Tanaka (last name)</li>
+<li>どうして – why</li>
+<li>山田 【や・まだ】 – Yamada (last name)</li>
+<li>一郎 【いち・ろう】 – Ichirou (first name)</li>
+<li>直子 【なお・こ】 – Naoko (first name)</li>
+<li>ちょっと – a little</li>
+<li>忙しい 【いそが・しい】 (i-adj) – busy</li>
+<li>そろそろ – gradually; soon</li>
+<li>失礼 【しつ・れい】 – discourtesy</li>
+<li>する (exception) – to do</li>
+<li>学生 【がく・せい】 – student</li>
+<li>お金 【お・かね】 – money</li>
+<li>ここ – here</li>
+<li>静か 【しず・か】 (na-adj) – quiet</li>
+<li>とても – very</li>
+<li>穏やか 【おだ・やか】 (na-adj) – calm, peaceful</li>
+<li>会う 【あ・う】 (u-verb) – to meet</li>
+</ol>
+<p>You can connect two complete sentences using 「から」 to indicate a reason for something. The two sentences are always ordered [reason] から [result]. When the reason is a non-conjugated noun or na-adjective, you <em>must</em> add 「だ」 to explicitly declare the reason in the form of 「(noun/na-adjective)_だ_から」. If you forget to add the declarative 「だ」 to 「から」, it will end up sounding like the 「から」 meaning “from” which was first introduced in the section on particles, earlier.</p>
+<h3>Examples</h3>
+<ol>
+<li>時間がなかった_から_パーティーに行きませんでした。 There was no time so didn’t go to party.</li>
+<li>友達_から_プレゼントが来た。 Present came <em>from</em> friend.</li>
+<li>友達_だから_プレゼントが来た。 Present came <em>because</em> (the person is) friend. (This sentence sounds a bit odd.)</li>
+</ol>
+<p>Either the reason or the result can be omitted if it is clear from the context. In the case of polite speech, you would treat 「から」 just like a regular noun and add 「です」.</p>
+<h3>Example 1</h3>
+<p>田中さん：どうしてパーティーに行きませんでしたか。 Tanaka-san: Why didn’t you go to the party? 山田さん：時間がなかった_から_です。 Yamada-san: It’s because I didn’t have time.</p>
+<h3>Example 2</h3>
+<p>一郎：パーティーに行かなかったの？ Ichiro: You didn’t go to the party? 直子：うん、時間がなかった_から_。 Naoko: Yeah, because I didn’t have time.</p>
+<h3>Example 3</h3>
+<p>When you omit the reason, you must include the declarative 「だ」 or 「です」. 直子：時間がなかった。 Naoko: I didn’t have time. 一郎：_だから_パーティーに行かなかったの？ Ichiro: Is that why you didn’t go to the party? Notice that we could have also used the explanatory 「の」 to express the same thing. In other words, 山田さん could have also said, 「時間がなかったのです」 or 「時間がなかったんです」 while 直子 could have said 「時間がなかったの」 (we’ll assume she wants to use the more feminine form). In fact, this is where 「ので」 possibly came from. Let’s say you want to combine two sentences: 「時間がなかったのだ」 and 「パーティーに行かなかった」. Remember we can treat the 「の」 just like a noun so we can use what we just learned in the first section of this lesson. 時間がなかったのだ＋パーティーに行かなかった becomes: 時間がなかった_ので_パーティーに行かなかった。 In fact, 「ので」 is almost interchangeable with 「から」 with a few subtle differences. 「から」 explicitly states that the sentence preceding is the reason for something while 「ので」 is merely putting two sentences together, the first with an explanatory tone. This is something I call causation where [X] happened, therefore [Y] happened. This is slightly different from 「から」 where [Y] happened explicitly <em>because</em> [X] happened. This difference tends to make 「ので」 sound softer and slightly more polite and it is favored over 「から」 when explaining a reason for doing something that is considered discourteous.</p>
+<ul>
+<li>ちょっと忙しい_ので_、そろそろ失礼します。 Because I’m a little busy, I’ll be making my leave soon.</li>
+</ul>
+<p>（「失礼します」, which literally means “I’m doing a discourtesy”, is commonly used as a polite way to make your leave or disturb someone’s time.） <strong>Reminder:</strong> Don’t forget that the explanatory 「の」 requires a 「な」 for both non-conjugated nouns and na-adjectives. Review Particles 3 to see why.</p>
+<ol>
+<li>私は学生_な_ので、お金がないんです。 Because I’m a student, I have no money (lit: there is no money).</li>
+<li>ここは静か_な_ので、とても穏やかです。 It is very calm here because it is quiet.</li>
+<li>_な_ので、友達に会う時間がない。 That’s why there’s no time to meet friend.</li>
+</ol>
+<p>Just like how the explanatory 「の」 can be shortened to 「ん」, in speech, the 「ので」 can be changed to 「んで」 simply because it’s easier to slur the sounds together rather than pronouncing the / o / syllable.</p>
+<ol>
+<li>時間がなかった_んで_パーティーに行かなかった。 Didn’t go to the party because there was no time.</li>
+<li>ここは静かな_んで_、とても穏やかです。 It is very calm here because it is quiet.</li>
+<li><em>なんで</em>、友達に会う時間がない。 That’s why there’s no time to meet friend.</li>
+</ol>
+<h2>Using 「のに」 to mean “despite”</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>毎日 【まい・にち】 – everyday</li>
+<li>運動 【うん・どう】 – exercise</li>
+<li>する (exception) – to do</li>
+<li>全然 【ぜん・ぜん】 – not at all (when used with negative)</li>
+<li>痩せる 【や・せる】 (ru-verb) – to become thin</li>
+<li>学生 【がく・せい】 – student</li>
+<li>彼女 【かの・じょ】 – she; girlfriend</li>
+<li>勉強 【べん・きょう】 – study</li>
+</ol>
+<p>Grammatically, 「のに」 is used exactly the same way as 「ので」. When used to combine two simple sentences together, it means “[Sentence 1] despite the fact that [Sentence 2].” However the order is reversed: [Sentence 2]のに[Sentence 1].</p>
+<h3>Examples</h3>
+<ol>
+<li>毎日運動した_のに_、全然痩せなかった。 Despite exercising every day, I didn’t get thinner.</li>
+<li>学生な_のに_、彼女は勉強しない。 Despite being a student, she does not study.</li>
+</ol>
+<h2>Expressing contradiction using 「が」 and 「けど」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>デパート – department store</li>
+<li>行く 【い・く】 (u-verb) – to go</li>
+<li>何 【なに／なん】 – what</li>
+<li>全然 【ぜん・ぜん】 – not at all (when used with negative)</li>
+<li>欲しい 【ほ・しい】 (i-adj) – desirable</li>
+<li>友達 【とも・だち】 – friend</li>
+<li>聞く 【き・く】 (u-verb) – to ask; to listen</li>
+<li>知る 【し・る】 (u-verb) – to know</li>
+<li>今日 【きょう】 – today</li>
+<li>暇 【ひま】 – free　(as in not busy)</li>
+<li>明日 【あした】 – tomorrow</li>
+<li>忙しい 【いそが・しい】 (i-adj) – busy</li>
+<li>彼 【かれ】 – he; boyfriend</li>
+<li>まだ – yet</li>
+<li>好き 【す・き】 (na-adj) – likable; desirable</li>
+<li>いい (i-adj) – good</li>
+<li>物 【もの】 – object</li>
+<li>たくさん – a lot (amount)</li>
+<li>ある (u-verb) – to exist (inanimate)</li>
+<li>見る 【み・る】 (ru-verb) – to see</li>
+<li>面白い 【おも・しろ・い】(i-adj) – interesting</li>
+</ol>
+<p>Used in the same manner as 「から」 and 「ので」, 「が」 and 「けど」 also connect two sentences together but this time to express a contradiction. Just like 「から」 the declarative 「だ」 is required for nouns and na-adjectives. And just like 「から」 and 「ので」, either part of the contradiction can be left out.</p>
+<h3>Examples</h3>
+<ol>
+<li>デパートに行きました_が_、何も欲しくなかったです。 I went to department store but there was nothing I wanted.</li>
+<li>友達に聞いた_けど_、知らなかった。 I asked (or heard from) a friend but he (or I) didn’t know.</li>
+<li>今日は暇_だけど_、明日は忙しい。 I’m free today but I will be busy tomorrow.</li>
+<li><em>だけど</em>、彼がまだ好きなの。 That may be so, but it is that I still like him. [explanation, feminine tone]</li>
+</ol>
+<p>It may seem odd but 「聞く」 can either mean “to listen” or “to ask”. You may think this may become confusing but the meaning is usually clear within context. In the second example, we’re assuming that the friend didn’t know, so the speaker was probably asking the friend. Yet again we see the importance of context in Japanese because this sentence can also mean, “I heard from a friend but I didn’t know” since there is neither subject nor topic. Similar to the difference between 「ので」 and 「から」, 「が」 has a softer tone and is slightly more polite than 「けど」. Though this isn’t a rule as such, it is generally common to see 「が」 attached to a 「～ます」 or 「～です」 ending and 「けど」 attached to a regular, plain ending. A more formal version of 「けど」 is 「けれど」 and even more formal is 「けれども」, which we may see later when we cover formal expressions. Unlike the English word for contradiction such as “but” or “however”, 「けど」 and 「が」 do not always express a direct contradiction. Often times, especially when introducing a new topic, it is used as a general connector of two separate sentences. For example, in the following sentences, there is no actual contradiction but 「が」 and 「けど」 are used simply to connect the sentences. Sometimes, the English “and” becomes a closer translation than “but”.</p>
+<ol>
+<li>デパートに行きました_が_、いい物がたくさんありました。 I went to the department store and there was a lot of good stuff.</li>
+<li>マトリックスを見た_けど_、面白かった。 I watched the “Matrix” and it was interesting.</li>
+</ol>
+<h2>Expressing multiple reasons using 「し」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>どうして – why</li>
+<li>友達 【とも・だち】 – friend</li>
+<li>先生 【せん・せい】 – teacher</li>
+<li>年上 【とし・うえ】 – older</li>
+<li>彼 【かれ】 – he; boyfriend</li>
+<li>好き 【す・き】 (na-adj) – likable</li>
+<li>優しい 【やさ・しい】 (i-adj) – gentle; kind</li>
+<li>かっこいい (i-adj) – cool; handsome</li>
+<li>面白い 【おも・し・ろい】 (i-adj) – interesting</li>
+</ol>
+<p>When you want to list reasons for multiple states or actions you can do so by adding 「し」 to the end of each relative clause. It is very similar to the 「や」 particle except that it lists reasons for verbs and state-of-being. Again, for states of being, 「だ」 must be used to explicitly declare the state-of-being for any non-conjugated noun or na-adjective. Let’s look at some examples.</p>
+<h3>Example 1</h3>
+<p>Ａ：どうして友達じゃないんですか？ A: Why isn’t (he/she) friend [seeking explanation]? Ｂ：先生_だし_、年上_だし_・・・。 B: Well, he’s/she’s the teacher, and older…</p>
+<h3>Example 2</h3>
+<p>Ａ：どうして彼が好きなの？ A: Why (do you) like him? Ｂ：優しい_し_、かっこいい_し_、面白いから。 B: Because he’s kind, attractive, and interesting (among other things). Notice that 「優しくて、かっこよくて、面白いから。」 could also have worked but much like the difference between the 「と」 and 「や」 particle, 「し」 implies that there may be other reasons.</p>
+<h2>Expressing multiple actions or states using 「～たりする」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>する (exception) – to do</li>
+<li>食べる 【た・べる】 (ru-verb) – to eat</li>
+<li>飲む 【の・む】 (u-verb) – to drink</li>
+<li>簡単 【かん・たん】 (na-adj) – simple</li>
+<li>難しい 【むずか・しい】 (i-adj) – difficult</li>
+<li>映画 【えい・が】 – movie</li>
+<li>見る 【み・る】 (ru-verb) – to see</li>
+<li>本 【ほん】 – book</li>
+<li>読む 【よ・む】 (u-verb) – to read</li>
+<li>昼寝 【ひる・ね】 – afternoon nap</li>
+<li>この – this （abbr. of これの）</li>
+<li>大学 【だい・がく】 – college</li>
+<li>授業 【じゅ・ぎょう】 – class</li>
+</ol>
+<p>This is the verb version of the 「や」 particle. You can make an example list of verbs among a possible larger list by conjugating each verb into the past tense and adding 「り」. At the end, you need to attach the verb 「する」. Just like the 「や」 particle, the tense is determined by the last verb, which in this case will always be 「する」 (since you have to attach it at the end). You can also use this with the state-of-being to say that you are a number of things at various random times among a larger list. Similar to regular verbs, you just take the noun or adjective for each state-of-being and conjugate it to the past state-of-being and then attach 「り」. Then finally, attach 「する」 at the end.</p>
+<p>Rules for stating a list of verbs among a larger list using 「～たりする」</p>
+<ul>
+<li><strong>For verbs:</strong> Conjugate each verb to the past tense and add 「り」. Finally, add 「する」 at the very end. Example 食べ_<del>る</del><em>、飲</em><del>む</del>_ → 食べ_た_、飲_んだ_ → 食べた_り_、飲んだ_り_ → 食べたり、飲んだり_する_</li>
+<li><strong>For state-of-being:</strong> Conjugate the noun or adjective for each state-of-being to the past tense and add 「り」. Finally, add 「する」 at the very end. Example 簡単、難し_<del>い</del>_ → 簡単_だった_、難し_かった_ → 簡単だった_り_、難しかった_り_ → 簡単だったり、難しかったり_する_</li>
+</ul>
+<ol>
+<li>映画を_見たり_、本を_読んだり_、_昼寝したり_する。 I do things like (among other things) watch movies, read books, and take naps.</li>
+<li>この大学の授業は簡単_だったり_、_難しかったり_する。 Class of this college is sometimes easy, sometimes difficult (and other times something else maybe).</li>
+</ol>
+<p>As you can see, the tense and negative/positive state is controlled by the last 「する」.</p>
+<ol>
+<li>映画を見たり、本を読んだり_した_。 I <em>did</em> things like (among other things) watch movies, and read books.</li>
+<li>映画を見たり、本を読んだり_しない_。 I <em>don’t do</em> things like (among other things) watch movies, and read books.</li>
+<li>映画を見たり、本を読んだり_しなかった_。 I <em>didn’t do</em> things like (among other things) watch movies, and read books.</li>
+</ol>
+<h3>Guide to Japanese grammar</h3>
+<p><a href="/en/question" title="&lt;&lt; The Question Marker">The Question Marker</a> <a href="/en/teform" title="Other uses of the te-form &gt;&gt;">Other uses of the te-form</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guide to Japanese Grammar</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/en/question"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Previous</span></a>
+          <span class="page-count">23 / 62</span>
+          <a class="nav-link" href="/en/teform"><span>Next</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

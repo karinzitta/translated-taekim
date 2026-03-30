@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – O Que Deveria Ser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 87%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/should">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li class="active"><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>Nesta lição, aprenderemos como expressar a maneira como as coisas deveriam ser, dependendo do que entendemos por &quot;deveriam&quot;. Embora os dois primeiros pontos gramaticais 「はず」 e 「べき」 apareçam com frequência e sejam bastante úteis, você raramente encontrará 「べく」 ou 「べからず」. Você pode pular essas lições com segurança, a menos que esteja estudando para o JLPT.</p>
+<h2>Usando 「はず」 para descrever uma expectativa</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>ある (u-verb) – existir (inanimado)</li>
+<li>日曜日 【にち・よう・び】 – domingo</li>
+<li>可能 【か・のう】 (na-adj) – possível</li>
+<li>おいしい (i-adj) – saboroso</li>
+<li>帰る 【かえ・る】 (u-verb) – voltar para casa</li>
+<li>彼【かれ】 – ele; namorado</li>
+<li>漫画 【まん・が】 – história em quadrinhos</li>
+<li>マニア – mania</li>
+<li>これ – isto</li>
+<li>～ら – sufixo de plural</li>
+<li>もう – já</li>
+<li>全部 【ぜん・ぶ】 – tudo</li>
+<li>読む 【よ・む】 (u-verb) – ler</li>
+<li>この – este （abbr. de これの）</li>
+<li>料理 【りょう・り】 – culinária; prato</li>
+<li>焦げる 【こ・げる】 (ru-verb) – queimar, ser queimado</li>
+<li>まずい (i-adj) – desagradável</li>
+<li>色々 【いろ・いろ】 (na-adj) – vário, diverso</li>
+<li>予定 【よ・てい】 – planos, combinação</li>
+<li>する (exception) – fazer</li>
+<li>今年 【こ・とし】 – este ano</li>
+<li>楽しい 【たの・しい】 (i-adj) – divertido</li>
+<li>クリスマス – Natal</li>
+<li>そう – (as coisas são) assim</li>
+<li>簡単 【かん・たん】 (na-adj) – simples</li>
+<li>直す 【なお・す】 (u-verb) – corrigir, consertar</li>
+<li>打合せ 【うち・あわ・せ】 – reunião</li>
+<li>毎週 【まい・しゅう】 – toda semana</li>
+<li>～時 【～じ】 – contador de horas</li>
+<li>始まる 【はじ・まる】 (u-verb) – começar</li>
+</ol>
+<p>A primeira gramática que aprenderemos é 「はず」, que é usada para expressar algo que era ou é esperado que seja. Você pode tratar 「はず」 exatamente como um substantivo comum, já que geralmente é acrescentado ao adjetivo ou verbo que se espera que seja ou que aconteça.</p>
+<p>A única coisa a ter cuidado aqui é expressar uma expectativa de que algo <em>não</em> vai acontecer. Para isso, você deve usar o verbo de existência negativa 「ない」 para dizer que tal expectativa não existe. Isso pode estar na forma de 「～はず_が_ない」 ou 「～はず_は_ない」 dependendo de qual partícula você quiser usar. A conjugação negativa 「はず_じゃない_」 é realmente usada apenas quando você quer confirmar em um sentido positivo, como em 「～はずじゃないか？」.</p>
+<p>Usando 「はず」 para descrever uma expectativa</p>
+<ul>
+<li><p>Use 「はず」 como um substantivo comum para modificar a coisa esperada
+Exemplos</p>
+<ol>
+<li>日曜日の_はず_ (substantivo)</li>
+<li>可能な_はず_ (adjetivo na)</li>
+<li>おいしい_はず_ (adjetivo i)</li>
+<li>帰る_はず_ (verbo)</li>
+</ol>
+</li>
+<li><p>Para o caso em que você espera o negativo, use o verbo 「ない」 de inexistência</p>
+</li>
+<li><p>Exemplo: 帰る_はず_ → 帰るはずが_ない_</p>
+</li>
+</ul>
+<h3>Exemplos</h3>
+<ol>
+<li>彼は漫画マニアだから、これらをもう全部_読んだはず_だよ。
+Ele é louco por quadrinhos, então espero que já tenha lido todos estes.</li>
+<li>この料理は_おいしいはず_だったが、焦げちゃって、まずくなった。
+Este prato deveria ser saboroso, mas queimou e ficou ruim.</li>
+<li>色々予定してあるから、今年は楽しい_クリスマスのはず_。
+Como várias coisas foram planejadas, espero um Natal divertido este ano.</li>
+<li>そう簡単に_直せるはずがない_よ。
+Não deveria ser tão fácil assim de consertar.</li>
+<li>打合せは毎週２時から_始まるはず_じゃないですか？
+Esta reunião deveria começar toda semana às 2 horas, não é?</li>
+</ol>
+<p>Aqui estão <a href="http://www.csse.monash.edu.au/cgi-bin/cgiwrap/jwb/wwwjdic?1Q%C8%A6_1_">mais exemplos</a> do WWWJDIC. Você também pode conferir a <a href="http://www.jekai.org/entries/aa/00/nn/aa00nn81.htm">entrada do jeKai</a>.</p>
+<h2>Usando 「べき」 para descrever ações que se deveria fazer</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>絶対 【ぜっ・たい】 (na-adj) – absolutamente, incondicionalmente</li>
+<li>ある (u-verb) – existir (inanimado)</li>
+<li>強い 【つよ・い】 (i-adj) – forte</li>
+<li>推奨 【すい・しょう】 – recomendação</li>
+<li>する (exception) – fazer</li>
+<li>擦る 【す・る】 (u-verb) – esfregar</li>
+<li>行う 【おこな・う】 (u-verb) – conduzir, realizar</li>
+<li>何 【なに／なん】 – o que</li>
+<li>買う 【か・う】 (u-verb) – comprar</li>
+<li>前 【まえ】 – frente; antes</li>
+<li>本当 【ほん・とう】 – real, verdadeiro</li>
+<li>必要 【ひつ・よう】 – necessidade</li>
+<li>どう – como</li>
+<li>いい (i-adj) – bom</li>
+<li>考える 【かんが・える】 (ru-verb) – pensar</li>
+<li>例え 【たと・え】 – exemplo</li>
+<li>国 【くに】 – país</li>
+<li>国民 【こく・みん】 – povo, cidadão</li>
+<li>騙す 【だま・す】 (u-verb) – enganar, iludir, trapacear</li>
+<li>思う 【おも・う】 (u-verb) – pensar</li>
+<li>預金者 【よ・きん・しゃ】 – depositante</li>
+<li>大手 【おお・て】 – grande corporação</li>
+<li>銀行 【ぎん・こう】 – banco</li>
+<li>相手 【あい・て】 – outra parte</li>
+<li>取る 【と・る】 (u-verb) – pegar, tomar</li>
+<li>訴訟 【そ・しょう】 – litígio, processo judicial</li>
+<li>起こす 【お・こす】 (u-verb) – causar, despertar alguém</li>
+<li>ケース – caso</li>
+<li>出る 【で・る】 (ru-verb) – sair, aparecer</li>
+<li>金融庁 【きん・ゆう・ちょう】 – Agência de Serviços Financeiros</li>
+<li>被害者 【ひ・がい・しゃ】 – vítima</li>
+<li>救済 【きゅう・さい】 – alívio, auxílio</li>
+<li>優先 【ゆう・せん】 – preferência, prioridade, precedência</li>
+<li>金融 【きん・ゆう】 – financiamento</li>
+<li>機関 【き・かん】 – instituição</li>
+<li>犯罪 【はん・ざい】 – crime</li>
+<li>防止 【ぼう・し】 – prevenção</li>
+<li>強化 【きょう・か】 – fortalecer</li>
+<li>促す 【うなが・す】 (u-verb) – incitar, estimular</li>
+<li>判断 【はん・だん】 – julgamento, decisão</li>
+<li>朝日 【あさ・ひ】 – Asahi</li>
+<li>新聞 【しん・ぶん】 – jornal</li>
+</ol>
+<p>「べき」 é um sufixo verbal usado para descrever algo que se supõe dever ser feito. Este sufixo é comumente traduzido como &quot;deveria&quot;, porém é preciso compreender que ele não pode ser usado para dar sugestões como a frase &quot;Você deveria ir ao médico.&quot; Se você usar 「べき」, soa mais como &quot;Você é obrigado a ir ao médico.&quot; 「べき」 tem um tom muito mais forte e faz você soar como alguém mandão dizendo às pessoas o que fazer. Para dar sugestões, é comum usar a gramática 「方がいい」 em vez disso. Por essa razão, essa gramática quase nunca é usada para dizer diretamente a alguém o que fazer. Geralmente é usada em referência a si mesmo, onde você pode ser tão assertivo quanto quiser, ou em um contexto neutro onde as circunstâncias ditam o que é adequado e o que não é. Um exemplo seria uma frase como: &quot;Devemos criar nossos filhos corretamente com uma boa educação.&quot;</p>
+<p>Ao contrário da gramática 「はず」, não há expectativa de que algo vá acontecer. Em vez disso, essa gramática descreve o que se deveria fazer em determinada circunstância. Em japonês, você poderia defini-la como tendo o significado de 「絶対ではないが、強く推奨されている」.</p>
+<p>Há pouquíssimo de interesse gramatical. 「べき」 funciona como um substantivo comum e, portanto, pode ser conjugado como 「べきじゃない」、「べきだった」 e assim por diante. A única coisa a notar é que, ao usá-lo com 「する」, o verbo que significa &quot;fazer&quot;, você pode opcionalmente remover o 「る」 de 「するべき」 para produzir 「すべき」. Isso pode ser feito apenas com esse verbo e não se aplica a nenhum outro verbo, mesmo que o verbo seja escrito como 「する」, como 「擦る」, o verbo que significa &quot;esfregar&quot;.</p>
+<p>Usando 「べき」 para ações que deveriam ser realizadas</p>
+<ul>
+<li><p>Acrescente 「べき」 à ação que deveria ser realizada
+Exemplos</p>
+<ol>
+<li>行う → 行う_べき_</li>
+<li>する → する_べき_</li>
+</ol>
+</li>
+<li><p>Somente para o verbo genérico 「する」, você pode remover o 「る」</p>
+</li>
+<li><p>Exemplo: す_る_＋べき → す_べき_</p>
+</li>
+</ul>
+<h3>Exemplos</h3>
+<ol>
+<li>何かを買う前に本当に必要かどうかをよく_考えるべき_だ。
+Antes de comprar algo, deve-se pensar bem se é realmente necessário ou não.</li>
+<li>例え国のためであっても、国民を_騙すべき_ではないと思う。
+Mesmo que seja, por exemplo, pelo bem do país, não acho que os cidadãos <em>deveriam</em> ser enganados.</li>
+<li>預金者が大手銀行を相手取って訴訟を起こすケースも出ており、金融庁は被害者の救済を優先させて、金融機関に犯罪防止対策の強化を促_すべき_だと判断。（朝日新聞）
+Com casos de depositantes processando grandes bancos, a Agência de Serviços Financeiros decidiu que <em>deveria</em> priorizar o auxílio às vítimas e incitar os bancos a fortalecer medidas de prevenção de crimes.</li>
+</ol>
+<h2>Usando 「べく」 para descrever o que se tenta fazer</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>連用形 【れん・よう・けい】 – forma conjuntiva</li>
+<li>早い 【はや・い】 (i-adj) – rápido; cedo</li>
+<li>帰る 【かえ・る】 (u-verb) – voltar para casa</li>
+<li>準備 【じゅん・び】 – preparativos</li>
+<li>する (exception) – fazer</li>
+<li>始める 【はじ・める】 (ru-verb) – começar</li>
+<li>思う 【おも・う】 (u-verb) – pensar</li>
+<li>出来る 【で・き・る】 (ru-verb) – ser capaz de fazer</li>
+<li>行う 【おこな・う】 (u-verb) – conduzir, realizar</li>
+<li>試験 【し・けん】 – exame</li>
+<li>合格 【ごう・かく】 – passar (em um exame)</li>
+<li>皆 【みんな】 – todos</li>
+<li>一生懸命 【いっ・しょう・けん・めい】 – com o máximo esforço</li>
+<li>勉強 【べん・きょう】 – estudo</li>
+<li>今後 【こん・ご】 – de agora em diante</li>
+<li>お客様 【お・きゃく・さま】 – hóspede, cliente</li>
+<li>対話 【たい・わ】 – interação</li>
+<li>窓口 【まど・ぐち】 – guichê, balcão; ponto de contato</li>
+<li>より – mais</li>
+<li>充実 【じゅう・じつ】 – realizado, enriquecido</li>
+<li>行く 【い・く】 (u-verb) – ir</li>
+<li>努力 【ど・りょく】 – esforço</li>
+<li>参る 【まい・る】 (u-verb) – ir; vir (humilde)</li>
+</ol>
+<p>Gramaticalmente, 「べく」 é realmente uma forma conjuntiva （連用形） de 「べき」, semelhante ao que a forma te faz para conectar outra frase. No entanto, o que precisa ser mencionado é que, ao transformá-lo em uma forma conjuntiva e adicionar um predicado, o significado de 「べく」 muda em relação ao significado ordinário de 「べき」. Enquanto 「べき」 descreve uma forte sugestão, transformá-lo em 「べく」 permite descrever o que alguém fez a fim de cumprir essa sugestão. Veja os exemplos a seguir para ver como o significado muda.</p>
+<ol>
+<li>早く_帰るべき_。
+<em>Deveria</em> voltar para casa cedo.</li>
+<li>早く_帰るべく_、準備をし始めた。
+<em>Na tentativa de</em> voltar para casa cedo, começou os preparativos.</li>
+</ol>
+<p>Como podemos ver neste exemplo, adicionar 「準備をし始めた」 nos diz o que o sujeito fez a fim de cumprir a ação que ele deveria fazer. Dessa forma, podemos definir 「べく」 como significando &quot;a fim de&quot; ou &quot;em um esforço para&quot;. Da mesma forma, 「べく」 pode equivaler ao japonês 「しようと思って」 ou 「できるように」. Esta é uma expressão muito raramente usada e old-fashioned (antiquada), e é apresentada aqui apenas para cobrir completamente todos os aspectos de 「べき」.</p>
+<p>Usando 「べく」 para ações que se tenta realizar</p>
+<ul>
+<li><p>Acrescente 「べく」 à ação que se tenta realizar
+Exemplos</p>
+<ol>
+<li>行う → 行う_べく_</li>
+<li>する → する_べく_</li>
+</ol>
+</li>
+<li><p>Assim como 「べき」, você pode remover o 「る」 somente do verbo genérico 「する」</p>
+</li>
+<li><p>Exemplo: す_る_＋べく → す_べく_</p>
+</li>
+</ul>
+<h3>Exemplos</h3>
+<ol>
+<li>試験に合格_すべく_、皆一生懸命に勉強している。
+Todos estão estudando com afinco <em>em um esforço para</em> passar no exame.</li>
+<li>今後もお客様との対話の窓口として、より充実_していくべく_努力してまいります
+Trabalharemos a partir daqui <em>em um esforço para</em> oferecer um atendimento ainda mais enriquecido para a interação com os clientes.</li>
+</ol>
+<h2>Usando 「べからず」 para descrever o que não se deve fazer</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>未然形 【み・ぜん・けい】 – forma imperfectiva</li>
+<li>行う 【おこな・う】 (u-verb) – conduzir, realizar</li>
+<li>する (exception) – fazer</li>
+<li>ゴミ – lixo</li>
+<li>捨てる 【す・てる】 (ru-verb) – jogar fora</li>
+<li>安全 【あん・ぜん】 – segurança</li>
+<li>措置 【そ・ち】 – medidas</li>
+<li>忘れる 【わす・れる】 (ru-verb) – esquecer</li>
+</ol>
+<p>Passando para mais uma forma de 「べき」 temos 「べからず」. Isso está indubitavelmente relacionado com a terminação negativa 「ず」 que aprendemos em uma seção anterior. No entanto, parece ser uma conjugação de uma antiga 未然形 de 「べから」. Não tenho ideia do que isso significa e você também não precisa ter. A única coisa que precisamos absorver disso é que 「べからず」 expressa o significado oposto de 「べき」 como uma ação que alguém <strong>não</strong> deve fazer. Suponho que o final curto e abrupto da forma 「ず」 torna isso mais útil para estabelecer regras. De fato, ao pesquisar no Google, aparecem vários 「べし･ベからず」 ou &quot;o que fazer e o que não fazer&quot;. （べし é uma forma mais antiga de べき, que duvido que você precise usar.)</p>
+<p>Usando 「べからず」 para ações que <strong>não</strong> devem ser feitas</p>
+<ul>
+<li><p>Acrescente 「べからず」 à ação que não deve ser feita
+Exemplos</p>
+<ol>
+<li>行う → 行う_べからず_</li>
+<li>する → する_べからず_</li>
+</ol>
+</li>
+<li><p>Assim como 「べき」, você pode remover o 「る」 somente do verbo genérico 「する」</p>
+</li>
+<li><p>Exemplo: す_る_＋べからず → す_べからず_</p>
+</li>
+</ul>
+<h3>Exemplos</h3>
+<ol>
+<li>ゴミ_捨てるべからず_。
+É <em>proibido</em> jogar lixo fora (aqui).</li>
+<li>安全措置を_忘れるべからず_。
+Você <em>não deve</em> esquecer as medidas de segurança.</li>
+</ol>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/formal" title="&lt;&lt; Expressões Formais">Expressões Formais</a> <a href="/pt-br/even" title="A expectativa mínima &gt;&gt;">A expectativa mínima</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/formal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">54 / 62</span>
+          <a class="nav-link" href="/pt-br/even"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

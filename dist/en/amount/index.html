@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide to Japanese Grammar – Expressing Amounts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 71%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/en/basic">Guide to Japanese Grammar</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/pt-br/amount">PT-BR</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/en/basic"><span class="num">1</span>Basic Structures</a></li>
+      <li><a href="/en/stateofbeing"><span class="num">2</span>State of Being</a></li>
+      <li><a href="/en/stateofbeing_ex"><span class="num">3</span>State of Being (Ex.)</a></li>
+      <li><a href="/en/particlesintro"><span class="num">4</span>Intro to Particles</a></li>
+      <li><a href="/en/particlesintro_ex"><span class="num">5</span>Particles (Ex.)</a></li>
+      <li><a href="/en/adjectives"><span class="num">6</span>Adjectives</a></li>
+      <li><a href="/en/adjectives_ex"><span class="num">7</span>Adjectives (Ex.)</a></li>
+      <li><a href="/en/verbs"><span class="num">8</span>Verbs</a></li>
+      <li><a href="/en/verbs_ex"><span class="num">9</span>Verbs (Ex.)</a></li>
+      <li><a href="/en/negativeverbs"><span class="num">10</span>Negative Verbs</a></li>
+      <li><a href="/en/negativeverbs_ex"><span class="num">11</span>Negative Verbs (Ex.)</a></li>
+      <li><a href="/en/past_tense"><span class="num">12</span>Past Tense</a></li>
+      <li><a href="/en/pasttense_ex"><span class="num">13</span>Past Tense (Ex.)</a></li>
+      <li><a href="/en/verbparticles"><span class="num">14</span>Verb Particles</a></li>
+      <li><a href="/en/in-transitive"><span class="num">15</span>Transitive & Intransitive</a></li>
+      <li><a href="/en/clause"><span class="num">16</span>Relative Clauses</a></li>
+      <li><a href="/en/nounparticles"><span class="num">17</span>Noun Particles</a></li>
+      <li><a href="/en/adverbs"><span class="num">18</span>Adverbs</a></li>
+      <li><a href="/en/essential"><span class="num">19</span>Essential Grammar</a></li>
+      <li><a href="/en/polite"><span class="num">20</span>Polite Form</a></li>
+      <li><a href="/en/people"><span class="num">21</span>Addressing People</a></li>
+      <li><a href="/en/question"><span class="num">22</span>Question Marker</a></li>
+      <li><a href="/en/compound"><span class="num">23</span>Compound Sentences</a></li>
+      <li><a href="/en/teform"><span class="num">24</span>Te-form</a></li>
+      <li><a href="/en/potential"><span class="num">25</span>Potential Form</a></li>
+      <li><a href="/en/surunaru"><span class="num">26</span>Using する and なる</a></li>
+      <li><a href="/en/conditionals"><span class="num">27</span>Conditionals</a></li>
+      <li><a href="/en/must"><span class="num">28</span>Must / Have To</a></li>
+      <li><a href="/en/desire"><span class="num">29</span>Desire & Suggestions</a></li>
+      <li><a href="/en/actionclause"><span class="num">30</span>Action Clauses</a></li>
+      <li><a href="/en/define"><span class="num">31</span>Defining with いう</a></li>
+      <li><a href="/en/try"><span class="num">32</span>Trying Things</a></li>
+      <li><a href="/en/favors"><span class="num">33</span>Giving & Receiving</a></li>
+      <li><a href="/en/requests"><span class="num">34</span>Making Requests</a></li>
+      <li><a href="/en/numbers"><span class="num">35</span>Numbers & Counting</a></li>
+      <li><a href="/en/slang"><span class="num">36</span>Casual Patterns & Slang</a></li>
+      <li><a href="/en/sentence_ending"><span class="num">37</span>Sentence-ending Particles</a></li>
+      <li><a href="/en/specialexpressions"><span class="num">38</span>Special Expressions</a></li>
+      <li><a href="/en/causepass"><span class="num">39</span>Causative & Passive</a></li>
+      <li><a href="/en/honorific"><span class="num">40</span>Honorific & Humble</a></li>
+      <li><a href="/en/unintended"><span class="num">41</span>Unintended Actions</a></li>
+      <li><a href="/en/genericnouns"><span class="num">42</span>Generic Nouns</a></li>
+      <li><a href="/en/certainty"><span class="num">43</span>Degrees of Certainty</a></li>
+      <li class="active"><a href="/en/amount"><span class="num">44</span>Expressing Amounts</a></li>
+      <li><a href="/en/similarity"><span class="num">45</span>Similarity & Hearsay</a></li>
+      <li><a href="/en/comparison"><span class="num">46</span>Comparisons</a></li>
+      <li><a href="/en/easyhard"><span class="num">47</span>Easy & Hard Actions</a></li>
+      <li><a href="/en/negativeverbs2"><span class="num">48</span>More Negative Verbs</a></li>
+      <li><a href="/en/reasoning"><span class="num">49</span>Hypothesizing</a></li>
+      <li><a href="/en/timeactions"><span class="num">50</span>Time-specific Actions</a></li>
+      <li><a href="/en/nochange"><span class="num">51</span>Lack of Change</a></li>
+      <li><a href="/en/advanced"><span class="num">52</span>Advanced Grammar</a></li>
+      <li><a href="/en/formal"><span class="num">53</span>Formal Expressions</a></li>
+      <li><a href="/en/should"><span class="num">54</span>Things That Should Be</a></li>
+      <li><a href="/en/even"><span class="num">55</span>Minimum Expectation</a></li>
+      <li><a href="/en/signs"><span class="num">56</span>Showing Signs</a></li>
+      <li><a href="/en/feasibility"><span class="num">57</span>Non-feasibility</a></li>
+      <li><a href="/en/tendency"><span class="num">58</span>Tendencies</a></li>
+      <li><a href="/en/volitional2"><span class="num">59</span>Advanced Volitional</a></li>
+      <li><a href="/en/covered"><span class="num">60</span>Covered by Something</a></li>
+      <li><a href="/en/immedate"><span class="num">61</span>Immediate Events</a></li>
+      <li><a href="/en/other"><span class="num">62</span>Other Grammar</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><p>This lesson will cover various expressions used to express various <em>degrees</em> of amounts. For example, sentences like, “I only ate one”, “That was all that was left”, “There’s just old people here”, or “I ate too much” all indicate whether there’s a lot or little of something. Most of these expressions are made with particles and not as separate words as you see in English.</p>
+<h2>Indicating that’s all there is using 「だけ」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>りんご – apple</li>
+<li>これ – this</li>
+<li>それ – that</li>
+<li>食べる 【たべ・る】 (ru-verb) – to eat</li>
+<li>この – this （abbr. of これの）</li>
+<li>歌 【うた】 – song</li>
+<li>歌う 【うた・う】 (u-verb) – to sing</li>
+<li>その – that （abbr. of それの）</li>
+<li>人 【ひと】 – person</li>
+<li>好き 【す・き】 (na-adj) – likable; desirable</li>
+<li>販売機 【はん・ばい・き】 – vending machine</li>
+<li>五百円玉 【ご・ひゃく・えん・だま】 – 500 yen coin</li>
+<li>小林 【こ・ばやし】 – Kobayashi (last name)</li>
+<li>返事 【へん・じ】 – reply</li>
+<li>来る 【く・る】 (exception) – to come</li>
+<li>準備 【じゅん・び】 – preparations</li>
+<li>終わる 【お・わる】 (u-verb) – to end</li>
+<li>ここ – here</li>
+<li>名前 【な・まえ】 – name</li>
+<li>書く 【か・く】 (u-verb) – to write</li>
+<li>いい (i-adj) – good</li>
+</ol>
+<p>The particle 「だけ」 is used to express that that’s all there is. Just like the other particles we have already learned, it is directly attached to the end of whichever word that it applies to.</p>
+<h3>Examples</h3>
+<ol>
+<li>りんご_だけ_。<br>Just apple(s) (and nothing else).</li>
+<li>これとそれ_だけ_。<br>Just that and this (and nothing else).</li>
+</ol>
+<p>When one of the major particles are also applied to a word, these particles must come after 「だけ」. In fact, the ordering of multiple particles usually start from the most specific to the most general.</p>
+<ol>
+<li>それ_だけは_、食べないでください。<br>Just don’t eat that. (Anything else is assumed to be OK).</li>
+<li>この歌_だけを_歌わなかった。<br>Didn’t sing just this song.</li>
+<li>その人_だけが_好きだったんだ。<br>That person was the only person I liked.</li>
+</ol>
+<p>The same goes for double particles. Again 「だけ」 must come first.</p>
+<ul>
+<li>この販売機だけ_では_、五百円玉が使えない。<br>Cannot use 500 yen coin in just this vending machine.</li>
+</ul>
+<p>With minor particles such as 「から」 or 「まで」, it is difficult to tell which should come first. When in doubt, try googling to see the level of popularity of each combination. It turns out that 「からだけ」 is almost twice as popular as 「だけから」 with a hit number of 90,000 vs. 50,000.</p>
+<ul>
+<li>小林さん_からだけは_、返事が来なかった。<br>A reply has not come <em>from only</em> Kobayashi-san.</li>
+</ul>
+<p>Unlike some particles, you can directly attach 「だけ」 to verbs as well.</p>
+<ol>
+<li>準備が終わったから、これからは_食べる_だけだ。<br>Since the preparations are done, from here we just have to eat.</li>
+<li>ここに名前を_書く_だけでいいですか？<br>Is it ok to just write [my] name here?</li>
+</ol>
+<h2>Using 「のみ」 as a formal version of 「だけ」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>この – this （abbr. of これの）</li>
+<li>乗車券 【じょう・しゃ・けん】 – passenger ticket</li>
+<li>発売 【はつ・ばい】 – sale</li>
+<li>当日 【とう・じつ】 – that very day</li>
+<li>有効 【ゆう・こう】 – effective</li>
+<li>アンケート – survey</li>
+<li>対象 【たい・しょう】 – target</li>
+<li>大学生 【だい・がく・せい】 – college student</li>
+</ol>
+<p>A particle that is essentially identical both grammatically and in meaning to 「だけ」 is 「のみ」. However, unlike 「だけ」, which is used in regular conversations, 「のみ」 is usually only used in a written context. It is often used for explaining policies, in manuals, and other things of that nature. This grammar really belongs in the advanced section since formal language has a different flavor and tone from what we have seen so far. However, it is covered here because it is essentially identical to 「だけ」. Just googling for 「のみ」 will quickly show the difference in the type of language that is used with 「のみ」 as opposed to 「だけ」.</p>
+<ol>
+<li>この乗車券は発売当日_のみ_有効です。<br>This boarding ticket is <em>only</em> valid on the date on which it was purchased.</li>
+<li>アンケート対象は大学生_のみ_です。<br>The targets of this survey are <em>only</em> college students.</li>
+</ol>
+<h2>Indication that there’s nothing else using 「しか」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>これ – this</li>
+<li>ある (u-verb) – to exist (inanimate)</li>
+<li>見る 【み・る】 (ru-verb) – to see</li>
+<li>今日 【きょう】 – today</li>
+<li>忙しい 【いそが・しい】 (i-adj) – busy</li>
+<li>朝ご飯 【あさ・ご・はん】 – breakfast</li>
+<li>食べる 【た・べる】 (ru-verb) – to eat</li>
+<li>全部 【ぜん・ぶ】 – everything</li>
+<li>買う 【か・う】 (u-verb) – to buy</li>
+<li>ううん – no (casual)</li>
+<li>何【なに】 – what</li>
+<li>もらう – to receive</li>
+<li>頑張る 【がん・ば・る】 (u-verb) – to try one’s best</li>
+<li>こう – (things are) this way</li>
+<li>なる (u-verb) – to become</li>
+<li>逃げる 【に・げる】 (ru-verb) – to escape; to run away</li>
+<li>もう – already</li>
+<li>腐る 【くさ・る】 (u-verb) – to rot; to spoil</li>
+<li>捨てる 【す・てる】 (ru-verb) – to throw away</li>
+</ol>
+<p>I carefully phrased the title of this section to show that 「しか」 must be used to indicate the <strong>lack</strong> of everything else. In other words, the rest of the sentence must always be negative.</p>
+<ul>
+<li>これ_しか_ない。<br>There’s nothing but this.</li>
+</ul>
+<p>The following is incorrect.</p>
+<ul>
+<li>これ_しか_ある。<br>(Should be using 「だけ」 instead)</li>
+</ul>
+<p>As you can see, 「しか」 has an embedded negative meaning while 「だけ」 doesn’t have any particular nuance.</p>
+<ol>
+<li>これ_だけ_見る。<br>See just this.</li>
+<li>これ_だけ_見ない。<br>Don’t see just this.</li>
+<li>これ_しか_見ない。<br>Don’t see anything else but this.</li>
+</ol>
+<h3>Examples</h3>
+<ul>
+<li>今日は忙しくて、朝ご飯_しか_食べられなかった。<br>Today was busy and couldn’t eat anything but breakfast.</li>
+</ul>
+<p>Notice that unlike 「だけ」, it is necessary to finish off the sentence.</p>
+<ul>
+<li>全部買うの？<br>You’re buying everything?</li>
+</ul>
+<ol>
+<li>ううん、これだけ。<br>Nah, just this.</li>
+<li>ううん、これしか_買わない_<br>Nah, won’t buy anything else but this.</li>
+<li>ううん、これしか。<br>(Wrong, the sentence must explicitly indicate the negative.)</li>
+</ol>
+<p>While the major particles always come last, it turns out that 「しか」 must come after 「から」 and 「まで」. A google search of 「からしか」 beats 「しかから」 by an overwhelming 60,000 to 600.</p>
+<ul>
+<li>アリス_からしか_何ももらってない。<br>I didn’t receive anything except from Alice.</li>
+</ul>
+<p>You can also use this grammar with verbs.</p>
+<ol>
+<li>これから頑張る_しか_ない！<br>There’s nothing to do but try our best!</li>
+<li>こうなったら、_逃げる_しかない。<br>There no choice but to run away once it turns out like this.</li>
+<li>もう腐っているから、_捨てる_しかないよ。<br>It’s rotten already so there’s nothing to do but throw it out.</li>
+</ol>
+<h3>「っきゃ」, an alternative to 「しか」</h3>
+<h3>Vocabulary</h3>
+<ol>
+<li>これ – this</li>
+<li>買う 【か・う】 (u-verb) – to buy</li>
+<li>ある (u-verb) – to exist (inanimate)</li>
+<li>こう – (things are) this way</li>
+<li>なる (u-verb) – to become</li>
+<li>もう – already</li>
+<li>やる (u-verb) – to do</li>
+</ol>
+<p>「っきゃ」 is another version of 「しか」 that means essentially the same thing and works exactly the same way. Just substitute 「しか」 with 「っきゃ」 and you’re good to go. This version is a bit stronger than 「しか」 in emphasis but it’s not used nearly as often so I wouldn’t worry about it too much. I briefly cover it here just in case you do run into this expression.</p>
+<h3>Examples</h3>
+<ol>
+<li>これは買う_っきゃ_ない！<br>There’s nothing but to buy this!</li>
+<li>こうなったら、もうやる_っきゃ_ない！<br>If things turn out like this, there nothing to do but to just do it!</li>
+</ol>
+<h2>Expressing the opposite of 「だけ」 with 「ばかり」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>何 【なに／なん】 – what</li>
+<li>おばさん – middle-aged lady</li>
+<li>嫌 【いや】 (na-adj) disagreeable; unpleasant</li>
+<li>崇 【たかし】 – Takashi (first name)</li>
+<li>～君 【～くん】 – name suffix</li>
+<li>漫画 【まん・が】 – comic book</li>
+<li>読む 【よ・む】 (u-verb) – to read</li>
+<li>かっこ悪い 【かっこ・わる・い】 (i-adj) – unattractive; uncool</li>
+<li>彼 【かれ】 – he; boyfriend</li>
+<li>麻雀【マー・ジャン】 – mahjong</li>
+<li>直美 【なお・み】 – Naomi (first name)</li>
+<li>遊ぶ 【あそ・ぶ】 (u-verb) – to play</li>
+<li>最近 【さい・きん】 – recent; lately</li>
+<li>仕事 【し・ごと】 – job</li>
+</ol>
+<p>「ばかり」 is used to express the condition where there’s so much of something to the point where there’s nothing else. Notice this is fundamentally different from 「しか」 which expresses a <strong>lack</strong> of everything else but the item in question. In more casual situations, 「ばかり」 is usually pronounced 「ばっかり」 or just 「ばっか」. For example, let’s say you went to a party to find, much to your dismay, the whole room filled with middle-aged women. You might say the following.</p>
+<ul>
+<li>何だよ！おばさん_ばっかり_じゃないか？<br>What the? Isn’t it nothing but obasan?</li>
+</ul>
+<p>Or perhaps a little more girly:</p>
+<ul>
+<li>いやだ。おばさん_ばっかり_。<br>Eww. It’s nothing but obasan.</li>
+</ul>
+<h3>Examples</h3>
+<ul>
+<li>崇君は漫画_ばっかり_読んでてさ。かっこ悪い。<br>Takashi-kun is reading nothing but comic books… He’s so uncool.</li>
+</ul>
+<p>It is quite common in casual speech to end midsentence like this. Notice 「読んでて」 is the te-form of 「読んでいる」 with the 「い」 dropped. We assume that the conclusion will come somewhere later in the story.</p>
+<ol>
+<li>彼は麻雀_ばかり_です。<br>He’s nothing but mahjong. (He does nothing but play mahjong.)</li>
+<li>直美ちゃんと遊ぶ_ばっかり_でしょう！<br>You’re hanging out with Naomi-chan all the time, aren’t you!</li>
+<li>最近は仕事_ばっか_だよ。<br>Lately, it’s nothing but work.</li>
+</ol>
+<h2>Saying there’s too much of something using 「すぎる」</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>過ぎる 【す・ぎる】 (ru-verb) – to exceed; to pass</li>
+<li>食べる 【た・べる】 (ru-verb) – to eat</li>
+<li>飲む 【の・む】 (u-verb) – to drink</li>
+<li>太る 【ふと・る】 (u-verb) – to become fatter</li>
+<li>静か 【しず・か】 (na-adj) – quiet</li>
+<li>大きい 【おお・きい】 (i-adj) – big</li>
+<li>面白い 【おも・しろ・い】 (i-adj) – interesting</li>
+<li>もったいない (i-adj) – wasteful</li>
+<li>情けない 【なさ・けない】 (i-adj) – pitiable</li>
+<li>危ない 【あぶ・ない】 (i-adj) – dangerous</li>
+<li>少ない 【すく・ない】 (i-adj) – few</li>
+<li>佐藤 【さ・とう】 – Satou (last name)</li>
+<li>料理 【りょう・り】 – cooking; cuisine; dish</li>
+<li>上手 【じょう・ず】 (na-adj) – skillful</li>
+<li>また – again</li>
+<li>お酒 【お・さけ】 – alcohol</li>
+<li>気 【き】 – mood; intent</li>
+<li>つける – to attach</li>
+<li>気をつける – (expression) to be careful</li>
+<li>トランク – trunk</li>
+<li>入る 【はい・る】 (u-verb) – to enter</li>
+<li>罠 【わな】 – trap</li>
+<li>時間 【じ・かん】 – time</li>
+<li>足りる 【た・りる】 (ru-verb) – to be sufficient</li>
+<li>何【なに】 – what</li>
+<li>出来る 【で・き・る】 (ru-verb) – to be able to do</li>
+<li>彼 【かれ】 – he; boyfriend</li>
+<li>彼女 【かの・じょ】 – she; girlfriend</li>
+<li>昨晩 【さく・ばん】 – last night</li>
+<li>こと – event, matter</li>
+<li>全然 【ぜん・ぜん】 – not at all (when used with negative)</li>
+<li>覚える 【おぼ・える】 (ru-verb) – to memorize</li>
+<li>それ – that</li>
+</ol>
+<p>「すぎる」 is a regular ru-verb written 「過ぎる」 meaning, “to exceed”. When 「すぎる」 is attached to the end of other verbs and adjectives, it means that it is too much or that it has exceeded the normal levels. For verbs, you must directly attach 「すぎる」 to the stem of the verb. For example, 「食べすぎる」 means “to eat too much” and 「飲みすぎる」 means “to drink too much”. For adjectives, you just attach it to the end after you remove the last 「い」 from the i-adjectives (as usual). One more rule is that for both negative verbs and adjectives, one must remove the 「い」 from 「ない」 and replace with 「さ」 before attaching 「すぎる」. There is no tense (past or non-past) associated with this grammar. Since 「すぎる」 is a regular ru-verb, this grammar always results in a regular ru-verb.</p>
+<p>Using 「すぎる」 to indicate there’s too much of something</p>
+<ul>
+<li><p><strong>For verbs:</strong> First change the verb to the <em>stem</em> and attach 「すぎる」.<br>Examples</p>
+<ol>
+<li>食べ_る_ → 食べ_すぎる_</li>
+<li>太_る_ → 太_り_ → 太り_すぎる_</li>
+</ol>
+</li>
+<li><p><strong>For na-adjectives:</strong> Attach 「すぎる」. For i-adjectives, remove the last 「い」 first before attaching 「すぎる」.<br>Examples</p>
+<ol>
+<li>静か → 静か_すぎる_</li>
+<li>大き_い_ → 大き_すぎる_</li>
+</ol>
+</li>
+<li><p><strong>For negative verbs and adjectives:</strong> Replace the last 「い」 from 「ない」 with 「さ」 and then attach 「すぎる」<br>Examples</p>
+<ol>
+<li>食べな_い_ → 食べな_さ_ → 食べなさ_すぎる_</li>
+<li>面白くな_い_ → 面白くな_さ_→ 面白くなさ_すぎる_</li>
+</ol>
+</li>
+<li><p>I-adjectives that end in 「ない」 which incorporate the negative 「無い」 such as 「もったいない」（勿体_無い_） or 「情けない」（情け_無い_） follow the third rule.<br>Examples</p>
+<ol>
+<li>もったいな_い_ → もったいな_さ_ → もったいなさ_すぎる_</li>
+<li>情けな_い_ → 情けな_さ_ → 情けなさ_すぎる_</li>
+</ol>
+</li>
+<li><p>Most regular i-adjectives such as 「危ない」 or 「少ない」 follow the regular rule (rule 2).<br>Examples</p>
+<ol>
+<li>危な_い_ → 危な_すぎる_</li>
+<li>少な_い_ → 少な_すぎる_</li>
+</ol>
+</li>
+</ul>
+<h3>Examples</h3>
+<ol>
+<li>佐藤さんは料理が上手で、また_食べ過ぎました_。<br>Satou-san is good at cooking and I ate too much again.</li>
+<li>お酒を_飲みすぎない_ように気をつけてね。<br>Be careful to not drink too much, ok?</li>
+<li>_大きすぎる_からトランクに入らないぞ。<br>It won’t fit in the trunk cause it’s too big, man.</li>
+<li><em>静かすぎる</em>。罠かもしれないよ。<br>It’s too quiet. It might be a trap, you know.</li>
+<li>時間が_足りなさすぎて_、何もできなかった。<br>Due to too much of a lack of time, I couldn’t do anything.</li>
+<li>彼には、彼女が_もったいなさすぎる_よ。<br>She is totally wasted on him (too good for him).</li>
+</ol>
+<p>It is also common to change 「すぎる」 into its stem and use it as a noun.</p>
+<p>Ａ：昨晩のこと、全然覚えてないな。<br>A: Man, I don’t remember anything about last night.</p>
+<p>Ｂ：それは_飲みすぎ_だよ。<br>B: That’s drinking too much.</p>
+<h2>Adding the 「も」 particle to express excessive amounts</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>昨日【きのう】 – yesterday</li>
+<li>電話 【でん・わ】 – phone</li>
+<li>～回 【～かい】 – counter for number of times</li>
+<li>する (exception) – to do</li>
+<li>試験 【し・けん】 – exam</li>
+<li>ため – for the sake/benefit of</li>
+<li>～時間 【～じ・かん】 – counter for span of hour(s)</li>
+<li>勉強 【べん・きょう】 – study</li>
+<li>今年 【こ・とし】 – this year</li>
+<li>キロ – kilo</li>
+<li>太る 【ふと・る】 (u-verb) – to become fatter</li>
+</ol>
+<p>When the 「も」 particle comes after some type of amount, it means that the amount indicated is way too much. For instance, let’s look at the next example.</p>
+<ul>
+<li>昨日、電話_三回も_したよ！<br>I called you like three times yesterday!</li>
+</ul>
+<p>Notice that the 「も」 particle is attached to the amount “three times”. This sentence implies that the speaker called even three times and still the person didn’t pick up the phone. We understand this to mean that three times are a lot of times to call someone.</p>
+<ol>
+<li>試験のために_三時間も_勉強した。<br>I studied three whole hours for the exam.</li>
+<li>今年、_十キロも_太っちゃった！<br>I gained 10 whole kilograms this year!</li>
+</ol>
+<h2>Using 「ほど」 to express the extent of something</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>程 【ほど】 – degree, extent</li>
+<li>今日 【きょう】 – today</li>
+<li>天気 【てん・き】 – weather</li>
+<li>それ – that</li>
+<li>暑い 【あつ・い】 (i-adj) – hot</li>
+<li>寝る 【ね・る】 (ru-verb) – to sleep</li>
+<li>時間 【じ・かん】 – time</li>
+<li>ある (u-verb) – to exist (inanimate)</li>
+<li>忙しい 【いそが・しい】 (i-adj) – busy</li>
+<li>韓国 【かん・こく】 – Korea</li>
+<li>料理 【りょう・り】 – cooking; cuisine; dish</li>
+<li>食べる 【たべ・る】 (ru-verb) – to eat</li>
+<li>おいしい (i-adj) – tasty</li>
+<li>なる (u-verb) – to become</li>
+<li>歩く 【ある・く】 (u-verb) – to walk</li>
+<li>迷う 【まよ・う】 (u-verb) – to get lost</li>
+<li>勉強 【べん・きょう】 – study</li>
+<li>頭 【あたま】 – head</li>
+<li>いい (i-adj) – good</li>
+<li>ハードディスク – hard disk</li>
+<li>容量 【よう・りょう】 – capacity</li>
+<li>大きい 【おお・きい】(i-adj) – big</li>
+<li>もっと – more</li>
+<li>たくさん – a lot (amount)</li>
+<li>曲 【きょく】 – tune</li>
+<li>保存 【ほ・ぞん】 – save</li>
+<li>出来る 【で・き・る】 (ru-verb) – to be able to do</li>
+<li>航空券 【こう・くう・けん】 – plane ticket</li>
+<li>安い 【やす・い】 (i-adj) – cheap</li>
+<li>限る 【かぎ・る】 (u-verb) – to limit</li>
+<li>文章 【ぶん・しょう】 – sentence; writing</li>
+<li>短い 【みじか・い】 (i-adj) – short</li>
+<li>簡単 【かん・たん】 (na-adj) – simple</li>
+<li>良い 【よ・い】 (i-adj) – good</li>
+</ol>
+<p>The noun 「ほど」（程） is attached to a word in a sentence to express the extent of something. It can modify nouns as well as verbs as seen in the next example.</p>
+<ol>
+<li>今日の天気はそれ_ほど_暑くない。<br>Today’s weather is not hot to that extent.</li>
+<li>寝る時間がない_ほど_忙しい。<br>Busy to the extent that there’s no time to sleep.</li>
+</ol>
+<p>When you use this with conditionals, you can express something that translates into English as, “The more you [verb], the more…” The grammar is always formed in the following sequence: [conditional of verb] followed immediately by [same verb+ ほど]</p>
+<ul>
+<li>韓国料理は_食べれば食べるほど_、おいしくなる。<br>About Korean food, the more you eat the tastier it becomes.</li>
+</ul>
+<p>The literal translation is, “About Korean food, if you eat, to the extent that you eat, it becomes tasty.” which essentially means the same thing. The example uses the 「ば」 conditional form, but the 「たら」 conditional will work as well. Since this is a general statement, the contextual 「なら」 conditional will never work. The decided 「と」 conditional won’t work very well here either since it may not always be true depending on the extent of the action.</p>
+<ol>
+<li><em>歩いたら歩くほど</em>、迷ってしまった。<br>The more I walked, the more I got lost.</li>
+<li>勉強を_すればするほど_、頭がよくなるよ。<br>The more you study, the more you will become smarter.</li>
+</ol>
+<p>You can also use this grammar with i-adjectives by using the 「ば」 conditional.</p>
+<ol>
+<li>iPodは、ハードディスクの容量が_大きければ大きいほど_もっとたくさんの曲が保存できます。<br>About iPod, the larger the hard disk capacity, the more songs you can save.</li>
+<li>航空券は_安ければ安いほど_いいとは限らない。<br>It’s not necessarily the case that the cheaper the ticket, the better it is.</li>
+</ol>
+<p>For na-adjectives, since you can’t use the 「ば」 conditional you have to resort to the 「なら」 conditional. Because it sounds strange to use the 「なら」 conditional in this fashion, you will hardly ever see this grammar used with na-adjectives. Since 「ほど」 is treated as a noun, make sure you don’t forget to use 「な」 to attach the noun to the na-adjective.</p>
+<ul>
+<li>文章は、短ければ短いほど、_簡単なら簡単なほど_よいです。<br>The shorter and simpler the sentences, the better it is.</li>
+</ul>
+<h2>Using 「～さ」 with adjectives to indicate an amount</h2>
+<h3>Vocabulary</h3>
+<ol>
+<li>高い 【たか・い】 (i-adj) – high; tall; expensive</li>
+<li>低い 【ひく・い】 (i-adj) – short</li>
+<li>穏やか 【おだ・やか】 (na-adj) – calm, peaceful</li>
+<li>この – this （abbr. of これの）</li>
+<li>ビル – building</li>
+<li>何 【なに／なん】 – what</li>
+<li>犬 【いぬ】 – dog</li>
+<li>聴覚 【ちょう・かく】 – sense of hearing</li>
+<li>敏感 【びん・かん】 (na-adj) – sensitive</li>
+<li>人間 【にん・げん】 – human</li>
+<li>比べる 【くら・べる】 (ru-verb) – to compare</li>
+<li>はるか – far more</li>
+<li>上 【うえ】 – above</li>
+</ol>
+<p>We will now learn how to add 「さ」 to adjectives to indicate an amount of that adjective. For example, we can attach 「さ」 to the adjective for “high” in order to get “height”. Instead of looking at the height, we can even attach 「さ」 to the adjective for “low” to focus on the amount of lowness as opposed to the amount of highness. In fact, there is nothing to stop us from using this with any adjective to indicate an amount of that adjective. The result becomes a regular noun indicating the amount of that adjective.</p>
+<p>Adding 「～さ」 to adjectives to indicate an amount</p>
+<ul>
+<li><p><strong>For i-adjectives</strong>: First remove the trailing 「い」 from the i-adjective and then attach 「さ」</p>
+<ol>
+<li>高_い_ → 高_さ_</li>
+<li>低_い_ → 低_さ_</li>
+</ol>
+</li>
+<li><p><strong>For na-adjectives</strong>: Just attach 「さ」 to the end of the na-adjective<br>Example</p>
+<ol>
+<li>穏やか → 穏やか_さ_</li>
+</ol>
+</li>
+</ul>
+<p>The result becomes a regular noun.</p>
+<h3>Examples</h3>
+<ol>
+<li>このビルの_高さ_は何ですか？<br>What is the height of this building?</li>
+<li>犬の聴覚の_敏感さ_を人間と比べると、はるかに上だ。<br>If you compare the level of sensitivity of hearing of dogs to humans, it is far above.</li>
+</ol>
+<h3>Guide to Japanese grammar</h3>
+<p><a href="/en/certainty" title="&lt;&lt; Various degrees of certainty">Various degrees of certainty</a> <a href="/en/similarity" title="Similarity or hearsay &gt;&gt;">Similarity or hearsay</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guide to Japanese Grammar</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/en/certainty"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Previous</span></a>
+          <span class="page-count">44 / 62</span>
+          <a class="nav-link" href="/en/similarity"><span>Next</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>

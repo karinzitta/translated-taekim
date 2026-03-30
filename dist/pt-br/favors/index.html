@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Gramática Japonesa – Dar e Receber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f7f7f7;
+      --bg-sidebar-hover: #eef2f7;
+      --bg-active: #e8f0f8;
+      --text: #333333;
+      --text-muted: #767676;
+      --text-sidebar: #444;
+      --link: #0073aa;
+      --link-hover: #005580;
+      --border: #eeeeee;
+      --border-strong: #bbbbbb;
+      --header-bg: #ffffff;
+      --header-border: #eeeeee;
+      --progress-bg: #e8e8e8;
+      --progress-fill: #0073aa;
+      --active-text: #0055aa;
+      --active-border: #0073aa;
+      --num-color: #aaa;
+      --table-head-border: #bbb;
+      --shadow: 0 1px 3px rgba(0,0,0,.07);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-sidebar: #111111;
+      --bg-sidebar-hover: #222222;
+      --bg-active: #1a2a3a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --text-sidebar: #bbb;
+      --link: #5ba8d4;
+      --link-hover: #7ec0e8;
+      --border: #2a2a2a;
+      --border-strong: #555;
+      --header-bg: #111111;
+      --header-border: #2a2a2a;
+      --progress-bg: #2a2a2a;
+      --progress-fill: #5ba8d4;
+      --active-text: #7ec0e8;
+      --active-border: #5ba8d4;
+      --num-color: #555;
+      --table-head-border: #555;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Libre Franklin', 'Helvetica Neue', helvetica, arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      width: 100%;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .menu-btn:hover { background: var(--bg-sidebar-hover); }
+    .site-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .site-title:hover { color: var(--link); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      height: 28px;
+    }
+    .icon-btn:hover { color: var(--link); border-color: var(--link); }
+    .lang-btn { font-weight: 600; }
+
+    /* ── Progress bar ── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      height: 3px;
+      background: var(--progress-bg);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 53%;
+      background: var(--progress-fill);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      padding-top: 55px;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 55px; right: 0; bottom: 0;
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    .sidebar ul { list-style: none; padding: 0.75rem 0; margin: 0 }
+    .sidebar li a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      color: var(--text-sidebar);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      transition: background 0.12s, color 0.12s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar li a:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--link);
+    }
+    .sidebar li.active a {
+      background: var(--bg-active);
+      color: var(--active-text);
+      font-weight: 600;
+      border-left-color: var(--active-border);
+    }
+    .num {
+      font-size: 0.6875rem;
+      color: var(--num-color);
+      min-width: 1.5rem;
+      text-align: right;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
+    }
+
+    /* ── Main content ── */
+    .content-wrap {
+      margin-right: 260px;
+      flex: 1;
+      padding: 2.5rem 3rem 5rem;
+    }
+
+    /* ── Typography ── */
+    p { margin-bottom: 1.5em; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75em; }
+    h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin: 2em 0 0.6em; }
+    h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin: 1.75em 0 0.5em; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 1.5em 0 0.4em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--link-hover); }
+    ul, ol { margin: 0 0 1.5em 1.5em; }
+    li { margin-bottom: 0.3em; }
+    em { font-style: italic; }
+    strong { font-weight: 700; }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* ── Tables ── */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      font-size: 0.9375rem;
+    }
+    thead tr { border-bottom: 2px solid var(--table-head-border); }
+    thead th {
+      padding: 0.5em 1em 0.5em 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody td { padding: 0.55em 1em 0.55em 0; vertical-align: top; }
+
+    /* ── Post navigation ── */
+    .post-navigation {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+    }
+    .nav-series {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--link);
+      font-size: 0.9375rem;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--link-hover); text-decoration: underline; }
+    .page-count { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .menu-btn { display: flex; }
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .content-wrap { margin-right: 0; padding: 1.75rem 1.25rem 4rem; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.625rem; }
+      h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <a class="site-title" href="/pt-br/basic">Guia de Gramática Japonesa</a>
+      <div class="header-actions">
+        <a class="icon-btn lang-btn" href="/en/favors">EN</a>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+          <span id="themeIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <nav aria-label="Pages">
+        <ul><li><a href="/pt-br/basic"><span class="num">1</span>Estruturas Básicas</a></li>
+      <li><a href="/pt-br/stateofbeing"><span class="num">2</span>Estado de Ser</a></li>
+      <li><a href="/pt-br/stateofbeing_ex"><span class="num">3</span>Estado de Ser (Ex.)</a></li>
+      <li><a href="/pt-br/particlesintro"><span class="num">4</span>Intro às Partículas</a></li>
+      <li><a href="/pt-br/particlesintro_ex"><span class="num">5</span>Partículas (Ex.)</a></li>
+      <li><a href="/pt-br/adjectives"><span class="num">6</span>Adjetivos</a></li>
+      <li><a href="/pt-br/adjectives_ex"><span class="num">7</span>Adjetivos (Ex.)</a></li>
+      <li><a href="/pt-br/verbs"><span class="num">8</span>Verbos</a></li>
+      <li><a href="/pt-br/verbs_ex"><span class="num">9</span>Verbos (Ex.)</a></li>
+      <li><a href="/pt-br/negativeverbs"><span class="num">10</span>Verbos Negativos</a></li>
+      <li><a href="/pt-br/negativeverbs_ex"><span class="num">11</span>Verbos Negativos (Ex.)</a></li>
+      <li><a href="/pt-br/past_tense"><span class="num">12</span>Tempo Passado</a></li>
+      <li><a href="/pt-br/pasttense_ex"><span class="num">13</span>Tempo Passado (Ex.)</a></li>
+      <li><a href="/pt-br/verbparticles"><span class="num">14</span>Partículas Verbais</a></li>
+      <li><a href="/pt-br/in-transitive"><span class="num">15</span>Transitivo e Intransitivo</a></li>
+      <li><a href="/pt-br/clause"><span class="num">16</span>Orações Relativas</a></li>
+      <li><a href="/pt-br/nounparticles"><span class="num">17</span>Partículas de Substantivo</a></li>
+      <li><a href="/pt-br/adverbs"><span class="num">18</span>Advérbios</a></li>
+      <li><a href="/pt-br/essential"><span class="num">19</span>Gramática Essencial</a></li>
+      <li><a href="/pt-br/polite"><span class="num">20</span>Forma Polida</a></li>
+      <li><a href="/pt-br/people"><span class="num">21</span>Tratando Pessoas</a></li>
+      <li><a href="/pt-br/question"><span class="num">22</span>Marcador de Pergunta</a></li>
+      <li><a href="/pt-br/compound"><span class="num">23</span>Frases Compostas</a></li>
+      <li><a href="/pt-br/teform"><span class="num">24</span>Forma-te</a></li>
+      <li><a href="/pt-br/potential"><span class="num">25</span>Forma Potencial</a></li>
+      <li><a href="/pt-br/surunaru"><span class="num">26</span>Usando する e なる</a></li>
+      <li><a href="/pt-br/conditionals"><span class="num">27</span>Condicionais</a></li>
+      <li><a href="/pt-br/must"><span class="num">28</span>Obrigação</a></li>
+      <li><a href="/pt-br/desire"><span class="num">29</span>Desejo e Sugestões</a></li>
+      <li><a href="/pt-br/actionclause"><span class="num">30</span>Orações de Ação</a></li>
+      <li><a href="/pt-br/define"><span class="num">31</span>Definindo com いう</a></li>
+      <li><a href="/pt-br/try"><span class="num">32</span>Tentando Coisas</a></li>
+      <li class="active"><a href="/pt-br/favors"><span class="num">33</span>Dar e Receber</a></li>
+      <li><a href="/pt-br/requests"><span class="num">34</span>Fazendo Pedidos</a></li>
+      <li><a href="/pt-br/numbers"><span class="num">35</span>Números e Contagem</a></li>
+      <li><a href="/pt-br/slang"><span class="num">36</span>Linguagem Casual e Gírias</a></li>
+      <li><a href="/pt-br/sentence_ending"><span class="num">37</span>Partículas Finais</a></li>
+      <li><a href="/pt-br/specialexpressions"><span class="num">38</span>Expressões Especiais</a></li>
+      <li><a href="/pt-br/causepass"><span class="num">39</span>Causativo e Passivo</a></li>
+      <li><a href="/pt-br/honorific"><span class="num">40</span>Honorífico e Humilde</a></li>
+      <li><a href="/pt-br/unintended"><span class="num">41</span>Ações Não Intencionais</a></li>
+      <li><a href="/pt-br/genericnouns"><span class="num">42</span>Substantivos Genéricos</a></li>
+      <li><a href="/pt-br/certainty"><span class="num">43</span>Graus de Certeza</a></li>
+      <li><a href="/pt-br/amount"><span class="num">44</span>Expressando Quantidades</a></li>
+      <li><a href="/pt-br/similarity"><span class="num">45</span>Similaridade e Boato</a></li>
+      <li><a href="/pt-br/comparison"><span class="num">46</span>Comparações</a></li>
+      <li><a href="/pt-br/easyhard"><span class="num">47</span>Ações Fáceis e Difíceis</a></li>
+      <li><a href="/pt-br/negativeverbs2"><span class="num">48</span>Mais Verbos Negativos</a></li>
+      <li><a href="/pt-br/reasoning"><span class="num">49</span>Hipóteses e Conclusões</a></li>
+      <li><a href="/pt-br/timeactions"><span class="num">50</span>Ações no Tempo</a></li>
+      <li><a href="/pt-br/nochange"><span class="num">51</span>Falta de Mudança</a></li>
+      <li><a href="/pt-br/advanced"><span class="num">52</span>Gramática Avançada</a></li>
+      <li><a href="/pt-br/formal"><span class="num">53</span>Expressões Formais</a></li>
+      <li><a href="/pt-br/should"><span class="num">54</span>O Que Deveria Ser</a></li>
+      <li><a href="/pt-br/even"><span class="num">55</span>Expectativa Mínima</a></li>
+      <li><a href="/pt-br/signs"><span class="num">56</span>Demonstrando Sinais</a></li>
+      <li><a href="/pt-br/feasibility"><span class="num">57</span>Inviabilidade</a></li>
+      <li><a href="/pt-br/tendency"><span class="num">58</span>Tendências</a></li>
+      <li><a href="/pt-br/volitional2"><span class="num">59</span>Volitivo Avançado</a></li>
+      <li><a href="/pt-br/covered"><span class="num">60</span>Coberto por Algo</a></li>
+      <li><a href="/pt-br/immedate"><span class="num">61</span>Eventos Imediatos</a></li>
+      <li><a href="/pt-br/other"><span class="num">62</span>Outras Gramáticas</a></li></ul>
+      </nav>
+    </aside>
+
+    <main class="content-wrap">
+      <article class="content"><h2>Os japoneses adoram presentear</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>お歳暮 【お・せい・ぼ】 – presentes de fim de ano</li>
+<li>お中元 【お・ちゅう・げん】 – presentes do festival Bon</li>
+<li>あげる (verbo-ru) – dar; elevar</li>
+<li>くれる (verbo-ru) – dar</li>
+<li>もらう (verbo-u) – receber</li>
+</ol>
+<p>Uma das características da cultura japonesa é a importância que dão aos presentes. Existem muitos costumes diferentes envolvendo dar e receber presentes （お歳暮、お中元、etc.） e quando os japoneses viajam, pode ter certeza que vão comprar lembranças para levar de volta como presentes. Até em casamentos e funerais, espera-se que as pessoas dêem uma certa quantia em dinheiro como presente para ajudar a custear a cerimônia. Dá para entender por que aprender corretamente como expressar o dar e receber de favores e itens é uma habilidade muito importante e útil. Por alguma razão, o uso correto de 「あげる」、「くれる」 e 「もらう」 sempre atormentou quem estuda japonês por ser considerado horriblemente complexo e difícil de dominar. Espero provar nesta seção que o conceito é bastante direto e simples.</p>
+<h2>Quando usar 「あげる」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>あげる (verbo-ru) – dar; elevar</li>
+<li>私 【わたし】 – eu; mim mesmo(a)</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>プレゼント – presente</li>
+<li>これ – isto</li>
+<li>先生 【せん・せい】 – professor(a)</li>
+<li>車 【くるま】 – carro</li>
+<li>買う 【か・う】 (verbo-u) – comprar</li>
+<li>代わり 【か・わり】 – substituto</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>学生 【がく・せい】 – estudante</li>
+<li>父【ちち】 – pai</li>
+<li>いい (adjetivo-i) – bom</li>
+<li>こと – evento, assunto</li>
+<li>教える 【おし・える】 (verbo-ru) – ensinar; informar</li>
+</ol>
+<p>「あげる」 é a palavra japonesa para &quot;dar&quot; vista do ponto de vista do falante. Você deve usar esse verbo quando está dando algo ou fazendo algo para outra pessoa.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>私が友達にプレゼントを_あげた_。
+Dei um presente ao amigo.</li>
+<li>これは先生に_あげる_。
+Vou dar isto ao professor.</li>
+</ol>
+<p>Para expressar o ato de fazer um favor (verbo), você deve usar a sempre útil forma-te e então anexar 「あげる」. Isso se aplica a todas as outras seções desta lição também.</p>
+<ol>
+<li>車を_買ってあげる_よ。
+Vou te fazer o favor de comprar um carro.</li>
+<li>代わりに_行ってあげる_。
+Vou te fazer o favor de ir no seu lugar.</li>
+</ol>
+<p>Para a terceira pessoa, esse verbo é usado quando o falante observa a situação do ponto de vista de quem dá. Veremos a importância disso quando examinarmos o verbo 「くれる」 a seguir.</p>
+<ol>
+<li>学生がこれを先生に_あげる_。
+O estudante dá isto ao professor. (observando do ponto de vista do estudante)</li>
+<li>友達が父にいいことを_教えてあげた_。
+O amigo fez o favor de ensinar algo bom ao meu pai. (observando do ponto de vista do amigo)</li>
+</ol>
+<h3>Usando 「やる」 com o significado de 「あげる」</h3>
+<h3>Vocabulário</h3>
+<ol>
+<li>犬 【いぬ】 – cachorro</li>
+<li>餌 【えさ】 – comida para animais</li>
+<li>やる (verbo-u) – fazer</li>
+</ol>
+<p>Geralmente usado para animais de estimação, bichos e similares, você pode substituir 「やる」, que normalmente significa &quot;fazer&quot;, por 「あげる」. Não deve-se usar esse 「やる」 com pessoas, pois ele implica estar olhando para alguém de cima e pode ser ofensivo.</p>
+<ul>
+<li>犬に餌を_やった_？
+Você deu comida ao cachorro?</li>
+</ul>
+<p>Aqui, 「やる」 não significa &quot;fazer&quot; mas &quot;dar&quot;. Dá para perceber porque &quot;fazer comida para o cachorro&quot; não faz sentido.</p>
+<h2>Quando usar 「くれる」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>くれる (verbo-ru) – dar</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>私 【わたし】 – eu; mim mesmo(a)</li>
+<li>プレゼント – presente</li>
+<li>これ – isto</li>
+<li>先生 【せん・せい】 – professor(a)</li>
+<li>車 【くるま】 – carro</li>
+<li>買う 【か・う】 (verbo-u) – comprar</li>
+<li>代わり 【か・わり】 – substituto</li>
+<li>行く 【い・く】 (verbo-u) – ir</li>
+<li>学生 【がく・せい】 – estudante</li>
+<li>父【ちち】 – pai</li>
+<li>いい (adjetivo-i) – bom</li>
+<li>こと – evento, assunto</li>
+<li>教える 【おし・える】 (verbo-ru) – ensinar; informar</li>
+<li>あげる (verbo-ru) – dar; elevar</li>
+<li>全部 【ぜん・ぶ】 – tudo</li>
+<li>食べる 【た・べる】 (verbo-ru) – comer</li>
+</ol>
+<p>「くれる」 também é um verbo que significa &quot;dar&quot;, mas ao contrário de 「あげる」, é do ponto de vista de quem recebe. Você deve usar esse verbo quando <em>outra pessoa</em> está dando algo ou fazendo algo por você (efetivamente o oposto de 「あげる」).</p>
+<h3>Exemplos</h3>
+<ol>
+<li>友達が私にプレゼントを_くれた_。
+O amigo me deu um presente.</li>
+<li>これは、先生が_くれた_。
+O professor me deu isto.</li>
+<li>車を_買ってくれる_の？
+Você vai me fazer o favor de comprar um carro para mim?</li>
+<li>代わりに_行ってくれる_？
+Você vai me fazer o favor de ir no meu lugar?</li>
+</ol>
+<p>Da mesma forma, quando usado na terceira pessoa, o falante está falando do ponto de vista de quem recebe, e não de quem dá.</p>
+<ol>
+<li>先生がこれを学生に_くれる_。
+O professor dá isto ao estudante. (observando do ponto de vista do estudante)</li>
+<li>友達が父にいいことを_教えてくれた_。
+O amigo fez o favor de ensinar algo bom ao meu pai. (observando do ponto de vista do pai)</li>
+</ol>
+<p>O diagrama a seguir ilustra a direção do dar do ponto de vista do falante.</p>
+<p><img src="https://www.guidetojapanese.org/images/favordiag.gif" alt="Diagrama de Favor"></p>
+<p>Do ponto de vista do falante, tudo o que é dado aos outros &quot;sobe&quot; para todos os demais, enquanto o que é dado por todos os outros &quot;desce&quot; para o falante. Isso provavelmente está relacionado ao fato de existir um verbo idêntico 「上げる」, que significa &quot;elevar&quot; e contém o kanji para &quot;acima&quot; （上）, e de que a forma honorífica de 「くれる」 é 「下さる」, com o kanji para baixo （下）. Essa restrição nos permite fazer certas deduções a partir de frases vagas como a seguinte:</p>
+<ul>
+<li>先生が教えて_あげる_んですか。
+Professor, vai ser você a fazer o favor de ensinar para… [qualquer pessoa que não seja o falante]?</li>
+</ul>
+<p>Como todo ato de dar ao falante sempre deve usar 「くれる」, sabemos que o professor deve estar fazendo isso para outra pessoa e <em>não para o falante</em>. O falante também está observando a situação do ponto de vista do professor, que está fazendo um favor para outra pessoa.</p>
+<ul>
+<li>先生が教えて_くれる_んですか。
+Professor, vai ser você a fazer o favor de ensinar para… [qualquer pessoa, incluindo o falante]?</li>
+</ul>
+<p>Como quem dá não é o falante, o professor está dando ao falante ou a qualquer outra pessoa. O falante está vendo a situação do ponto de vista de quem recebe um favor feito pelo professor.</p>
+<p>Vejamos alguns erros para ficar atento.</p>
+<ul>
+<li><p>私が全部食べて_くれました_。
+「くれる」 está sendo usado como um ato de dar do próprio falante. (Errado)</p>
+</li>
+<li><p>私が全部食べて_あげました_。
+Fiz o favor de comer tudo. (Correto)</p>
+</li>
+<li><p>友達がプレゼントを私に_あげた_。
+「あげる」 está sendo usado como um ato de dar ao falante. (Errado)</p>
+</li>
+<li><p>友達がプレゼントを私に_くれた_。 - O amigo me deu um presente. (Correto)</p>
+</li>
+</ul>
+<h2>Quando usar 「もらう」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>私 【わたし】 – eu; mim mesmo(a)</li>
+<li>友達 【とも・だち】 – amigo</li>
+<li>プレゼント – presente</li>
+<li>もらう (verbo-u) – receber</li>
+<li>これ – isto</li>
+<li>買う 【か・う】 (verbo-u) – comprar</li>
+<li>宿題 【しゅく・だい】 – dever de casa</li>
+<li>チェック – verificação</li>
+<li>する (exceção) – fazer</li>
+<li>時間 【じ・かん】 – tempo</li>
+<li>ある (verbo-u) – existir (inanimado)</li>
+<li>無理 【む・り】 – impossível</li>
+<li>その – aquele （abrev. de それの）</li>
+<li>時計 【と・けい】 – relógio</li>
+</ol>
+<p>「もらう」, que significa &quot;receber&quot;, tem apenas uma versão, ao contrário de 「あげる／くれる」, então há muito pouco a explicar. Uma coisa a observar é que, como você recebe <em>de</em> alguém, 「から」 também é apropriado além da partícula de destino 「に」.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>私が友達_に_プレゼントを_もらった_。
+Recebi um presente do amigo.</li>
+<li>友達_から_プレゼントを_もらった_。
+Recebi um presente do amigo.</li>
+<li>これは友達に_買ってもらった_。
+Sobre isto, recebi o favor de o amigo comprá-lo.</li>
+<li>宿題をチェック_してもらいたかった_けど、時間がなくて無理だった。
+Queria receber o favor de ter o dever de casa verificado, mas não havia tempo e foi impossível.</li>
+</ol>
+<p>「もらう」 é visto da perspectiva de quem recebe, então, no caso da primeira pessoa, outros geralmente não recebem coisas de você. No entanto, pode-se usar 「私からもらう」 quando se quer enfatizar o fato de que a outra pessoa recebeu de você. Por exemplo, se você quisesse dizer &quot;Ei, fui <em>eu</em> que te dei isso!&quot;, usaria 「あげる」. No entanto, usaria 「もらう」 se quisesse dizer &quot;Ei, você <em>recebeu</em> isso de mim!&quot;</p>
+<ul>
+<li>その時計は私からもらったのよ。
+(Ele) recebeu aquele relógio de mim.</li>
+</ul>
+<h2>Pedindo favores com 「くれる」 ou 「もらえる」</h2>
+<h3>Vocabulário</h3>
+<ol>
+<li>千円 【せん・えん】 – 1.000 ienes</li>
+<li>貸す 【か・す】 (verbo-u) – emprestar</li>
+<li>する (exceção) – fazer</li>
+<li>くれる (verbo-ru) – dar</li>
+<li>もらう (verbo-u) – receber</li>
+<li>あなた – você</li>
+<li>私 【わたし】 – eu; mim mesmo(a)</li>
+<li>ちょっと – um pouco</li>
+<li>静か 【しず・か】 (adjetivo-na) – quieto</li>
+<li>漢字 【かん・じ】 – Kanji</li>
+<li>書く 【か・く】 (verbo-u) – escrever</li>
+</ol>
+<p>Você pode fazer pedidos usando 「くれる」 e a forma potencial de 「もらう」 (posso receber o favor de…). Já vimos um exemplo disso no exemplo 4 da seção de 「くれる」. Como os pedidos são favores feitos ao falante, não se pode usar 「あげる」 nessa situação.</p>
+<h3>Exemplos</h3>
+<ol>
+<li>千円を貸してくれる？
+Você vai me fazer o favor de emprestar 1000 ienes?</li>
+<li>千円を貸してもらえる？
+Posso receber o favor de você me emprestar 1000 ienes?</li>
+</ol>
+<p>Note que as duas frases significam essencialmente a mesma coisa. Isso ocorre porque quem dá e quem recebe foi omitido, pois é óbvio pelo contexto. Se fôssemos escrever a frase completa, ficaria assim:</p>
+<ol>
+<li><em>あなたが</em>、_私に_千円を貸してくれる？
+Você vai me fazer o favor de emprestar 1000 ienes?</li>
+<li><em>私が</em>、_あなたに_千円を貸してもらえる？
+Posso receber o favor de você me emprestar 1000 ienes?</li>
+</ol>
+<p>Não é normal incluir explicitamente o sujeito e o destino desta forma quando se fala diretamente com alguém, mas aqui foi feito para ilustrar a mudança de sujeito e destino dependendo do verbo 「くれる」 e 「もらえる」.</p>
+<p>Você pode usar o negativo para tornar o pedido um pouco mais suave. Você verá que isso se aplica a muitos outros tipos de gramática.</p>
+<ol>
+<li>ちょっと静かにして_くれない_？
+Você não poderia ficar um pouco mais quieto(a)?</li>
+<li>漢字で書いて_もらえません_か。
+Você poderia escrever isso em kanji para mim?</li>
+</ol>
+<h3>Pedindo para alguém não fazer algo</h3>
+<h3>Vocabulário</h3>
+<ol>
+<li>全部 【ぜん・ぶ】 – tudo</li>
+<li>食べる 【た・べる】 (verbo-ru) – comer</li>
+<li>くれる (verbo-ru) – dar</li>
+<li>高い 【たか・い】 (adjetivo-i) – alto; caro</li>
+<li>物 【もの】 – objeto</li>
+<li>買う 【か・う】 (verbo-u) – comprar</li>
+</ol>
+<p>Para pedir que alguém <em>não</em> faça algo, basta anexar 「で」 à forma negativa do verbo e prosseguir como antes.</p>
+<ol>
+<li>全部食べない_で_くれますか。
+Você pode não comer tudo?</li>
+<li>高い物を買わない_で_くれる？
+Você pode não comprar coisas caras?</li>
+</ol>
+<h3>Guia de gramática japonesa</h3>
+<p><a href="/pt-br/try" title="&lt;&lt; Tentando ou se esforçando para fazer algo">Tentando ou se esforçando para fazer algo</a> <a href="/pt-br/requests" title="Fazendo Pedidos &gt;&gt;">Fazendo Pedidos</a></p>
+</article>
+
+      <nav class="post-navigation" aria-label="Page navigation">
+        <p class="nav-series">Guia de Gramática Japonesa</p>
+        <div class="nav-links">
+          <a class="nav-link" href="/pt-br/try"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg><span>Anterior</span></a>
+          <span class="page-count">33 / 62</span>
+          <a class="nav-link" href="/pt-br/requests"><span>Próximo</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    // Dark mode
+    const btn = document.getElementById('themeBtn')
+    const icon = document.getElementById('themeIcon')
+    const moon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\"/></svg>"
+    const sun = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+
+    function setTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : ''
+      icon.innerHTML = dark ? sun : moon
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    }
+
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(saved ? saved === 'dark' : prefersDark)
+
+    btn.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme !== 'dark')
+    })
+
+    // Mobile sidebar
+    const sidebar = document.getElementById('sidebar')
+    const overlay = document.getElementById('overlay')
+    const menuBtn = document.getElementById('menuBtn')
+
+    function toggleSidebar(open) {
+      sidebar.classList.toggle('open', open)
+      overlay.classList.toggle('open', open)
+    }
+
+    menuBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')))
+    overlay.addEventListener('click', () => toggleSidebar(false))
+
+    // Scroll active item into view in sidebar
+    const active = sidebar.querySelector('li.active a')
+    if (active) active.scrollIntoView({ block: 'center', behavior: 'instant' })
+  </script>
+</body>
+</html>
