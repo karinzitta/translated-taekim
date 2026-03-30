@@ -1,0 +1,5 @@
+Ufa! Chegamos longe desde o aprendizado do alfabeto fonético básico até cobrir quase toda a gramática que você vai precisar para conversas do dia a dia. Mas espere, ainda não terminamos! Na verdade, as coisas vão ficar ainda mais desafiadoras e interessantes porque, especialmente na última parte desta seção, vamos aprender gramática que _talvez_ seja útil. Em minha experiência, as coisas mais úteis são as mais fáceis de aprender, pois aparecem repetidamente. No entanto, para dominar completamente um idioma, também devemos trabalhar duro para conquistar a área mais ampla de coisas que não aparecem com muita frequência, mas que todo falante nativo de japonês entende instintivamente. Acredite ou não, até a gramática mais obscura _vai_ aparecer eventualmente, deixando você se perguntando o que ela deveria significar. É por isso que eu me dei ao trabalho de aprendê-las.
+
+### Guia de gramática japonesa
+
+[Expressando a ausência de mudança](https://guidetojapanese.org/learn/grammar/nochange "<< Expressando a ausência de mudança") [Expressões Formais](https://guidetojapanese.org/learn/grammar/formal "Expressões Formais >>")

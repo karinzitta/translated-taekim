@@ -1,0 +1,5 @@
+Decidi chamar esta próxima seção de "Expressões Especiais" apenas porque, com exceção das primeiras lições, a maior parte da gramática aqui se aplica a áreas mais específicas do que a gramática que cobrimos até agora. Essas expressões especiais, embora individualmente não sejam vitais, são, como coleção, necessárias para conversas cotidianas regulares. Estamos entrando lentamente na fase em que já construímos a caixa de ferramentas e agora precisamos adquirir as pequenas ferramentas que a tornarão completa. Agora que cobrimos a maior parte da base, é hora de olhar para todos os pequenos detalhes. Você pode pular entre as lições; no entanto, os exemplos assumirão que você passou por todas as seções anteriores.
+
+### Guia de gramática japonesa
+
+[Revisão e mais partículas finais de frase](https://guidetojapanese.org/learn/grammar/sentence_ending "<< Revisão e mais partículas finais de frase") [Verbos Causativo e Passivo](https://guidetojapanese.org/learn/grammar/causepass "Verbos Causativo e Passivo >>")
